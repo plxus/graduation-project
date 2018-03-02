@@ -1,3 +1,10 @@
+<?php
+use Illuminate\Support\Facades\Auth;
+
+// 获取当前已认证的用户
+$user = Auth::user();
+?>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,32 +33,23 @@
       <li><a href="{{ route('about') }}">关于</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <?php
-      if (Auth::check()) {
-          echo<<<EOD
+      @if (Auth::check())
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="" title="用户头像"> <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <li class="dropdown-header">登录为 用户名</li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">个人主页</a></li>
-        <li><a href="#">我的收藏</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">设置</a></li>
-        <li><a href="#">注销</a></li>
-        </ul>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="" title="用户头像"> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-header">登录为 {{ $user->name }}</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">个人主页</a></li>
+            <li><a href="#">我的收藏</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">注销</a></li>
+          </ul>
         </li>
-EOD;
-      } else {
-          echo<<<EOD
+      @else
         <li><a href="{{ route('signup') }}">注册</a></li>
         <li><a href="#">登录</a></li>
-EOD;
-      }
-      ?>
-      <!-- <li><a href="{{ route('signup') }}">注册</a></li>
-        <li><a href="#">登录</a></li> -->
-
+      @endif
       </ul>
       <!-- /.navbar-collapse -->
     </div>

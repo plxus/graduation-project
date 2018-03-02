@@ -65,6 +65,16 @@ p {
   font-weight: 500;
 }
 
+.dropdown-header {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9E9E9E;
+}
+
+.dropdown-menu li a {
+  font-size: 14px;
+}
+
 /* Footer */
 
 footer {

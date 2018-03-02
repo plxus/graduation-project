@@ -9,11 +9,11 @@
 
   <title>@yield('title', '知识清单管理系统') - 知所</title>
 
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/bootstrap-theme-paper.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/app.js"></script>
-  <script src="js/fontawesome-all.min.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/app.js"></script>
+  <script src="/js/fontawesome-all.min.js"></script>
 
 </head>
 
@@ -31,7 +31,7 @@
 
     <!-- 页脚 -->
     @include('layouts._footer')
-    
+
   </div>
 
 </body>
