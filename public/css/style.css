@@ -1,0 +1,89 @@
+/* 用户自定义的 CSS 样式代码 */
+
+/* Universal */
+
+body {
+  padding-top: 84px;
+  font-size: medium;
+  font-weight: normal;
+  color: #212121;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.6em;
+  font-weight: 500;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.8em;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+/* Header */
+
+.navbar-inverse .navbar-brand {
+  color: rgba(255, 255, 255, 1);
+}
+
+.navbar-brand {
+  font-weight: 500;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-nav li a {
+  font-weight: 500;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  color: #757575;
+}
+
+/* Components */
+
+.jumbotron {
+  text-align: center;
+  padding: 100px 60px;
+}
+
+.jumbotron h1 {
+  font-weight: 400;
+}
+
+.btn {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+}
