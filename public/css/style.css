@@ -57,7 +57,7 @@ p {
   font-weight: 500;
 }
 
-.navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-nav>li>a {
   color: rgba(255, 255, 255, 0.8);
 }
 
