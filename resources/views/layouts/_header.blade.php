@@ -1,10 +1,3 @@
-<?php
-use Illuminate\Support\Facades\Auth;
-
-// 获取当前已认证的用户
-$user = Auth::user();
-?>
-
 <nav class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->

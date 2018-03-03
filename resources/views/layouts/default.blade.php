@@ -1,3 +1,10 @@
+<?php
+use Illuminate\Support\Facades\Auth;
+
+// 获取当前已认证的用户
+$user = Auth::user();
+?>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -20,6 +27,7 @@
 <body>
 
   {{--  页眉  --}}
+  {{-- @include('layouts._header', ['user'=>$user]) --}}
   @include('layouts._header')
 
   {{--  .container 类用于固定宽度并支持响应式布局的容器.  --}}
