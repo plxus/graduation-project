@@ -19,18 +19,19 @@
 
 <body>
 
-  <!-- 页眉 -->
+  {{--  页眉  --}}
   @include('layouts._header')
 
-  <!-- .container 类用于固定宽度并支持响应式布局的容器。 -->
-  <!-- .container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器。 -->
+  {{--  .container 类用于固定宽度并支持响应式布局的容器.  --}}
+  {{--  .container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器.  --}}
   <div class="container">
 
-    <!-- 主体内容 -->
+    {{--  主体内容  --}}
     @yield('content')
 
-    <!-- 页脚 -->
+    {{--  页脚  --}}
     @include('layouts._footer')
+
   </div>
 
 </body>
