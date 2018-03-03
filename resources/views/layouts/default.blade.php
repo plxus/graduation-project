@@ -31,8 +31,6 @@
 
     <!-- 页脚 -->
     @include('layouts._footer')
-    
-    
   </div>
 
 </body>
