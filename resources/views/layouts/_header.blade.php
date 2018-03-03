@@ -13,9 +13,6 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <!-- <ul class="nav navbar-nav">
-      <li><a href="{{ route('home') }}">知所</a></li>
-    </ul> -->
     <form class="navbar-form navbar-left">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="搜索你感兴趣的内容">
@@ -36,16 +33,21 @@
             <li><a href="#">我的收藏</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">设置</a></li>
-            <li><a href="#">注销</a></li>
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">注销</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+              </form>
+            </li>
           </ul>
         </li>
       @else
-        <li><a href="{{ route('signup') }}">注册</a></li>
-        <li><a href="#">登录</a></li>
+        <li><a href="{{ route('register') }}">注册</a></li>
+        <li><a href="{{ route('login') }}">登录</a></li>
       @endif
-      </ul>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
+    </ul>
+    <!-- /.navbar-collapse -->
   </div>
+  <!-- /.container -->
+</div>
 </nav>
