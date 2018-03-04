@@ -34,6 +34,9 @@ $user = Auth::user();
   {{--  .container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器.  --}}
   <div class="container">
 
+    {{-- 消息提示框 --}}
+    @include('shared._messages')
+
     {{--  主体内容  --}}
     @yield('content')
 
