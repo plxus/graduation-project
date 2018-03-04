@@ -23,7 +23,7 @@
       <li><a href="{{ route('about') }}">关于</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      @if (Auth::check())
+      @auth
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="" title="用户头像"> <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -44,7 +44,7 @@
       @else
         <li><a href="{{ route('register') }}">注册</a></li>
         <li><a href="{{ route('login') }}">登录</a></li>
-      @endif
+      @endauth
     </ul>
     <!-- /.navbar-collapse -->
   </div>
