@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
                 <div class="panel-heading">登录</div>
 
@@ -50,14 +50,15 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    登录
-                                </button>
-
+                            <div class="col-md-6 col-md-offset-4">
+                              <div class="float-right">
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     忘记密码？
                                 </a>
+                                <button type="submit" class="btn btn-primary">
+                                    登录
+                                </button>
+                              </div>
                             </div>
                         </div>
                     </form>

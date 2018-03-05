@@ -4,7 +4,7 @@
 
 body {
   padding-top: 84px;
-  font-size: medium;
+  font-size: 15px;
   font-weight: normal;
   color: #212121;
 }
@@ -15,6 +15,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+.float-right {
+  float: right;
 }
 
 /* Typography */
@@ -102,4 +106,13 @@ footer {
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
   font-weight: 500;
+  font-size: 14px;
+}
+
+.btn-link {
+  box-shadow: none;
+}
+
+.panel {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }

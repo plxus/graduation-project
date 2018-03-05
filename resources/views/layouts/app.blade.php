@@ -8,14 +8,16 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>知识清单管理系统 - 知所</title>
+  <title>@yield('title', '知识清单管理系统') - 知所</title>
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
 
@@ -77,5 +79,6 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="/js/fontawesome-all.min.js"></script>
 </body>
 </html>
