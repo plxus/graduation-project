@@ -7,7 +7,6 @@ $user = Auth::user();
 
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +23,6 @@ $user = Auth::user();
 </head>
 
 <body>
-
   {{--  页眉  --}}
   {{-- @include('layouts._header', ['user'=>$user]) --}}
   @include('layouts._header')
@@ -47,5 +45,4 @@ $user = Auth::user();
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="/js/fontawesome-all.min.js"></script>
 </body>
-
 </html>

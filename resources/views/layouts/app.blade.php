@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
   <div id="app">
     <nav class="navbar navbar-default navbar-fixed-top">
