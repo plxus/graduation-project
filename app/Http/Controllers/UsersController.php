@@ -9,10 +9,10 @@ use App\User;
 class UsersController extends Controller
 {
     // 创建用户
-    public function create()
-    {
-        return view('users.create');
-    }
+    // public function create()
+    // {
+    //     return view('users.create');
+    // }
 
     public function show(User $user)
     {

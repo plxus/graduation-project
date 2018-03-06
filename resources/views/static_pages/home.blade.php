@@ -1,3 +1,10 @@
+<?php
+use Illuminate\Support\Facades\Auth;
+
+// 获取当前已认证的用户
+$user = Auth::user();
+?>
+
 @extends('layouts.default')
 
 @section('title', '知识清单管理系统')

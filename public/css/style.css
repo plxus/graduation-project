@@ -4,9 +4,18 @@
 
 body {
   padding-top: 84px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: normal;
-  color: #212121;
+  color: #323232;
+  letter-spacing: .2px;
+}
+
+a:link, a:visited, a:hover {
+  color: #1565C0;
+}
+
+a.btn {
+  color: #fff;
 }
 
 section {
@@ -21,6 +30,8 @@ textarea {
   float: right;
 }
 
+/* Color */
+
 /* Typography */
 
 h1,
@@ -29,14 +40,14 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
+  line-height: 1.3em;
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2.4em;
   font-weight: 500;
   margin-bottom: 30px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 h2 {
@@ -53,6 +64,7 @@ h3 {
 p {
   line-height: 1.8em;
   margin-bottom: 15px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -66,22 +78,27 @@ p {
   font-weight: 500;
 }
 
+.navbar-nav>li>a {
+  font-size: 16px;
+}
+
 .navbar-inverse .navbar-nav>li>a {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.navbar-nav li a {
+.navbar-nav>li>a {
   font-weight: 600;
 }
 
 .dropdown-header {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   color: #9E9E9E;
 }
 
 .dropdown-menu li a {
   font-size: 14px;
+  font-weight: 500;
   color: #616161;
 }
 
@@ -105,18 +122,18 @@ footer {
 
 .btn {
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
   font-weight: 600;
   font-size: 14px;
 }
 
 .btn-link {
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   color: #757575;
 }
 
 .panel {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
