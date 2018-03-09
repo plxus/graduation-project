@@ -10,7 +10,7 @@
       </button>
       <a class="navbar-brand" href="{{ route('home') }}">知所</a>
     </div>
-    
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <form class="navbar-form navbar-left">
@@ -35,10 +35,10 @@
             <ul class="dropdown-menu">
               <li class="dropdown-header">登录为 {{ $user->name }}</li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">个人主页</a></li>
+              <li><a href="{{ route('users.show', $user->id) }}">个人主页</a></li>
               <li><a href="#">我的收藏</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">设置</a></li>
+              <li><a href="{{ route('users.edit', $user->id) }}">设置</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">注销</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

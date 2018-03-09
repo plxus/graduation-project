@@ -21,6 +21,7 @@ resource 方法遵从 RESTful 架构为用户资源生成路由。该方法接�
 Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 
+// 用户相关路由
 Route::resource('/users', 'UsersController');
 
 Auth::routes();
