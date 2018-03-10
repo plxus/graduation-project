@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'users';  // User 用户模型类与 users 数据表交互
+    protected $table = 'users';  // User 用户模型类与 users 数据表绑定
 
     /**
      * The attributes that are mass assignable.

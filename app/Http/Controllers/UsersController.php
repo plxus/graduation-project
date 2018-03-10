@@ -8,22 +8,27 @@ use App\User;
 
 class UsersController extends Controller
 {
-  // 用户注册
-  // public function create()
-  // {
-  //     return view('users.create');
-  // }
+  // 在构造函数中，使用身份认证（Auth）中间件过滤未登录用户的某些动作，“except”为排除的动作，“only”为限定的动作。
+  // middleware 方法有两个参数，第一个为中间件的名称，第二个为要进行过滤的动作。
+  public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['store']
+        ]);
+    }
 
-  // 用户个人主页
+  // 用户个人主页视图
   public function show(User $user)
   {
     return view('users.show', compact('user'));
     // 用户对象 $user 通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
   }
 
-  // 用户个人信息修改
+  // 用户修改个人信息（设置）视图
   public function edit(User $user)
   {
+    // 使用 authorize 方法验证用户授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
+    $this->authorize('update', $user);
     return view('users.edit', compact('user'));
   }
 
@@ -58,11 +63,13 @@ class UsersController extends Controller
       'password' => 'nullable|confirmed|min:6'
     ]);
 
+    $this->authorize('update', $user);
+
     // 更新用户对象
     $data = [
       'name' => $request->name,
-      'bio' => $request->bio
-      // 'email' => $request->email
+      'email' => $request->email,
+      'bio' => $request->bio,
     ];
 
     if ($request->password) {
