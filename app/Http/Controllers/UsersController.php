@@ -81,10 +81,10 @@ class UsersController extends Controller
         return redirect()->route('users.show', $user->id);
     }
 
-    // 用户列表视图
+    // 用户列表视图（后台管理）
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('users.index', compact('users'));
     }
 }

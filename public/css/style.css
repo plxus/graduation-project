@@ -30,10 +30,6 @@ svg.icon-gray {
   color: #9E9E9E;
 }
 
-.float-right {
-  float: right;
-}
-
 /* Typography */
 
 h1,
@@ -107,7 +103,16 @@ p {
 .navbar-inverse .navbar-form button {
   box-shadow: none;
   color: #fff;
-  background-color: rgba(255,255,255,0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+a.navbar-avatar {
+  padding-top: 17.5px;
+  padding-bottom: 17.5px;
+}
+
+img.navbar-avatar {
+  border: 1px solid #fff;
 }
 
 /* Footer */
@@ -120,6 +125,8 @@ footer {
 /* layouts */
 
 .home-left {
+  position: fixed;
+  top: 84px;
   padding-right: 40px;
 }
 
@@ -146,7 +153,7 @@ footer {
 }
 
 .btn-default {
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .btn-link {
@@ -191,4 +198,10 @@ footer {
 
 .alert-danger {
   background-color: #EF5350;
+}
+
+.pagination {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
 }

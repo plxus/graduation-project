@@ -14,7 +14,7 @@ $user = Auth::user();
     @auth
       <div class="row">
 
-        <div class="col-md-4 home-left">
+        <div class="col-md-3 home-left">
           <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">
@@ -31,10 +31,10 @@ $user = Auth::user();
           </div>
         </div>
 
-        <div class="col-md-8">
-          <div class="row">
+        <div class="col-md-offset-4 col-md-8">
+          <div class="row home-sort-row">
             {{-- 排序按钮 --}}
-            <div class="btn-group float-right">
+            <div class="btn-group pull-right">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 排序 <span class="caret"></span>
               </button>
@@ -44,7 +44,9 @@ $user = Auth::user();
               </ul>
             </div>
           </div>
-          FEED 信息流
+          <div class="row home-feed-flow">
+            FEED 信息流
+          </div>
         </div>
       </div>
     @else

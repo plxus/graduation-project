@@ -8,7 +8,7 @@
 
       <div class="col-md-4 user-profile-left">
         <p class="text-center">
-          <img src="#" alt="avatar" />
+          <img src="{{ $user->gravatar('300') }}" alt="{{ $user->name.'_avatar' }}" class="img-thumbnail" width="160px"/>
         </p>
         <h2 class="text-center">
           {{ $user->name }}

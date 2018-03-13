@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'users';  // User 用户模型类与 users 数据表绑定
+    protected $table = 'users';  // User 用户模型类对应 users 数据表
 
     /**
      * The attributes that are mass assignable.
@@ -28,4 +28,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // Gravatar 头像
+    public function gravatar($size = '100')
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "https://www.gravatar.com/avatar/$hash?s=$size";
+    }
 }

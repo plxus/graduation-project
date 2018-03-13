@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                <div class="panel-heading">登录</div>
+                <div class="panel-heading"><h5>登录</h5></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                              <div class="float-right">
+                              <div class="pull-right">
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     忘记密码？
                                 </a>

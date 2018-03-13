@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                <div class="panel-heading">注册帐号</div>
+                <div class="panel-heading"><h5>注册帐号</h5></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -67,7 +67,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary float-right">
+                                <button type="submit" class="btn btn-primary pull-right">
                                     注册
                                 </button>
                             </div>

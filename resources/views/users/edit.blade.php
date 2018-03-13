@@ -56,7 +56,7 @@
 
                   <br />
 
-                  <button type="submit" class="btn btn-primary float-right">保存更改</button>
+                  <button type="submit" class="btn btn-primary pull-right">保存更改</button>
                 </form>
               </div>
             </div>
