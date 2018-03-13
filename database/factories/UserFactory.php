@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     $date_time = $faker->date . ' ' . $faker->time;
     static $password;
-    
+
     return [
     'name' => $faker->unique()->name,
     'email' => $faker->unique()->safeEmail,
@@ -26,5 +26,6 @@ $factory->define(App\User::class, function (Faker $faker) {
     'remember_token' => str_random(10),
     'created_at' => $date_time,
     'updated_at' => $date_time,
+    'is_admin' => false,
   ];
 });

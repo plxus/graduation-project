@@ -13,7 +13,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth', [
-            'except' => ['index']
+            'except' => []
         ]);
     }
 
@@ -27,7 +27,7 @@ class UsersController extends Controller
     // 用户修改个人信息（设置）视图
     public function edit(User $user)
     {
-        // 使用 authorize 方法验证用户授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
+        // 使用 authorize 方法验证授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
@@ -36,7 +36,7 @@ class UsersController extends Controller
     public function update(User $user, Request $request)
     {
         // 验证表单提交的数据
-        if ($user->name==$request->name) {
+        if ($user->name===$request->name) {
             $this->validate($request, [
         'name' => 'required|string|max:32',
       ]);
@@ -46,7 +46,7 @@ class UsersController extends Controller
       ]);
         }
 
-        if ($user->email==$request->email) {
+        if ($user->email===$request->email) {
             $this->validate($request, [
         'email' => 'required|string|email|max:255',
       ]);
@@ -73,6 +73,8 @@ class UsersController extends Controller
         if ($request->password) {
             $data['password'] = bcrypt($request->password);
         }
+
+        // 更新用户对象
         $user->update($data);
 
         // 向会话中添加闪存信息
@@ -82,9 +84,20 @@ class UsersController extends Controller
     }
 
     // 用户列表视图（后台管理）
-    public function index()
+    public function index(User $user)
     {
+        $this->authorize('userIndex', $user);
         $users = User::paginate(10);
         return view('users.index', compact('users'));
+    }
+
+    // 处理删除用户表单提交的数据
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy', $user);
+        // 删除用户对象
+        $user->delete();
+        session()->flash('success', '用户 '.$user->name.' 已删除。');
+        return redirect()->route('users.index');
     }
 }

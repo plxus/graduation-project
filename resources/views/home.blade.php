@@ -14,7 +14,7 @@ $user = Auth::user();
     @auth
       <div class="row">
 
-        <div class="col-md-3 home-left">
+        <div class="col-md-4 home-left">
           <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">
@@ -31,7 +31,7 @@ $user = Auth::user();
           </div>
         </div>
 
-        <div class="col-md-offset-4 col-md-8">
+        <div class="col-md-8">
           <div class="row home-sort-row">
             {{-- 排序按钮 --}}
             <div class="btn-group pull-right">

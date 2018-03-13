@@ -22,7 +22,7 @@ Route::get('/', 'HomeController@index')->name('home');
 // Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 
-// 用户相关路由
+// 用户 CRUD 路由
 Route::resource('/users', 'UsersController');
 
 Auth::routes();
