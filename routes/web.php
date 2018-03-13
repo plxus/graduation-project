@@ -26,3 +26,7 @@ Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::resource('/users', 'UsersController');
 
 Auth::routes();
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
