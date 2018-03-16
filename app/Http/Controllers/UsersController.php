@@ -20,8 +20,9 @@ class UsersController extends Controller
     // 用户个人主页视图
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
-        // 用户对象 $user 通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
+        $repositories = $user->repositories()->orderBy('created_at', 'desc')->paginate(20);  // 当前用户创建的所有知识清单
+        return view('users.show', compact('user', 'repositories'));
+        // 对象通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
     }
 
     // 用户修改个人信息（设置）视图

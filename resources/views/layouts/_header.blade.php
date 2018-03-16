@@ -27,11 +27,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus"></i>&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">新建知识清单</a></li>
+              <li><a href="{{ route('repositories.create') }}">新建知识清单</a></li>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ $user->gravatar('50') }}" alt="{{ $user->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ $user->gravatar('56') }}" alt="{{ $user->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="dropdown-header">登录为 {{ $user->name }}</li>
               <li role="separator" class="divider"></li>

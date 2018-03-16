@@ -19,14 +19,13 @@ resource 方法遵从 RESTful 架构为用户资源生成路由。该方法接�
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-// Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/about', 'StaticPagesController@about')->name('about');
+
+// 用户注册、登录相关路由
+Auth::routes();
 
 // 用户 CRUD 路由
 Route::resource('/users', 'UsersController');
 
-Auth::routes();
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// 知识清单 CRUD 路由
+Route::resource('/repositories', 'RepositoriesController');

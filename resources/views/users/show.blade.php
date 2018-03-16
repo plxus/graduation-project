@@ -26,18 +26,31 @@
       <div class="col-md-8">
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs nav-justified" role="tablist">
-          <li role="presentation" class="active"><a href="{{ route('users.show', $user->id) }}#posts" aria-controls="posts" role="tab" data-toggle="tab">我发布的</a></li>
-          <li role="presentation"><a href="{{ route('users.show', $user->id) }}#stars" aria-controls="stars" role="tab" data-toggle="tab">我收藏的</a></li>
-          <li role="presentation"><a href="{{ route('users.show', $user->id) }}#following" aria-controls="following" role="tab" data-toggle="tab">我关注的用户</a></li>
-          <li role="presentation"><a href="{{ route('users.show', $user->id) }}#followers" aria-controls="followers" role="tab" data-toggle="tab">我的关注者</a></li>
+          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">我发布的</a></li>
+          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">我收藏的</a></li>
+          <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">我关注的用户</a></li>
+          <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">我的关注者</a></li>
         </ul>
 
         {{-- Tab panes --}}
         <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="posts">我发布的</div>
-          <div role="tabpanel" class="tab-pane" id="stars">我收藏的</div>
-          <div role="tabpanel" class="tab-pane" id="following">我关注的用户</div>
-          <div role="tabpanel" class="tab-pane" id="followers">我的关注者</div>
+          <div role="tabpanel" class="tab-pane fade in active" id="posts">
+            <div class="row repo-flow-order">
+              排序：最新
+            </div>
+            @if (count($repositories) > 0)
+              @foreach ($repositories as $repository)
+                @include('repositories._repoFlow')
+              @endforeach
+              {!! $repositories->render() !!}
+            @endif
+          </div>
+
+          <div role="tabpanel" class="tab-pane fade" id="stars">我收藏的</div>
+
+          <div role="tabpanel" class="tab-pane fade" id="following">我关注的用户</div>
+
+          <div role="tabpanel" class="tab-pane fade" id="followers">我的关注者</div>
         </div>
         {{-- Tab 栏 --}}
       </div>
