@@ -20,6 +20,10 @@ $user = Auth::user();
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+  <script src="/js/fontawesome-all.min.js"></script>
 </head>
 
 <body>
@@ -40,9 +44,5 @@ $user = Auth::user();
 
   {{--  页脚  --}}
   @include('layouts._footer')
-
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script src="/js/fontawesome-all.min.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         // 调用 create 方法创建数据表，有两个参数，第一个是数据表名，第二个是 $table 的闭包。
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('is_admin')->default(false);
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');

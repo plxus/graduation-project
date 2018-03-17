@@ -40,8 +40,7 @@ h6 {
 h1 {
   font-size: 2.4em;
   font-weight: 500;
-  margin-bottom: 30px;
-  /* text-align: center; */
+  margin-bottom: 46px;
 }
 
 h2 {
@@ -268,4 +267,10 @@ form.delete-user {
 button.delete-user {
   position: relative;
   right: 0;
+}
+
+/* Repo Create 创建知识清单页 */
+
+.repo-create-left {
+  padding-right: 35px;
 }
