@@ -24,6 +24,9 @@
       </div>
 
       <div class="col-md-8">
+        {{-- 错误提示 --}}
+        @include('shared._errors')
+        
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs nav-justified" role="tablist">
           <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">我发布的</a></li>
@@ -40,7 +43,7 @@
             </div>
             @if (count($repositories) > 0)
               @foreach ($repositories as $repository)
-                @include('repositories._repoFlow')
+                @include('repositories._repo_flow_no_avatar')
               @endforeach
               {!! $repositories->render() !!}
             @endif

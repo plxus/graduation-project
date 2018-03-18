@@ -20,10 +20,8 @@ $user = Auth::user();
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   <link rel="stylesheet" href="/css/style.css">
-
-  <!-- Scripts -->
-  <script src="/js/app.js"></script>
-  <script src="/js/fontawesome-all.min.js"></script>
+  {{-- 自定义 CSS --}}
+  @yield('style', '')
 </head>
 
 <body>
@@ -44,5 +42,11 @@ $user = Auth::user();
 
   {{--  页脚  --}}
   @include('layouts._footer')
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+  <script src="/js/fontawesome-all.min.js"></script>
+  {{-- 自定义 JavaScript --}}
+  @yield('script', '')
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use App\Repository;
 use Auth;
 
@@ -32,7 +33,8 @@ class RepositoriesController extends Controller
     */
     public function create()
     {
-        return view('repositories.create');
+        $categories_level_1 = DB::table('categories')->pluck('category_level_1')->toArray();
+        return view('repositories.create', compact('categories_level_1'));
     }
 
     /**
@@ -47,6 +49,7 @@ class RepositoriesController extends Controller
         $this->validate($request, [
       'title' => 'required|string|max:191',
       'description' => 'nullable|string|max:191',
+      'category' => 'required|string',
       'content' => 'required',
       'is_private' => 'required',
       'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。

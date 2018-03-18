@@ -11,6 +11,9 @@ $user = Auth::user();
 
 @section('content')
   <div class="container">
+    {{-- 错误提示 --}}
+    @include('shared._errors')
+    
     @auth
       <div class="row">
 

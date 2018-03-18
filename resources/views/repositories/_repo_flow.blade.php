@@ -14,9 +14,7 @@
       </span>
     </div>
     <div class="flow-repo-title">
-      <p>
-        <a href="#">{{ $repository->title }}</a>
-      </p>
+      <a href="#">{{ $repository->title }}</a>
     </div>
     <div class="flow-repo-description">
       <p class="small-p">

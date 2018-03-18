@@ -207,6 +207,10 @@ footer {
   background-color: #EF5350;
 }
 
+.text-danger {
+  color: #EF5350;
+}
+
 .pagination {
   font-weight: 500;
 }
@@ -229,6 +233,12 @@ footer {
 .flow-top-row {
   margin-top: -4px;
   margin-bottom: 1px;
+  vertical-align: middle;
+}
+
+.flow-top-row-no-avatar {
+  margin-bottom: 10px;
+  vertical-align: middle;
 }
 
 .flow-user-name {
@@ -240,8 +250,8 @@ footer {
   color: #757575;
 }
 
-.flow-repo-title p {
-  /* font-size: larger; */
+.flow-repo-title {
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
 }
