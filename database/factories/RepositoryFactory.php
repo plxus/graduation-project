@@ -1,7 +1,6 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Repository;
 
 $factory->define(App\Repository::class, function (Faker $faker) {
     $date_time = $faker->date . ' ' . $faker->time;

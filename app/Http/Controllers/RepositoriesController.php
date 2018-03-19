@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use App\User;
 use App\Repository;
 use Auth;
 
@@ -74,9 +75,10 @@ class RepositoriesController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(Repository $repository)
     {
-        //
+        $repoAuthor = User::find($repository->user_id);  // 该知识清单的作者实例
+        return view('repositories.show', compact('repository', 'repoAuthor'));
     }
 
     /**

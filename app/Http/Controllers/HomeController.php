@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -29,8 +30,15 @@ class HomeController extends Controller
         $repositories = DB::table('repositories')
             ->join('users', 'users.id', '=', 'repositories.user_id')
             ->select('repositories.*', 'users.name')
-            ->orderBy('repositories.created_at')
+            ->where('repositories.is_private', 'false')
+            ->orderBy('repositories.created_at', 'desc')
             ->paginate(20);
+
+        // foreach ($repositories as $repository) {
+        //     $users = [];
+        //     $user = User::find($repository->user_id);
+        //     $users->;
+        // }
 
         return view('home', compact('categories_level_1', 'repositories'));
     }

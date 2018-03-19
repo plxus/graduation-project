@@ -147,7 +147,7 @@
 @stop
 
 @section('script')
-  {{-- Taggle --}}
+  {{-- Taggle 添加标签 --}}
   <script src="/js/taggle.js"></script>
   <script type="text/javascript">
   window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {

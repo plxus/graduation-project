@@ -33,7 +33,7 @@ class User extends Authenticatable
     public function gravatar($size = '100')
     {
         $hash = md5(strtolower(trim($this->attributes['email'])));
-        return "https://www.gravatar.com/avatar/$hash?s=$size";
+        return "https://cn.gravatar.com/avatar/$hash?s=$size";
     }
 
     // 指明一个用户可以创建多个知识清单。

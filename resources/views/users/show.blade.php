@@ -29,10 +29,10 @@
 
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;我发布的&emsp;</a></li>
-          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;我收藏的&emsp;</a></li>
-          <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">&emsp;我关注的用户&emsp;</a></li>
-          <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">&emsp;我的关注者&emsp;</a></li>
+          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;发布的清单&emsp;</a></li>
+          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;收藏的清单&emsp;</a></li>
+          <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">&emsp;关注的用户&emsp;</a></li>
+          <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">&emsp;关注者&emsp;</a></li>
         </ul>
 
         {{-- Tab panes --}}

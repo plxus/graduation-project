@@ -13,9 +13,9 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" action="#">
+      <form action="#" class="navbar-form navbar-left" method="get">
         <div class="form-group">
-          <input type="text" class="form-control" name="search-keyword" placeholder="搜索你感兴趣的内容">
+          <input type="text" class="form-control" name="search_keywords" placeholder="搜索你感兴趣的内容">
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>
