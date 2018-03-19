@@ -2,7 +2,7 @@
   <div class="media-body">
     <div class="flow-top-row-no-avatar">
       <span class="flow-repo-title">
-        <a href="#">{{ $repository->title }}</a>
+        <a href="{{ route('repositories.show', $repository->id) }}">{{ $repository->title }}</a>
       </span>
       <span class="flow-timestamp pull-right small">
         {{ $repository->created_at->diffForHumans() }}
