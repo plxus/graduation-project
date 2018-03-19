@@ -66,6 +66,13 @@
           <br />
 
           <div class="form-group">
+            <label for="repo-content">正文内容</label>
+
+          </div>
+
+          <br />
+
+          <div class="form-group">
             <label for="fileupload">上传附件</label>
             <br />
             <span class="btn btn-default fileinput-button">
@@ -133,6 +140,7 @@
 
         <button type="submit" class="btn btn-primary btn-lg pull-right">创建</button>
       </div>
+      <input type="hidden" name="create" value="true" />
     </form>
   </div>
 </div>

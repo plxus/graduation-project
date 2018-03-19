@@ -26,24 +26,25 @@
       <div class="col-md-8">
         {{-- 错误提示 --}}
         @include('shared._errors')
-        
+
         {{-- Nav tabs --}}
-        <ul class="nav nav-tabs nav-justified" role="tablist">
-          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">我发布的</a></li>
-          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">我收藏的</a></li>
-          <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">我关注的用户</a></li>
-          <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">我的关注者</a></li>
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;我发布的&emsp;</a></li>
+          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;我收藏的&emsp;</a></li>
+          <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">&emsp;我关注的用户&emsp;</a></li>
+          <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">&emsp;我的关注者&emsp;</a></li>
         </ul>
 
         {{-- Tab panes --}}
         <div class="tab-content">
+          {{-- 我发布的 --}}
           <div role="tabpanel" class="tab-pane fade in active" id="posts">
             <div class="row repo-flow-order">
               排序：最新
             </div>
-            @if (count($repositories) > 0)
+            @if (count($repositories))
               @foreach ($repositories as $repository)
-                @include('repositories._repo_flow_no_avatar')
+                @include('repositories._repo_flow_self')
               @endforeach
               {!! $repositories->render() !!}
             @endif

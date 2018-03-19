@@ -51,22 +51,25 @@ class RepositoriesController extends Controller
       'description' => 'nullable|string|max:191',
       'category' => 'required|string',
       'content' => 'required',
-      'is_private' => 'required',
       'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。
+      'is_private' => 'required',
+      'create' =>'required|value:true'
     ]);
 
         Auth::user()->repositories()->create([
       'title' => $request->title,
       'description' => $request->description,
       'content' => $request->content,
-      'is_private' => $request->is_private,
+      'category_level_1' => $request->category,
       'copyright' => $request->copyright,
+      'is_private' => $request->is_private,
     ]);
         return redirect()->route('/');
     }
 
     /**
     * Display the specified resource.
+    * 返回展示资源的视图。
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
@@ -78,6 +81,7 @@ class RepositoriesController extends Controller
 
     /**
     * Show the form for editing the specified resource.
+    * 返回编辑资源的视图。
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
@@ -105,8 +109,11 @@ class RepositoriesController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Repository $repository)
     {
-        //
+        $this->authorize('destroy', $repository);
+        $repository->delete();
+        session()->flash('success', '该知识清单已被删除。');
+        return redirect()->route('/');
     }
 }
