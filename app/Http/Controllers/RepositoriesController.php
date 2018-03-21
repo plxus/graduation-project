@@ -34,7 +34,7 @@ class RepositoriesController extends Controller
     */
     public function create()
     {
-        $categories_level_1 = DB::table('categories')->pluck('category_level_1')->toArray();
+        $categories_level_1 = DB::table('repo_categories')->pluck('category_level_1')->toArray();
         return view('repositories.create', compact('categories_level_1'));
     }
 
@@ -83,7 +83,7 @@ class RepositoriesController extends Controller
 
     /**
     * Show the form for editing the specified resource.
-    * 返回编辑资源的视图。
+    * 返回修改知识清单的视图。
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
@@ -95,6 +95,7 @@ class RepositoriesController extends Controller
 
     /**
     * Update the specified resource in storage.
+    * 处理修改知识清单表单提交的数据。
     *
     * @param  \Illuminate\Http\Request  $request
     * @param  int  $id
@@ -107,6 +108,7 @@ class RepositoriesController extends Controller
 
     /**
     * Remove the specified resource from storage.
+    * 处理删除知识清单表单提交的数据。
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response

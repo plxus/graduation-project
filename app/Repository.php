@@ -24,4 +24,10 @@ class Repository extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    // 指明一个知识清单可以有多个标签。
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tags', 'repository_id', 'name');
+    }
 }

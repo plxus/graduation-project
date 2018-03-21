@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 use App\User;
+use App\Repository;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -25,14 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories_level_1 = DB::table('categories')->pluck('category_level_1')->toArray();
+        // 获取所有类别
+        $categories_level_1 = DB::table('repo_categories')->pluck('category_level_1')->toArray();
 
-        $repositories = DB::table('repositories')
-            ->join('users', 'users.id', '=', 'repositories.user_id')
-            ->select('repositories.*', 'users.name')
-            ->where('repositories.is_private', 'false')
-            ->orderBy('repositories.created_at', 'desc')
-            ->paginate(20);
+        // 获取首页信息流中的条目
+        $feed_items = [];
+        if (Auth::check()) {
+            $feed_items = Auth::user()->feed()->paginate(20);
+        }
 
         // foreach ($repositories as $repository) {
         //     $users = [];
@@ -40,6 +42,6 @@ class HomeController extends Controller
         //     $users->;
         // }
 
-        return view('home', compact('categories_level_1', 'repositories'));
+        return view('home', compact('categories_level_1', 'feed_items'));
     }
 }

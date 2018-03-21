@@ -23,9 +23,9 @@
         <div class="row">
           <div class="col-md-12">
             <form action="#" method="post">
-              <button type="button" class="btn btn-primary btn-sm pull-right star-btn"><i class="fas fa-star"></i> 收藏 <span class="badge">999</span></button>
+              <button type="button" class="btn btn-primary pull-right star-btn"><i class="fas fa-star"></i> 收藏 <span class="badge">999</span></button>
             </form>
-            <h3 class="repo-title">{{ $repository->title }}</h3>
+            <h2 class="repo-title">{{ $repository->title }}</h2>
             <p class="repo-author">
               {{-- 作者 --}}
               <a href="{{ route('users.show', $repoAuthor->id) }}">{{ $repoAuthor->name }}</a>
@@ -110,12 +110,10 @@
   $("input[name='nick']").attr({
     "value": "{{ Auth::user()->name }}",
     "data-com.agilebits.onepassword.user-edited": "yes"
-    // "disabled": "disabled",
   });
   $("input[name='mail']").attr({
     "value": "{{ Auth::user()->email }}",
     "data-com.agilebits.onepassword.user-edited": "yes"
-    // "disabled": "disabled",
   });
   </script>
 @stop

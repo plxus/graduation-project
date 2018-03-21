@@ -16,7 +16,7 @@ class CreateFollowsTable extends Migration
         Schema::create('follows', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');  // 当前用户 ID
-            $table->integer('following_user_id');  // 被关注用户 ID
+            $table->integer('follower_id');  // （当前用户的）关注者 ID
             $table->timestamps();
         });
     }

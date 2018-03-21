@@ -27,5 +27,18 @@ Auth::routes();
 // 用户 CRUD 路由
 Route::resource('/users', 'UsersController');
 
+// 用户关注视图路由
+Route::get('/users/{user}/followings','UsersController@followings')->name('users.followings');
+Route::get('/users/{user}/followers','UsersController@followers')->name('users.followers');
+
+// 用户关注/取消关注操作路由
+Route::post('/users/follows/{user}','FollowsController@store')->name('follows.store');
+Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follows.destroy');
+
 // 知识清单 CRUD 路由
 Route::resource('/repositories', 'RepositoriesController');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

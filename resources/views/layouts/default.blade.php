@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 
 // 获取当前已认证的用户
-$user = Auth::user();
+// $user = Auth::user();
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +25,6 @@ $user = Auth::user();
 
 <body>
   {{--  页眉  --}}
-  {{-- @include('layouts._header', ['user'=>$user]) --}}
   @include('layouts._header')
 
   {{--  .container 类用于固定宽度并支持响应式布局的容器.  --}}

@@ -31,14 +31,14 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ $user->gravatar('56') }}" alt="{{ $user->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Auth::user()->gravatar('56') }}" alt="{{ Auth::user()->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li class="dropdown-header">登录为 {{ $user->name }}</li>
+              <li class="dropdown-header">登录为 {{ Auth::user()->name }}</li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('users.show', $user->id) }}">个人主页</a></li>
+              <li><a href="{{ route('users.show', Auth::user()->id) }}">个人主页</a></li>
               <li><a href="#">我的收藏</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('users.edit', $user->id) }}">设置</a></li>
+              <li><a href="{{ route('users.edit', Auth::user()->id) }}">设置</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">注销</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

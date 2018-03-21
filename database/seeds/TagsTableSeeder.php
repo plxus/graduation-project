@@ -11,6 +11,5 @@ class TagsTableSeeder extends Seeder
     */
     public function run()
     {
-        $faker = app(Faker\Generator::class);
     }
 }

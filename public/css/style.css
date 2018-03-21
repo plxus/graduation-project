@@ -14,7 +14,8 @@ a {
   color: #1976D2;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: #1976D2;
 }
 
@@ -146,6 +147,14 @@ footer {
 
 /* Components */
 
+input,
+select,
+option,
+textarea,
+button {
+  outline: none !important;
+}
+
 .btn {
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
@@ -172,11 +181,21 @@ footer {
   color: #757575;
 }
 
-.btn .badge {
-  font-weight: 600;
+.badge {
+  font-weight: 600 !important;
+  color: #616161;
+  background-color: #E0E0E0;
+  transition: 0.2s;
+}
+
+.active .badge {
+  color: #fff;
+  background-color: #008FF7;
+  transition: 0.2s;
 }
 
 .btn-default .badge {
+  color: #fff;
   background-color: #008FF7;
 }
 
@@ -190,7 +209,7 @@ footer {
 }
 
 .panel-body {
-  padding: 15px 15px;
+  padding: 40px 15px;
 }
 
 .nav {
@@ -255,6 +274,10 @@ ul.nav-tabs li {
   padding-right: 40px;
 }
 
+.home-left .panel-body {
+  padding: 20px 15px;
+}
+
 .category-wall {
   /* padding: 8px; */
 }
@@ -273,8 +296,20 @@ ul.nav-tabs li {
 
 /* Users Show 用户个人主页 */
 
-.user-profile-left {
+.user-profile {
   padding-right: 30px;
+}
+
+.follow-form {
+  margin: 60px auto 40px auto;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.follow-form-blank {
+  margin: 30px auto 40px auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EEEEEE;
 }
 
 .repo-flow-order {
@@ -326,6 +361,23 @@ ul.nav-tabs li {
   margin: 0;
 }
 
+.user-flow-item {
+  margin: 0;
+  padding: 20px 0;
+  border-top: 1px solid #E0E0E0;
+}
+
+.flow-user-bio {
+  margin-top: 3px;
+  margin-bottom: -3px;
+}
+
+.flow-follow-btn {
+  position: relative;
+  margin-top: 9.5px;
+  margin-right: 2px;
+}
+
 /* Users Index 用户列表页 */
 
 form.delete-user {
@@ -347,11 +399,12 @@ button.delete-user {
 
 .star-btn {
   position: relative;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
-h3.repo-title {
-  padding-right: 100px;
+h2.repo-title {
+  padding-right: 200px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 

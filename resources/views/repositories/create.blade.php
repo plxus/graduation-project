@@ -138,7 +138,7 @@
           </li>
         </ul>
 
-        <button type="submit" class="btn btn-primary btn-lg pull-right">创建</button>
+        <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;创建&emsp;</button>
       </div>
       <input type="hidden" name="create" value="true" />
     </form>
