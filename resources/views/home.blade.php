@@ -71,6 +71,7 @@
               @if (count($feed_items))
                 @foreach ($feed_items as $feed_item)
                   @include('repositories._repo_flow_home', ['repoAuthor' => $feed_item->user])
+                  {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
                 @endforeach
                 {!! $feed_items->render() !!}
               @endif

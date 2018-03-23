@@ -38,7 +38,7 @@ Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follow
 // 知识清单 CRUD 路由
 Route::resource('/repositories', 'RepositoriesController');
 
-
+// Voyager 管理后台路由
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

@@ -17,7 +17,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth', [
+            'except' => ['index']
+        ]);
     }
 
     /**
@@ -35,12 +37,6 @@ class HomeController extends Controller
         if (Auth::check()) {
             $feed_items = Auth::user()->feed()->paginate(20);
         }
-
-        // foreach ($repositories as $repository) {
-        //     $users = [];
-        //     $user = User::find($repository->user_id);
-        //     $users->;
-        // }
 
         return view('home', compact('categories_level_1', 'feed_items'));
     }

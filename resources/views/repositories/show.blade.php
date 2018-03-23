@@ -23,7 +23,7 @@
         <div class="row">
           <div class="col-md-12">
             <form action="#" method="post">
-              <button type="button" class="btn btn-primary pull-right star-btn"><i class="fas fa-star"></i> 收藏 <span class="badge">999</span></button>
+              <button type="button" class="btn btn-primary pull-right star-btn"><i class="fas fa-star"></i> 收藏 <span class="badge">{{ $repoStarNum }}</span></button>
             </form>
             <h2 class="repo-title">{{ $repository->title }}</h2>
             <p class="repo-author">
@@ -38,7 +38,7 @@
               {{-- 标签 --}}
               <span class="repo-tags"><button type="button" class="btn btn-sm btn-tag"><i class="fas fa-hashtag"></i>&nbsp;标签</button></span>
               {{-- 类别 --}}
-              <span class="repo-category pull-right"><i class="fas fa-th-list"></i>&nbsp;{{ $repository->category_level_1 }}</span>
+              <span class="repo-category pull-right"><i class="fas fa-th-list"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
             </p>
             <p class="repo-created-at small-p">
               {{-- 时间 --}}

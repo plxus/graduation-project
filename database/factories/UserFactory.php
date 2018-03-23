@@ -21,11 +21,13 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
     'name' => $faker->unique()->name(),
     'email' => $faker->unique()->safeEmail,
+    'avatar' => 'users/gravatar.jpg',
     'password' => $password ?: $password = bcrypt('secret'),
     'bio' => $faker->sentence,
     'remember_token' => str_random(10),
     'created_at' => $date_time,
     'updated_at' => $date_time,
     'is_admin' => false,
+    'role_id' => 2,  // 1：管理员，2：用户
   ];
 });

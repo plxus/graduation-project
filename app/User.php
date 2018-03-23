@@ -19,7 +19,7 @@ class User extends \TCG\Voyager\Models\User
     * @var array
     */
     protected $fillable = [
-    'name', 'email', 'password', 'bio',
+    'role_id', 'name', 'email', 'avatar', 'password', 'bio',
   ];
 
     /**
@@ -55,7 +55,7 @@ class User extends \TCG\Voyager\Models\User
         // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
     }
 
-    // 指明一个用户可以拥有多个关注者。belongsToMany() 方法的第二个参数是关联关系的表名，第三个参数是定义在关联中的模型外键名，第四个参数是要合并的模型外键名。
+    // 指明一个用户可以拥有多个关注者。belongsToMany() 方法的第二个参数是关联关系的表名，第三个参数是定义在关联表中的模型外键名，第四个参数是关联表中要合并的关联键名。
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'follower_id');
@@ -88,6 +88,36 @@ class User extends \TCG\Voyager\Models\User
     // 判断用户 A 是否关注了用户 B。
     public function isFollowing($user_id)
     {
-        return $this->followings->contains($user_id);
+        return $this->followings->contains($user_id);  // followings 属性返回关注的用户的 Eloquent 集合
+    }
+
+    // 指明一个用户可以收藏多个知识清单。
+    public function stars()
+    {
+        return $this->belongsToMany(Repository::class, 'stars', 'user_id', 'repository_id');
+    }
+
+    // 收藏操作。
+    public function star($repositories)
+    {
+        if (!is_array($repositories)) {
+            $repositories = compact('repositories');
+        }
+        $this->stars()->sync($repositories, false);
+    }
+
+    // 取消收藏操作。
+    public function unstar($repositories)
+    {
+        if (!is_array($repositories)) {
+            $repositories = compact('repositories');
+        }
+        $this->stars()->detach($repositories);
+    }
+
+    // 判断用户是否收藏了该知识清单。
+    public function isStar($repository)
+    {
+        return $this->stars->contains($repository);  // stars 属性返回关注的用户的 Eloquent 集合
     }
 }

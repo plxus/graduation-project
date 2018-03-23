@@ -16,12 +16,14 @@ class UsersTableSeeder extends Seeder
         $users = factory(User::class)->times(50)->make();
         User::insert($users->makeVisible(['password', 'remember_token'])->toArray());
 
-        $user = User::find(1);
+        $user = User::find(1);  // 获取第一个用户，设置为管理员
         $user->name = 'plusxu';
         $user->email = 'xplusxu@163.com';
+        $user->avatar = 'users/plusxu.png';
         $user->password = bcrypt('123456');
-        $user->bio='示例用户个人简介。';
-        $user->is_admin=true;
+        $user->bio = '这是用户个人简介的示例文本。';
+        $user->is_admin = true;
+        $user->role_id = 1;  // 1：管理员，2：用户
         $user->save();
     }
 }

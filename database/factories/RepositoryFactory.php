@@ -8,7 +8,7 @@ $factory->define(App\Repository::class, function (Faker $faker) {
     return [
       'title' => $faker->sentence(),
       'description' => $faker->paragraph(),
-      'content' => $faker->text(),
+      'content' => $faker->realText(500),
       'copyright' => 'limit',  // allow 允许转载，limit 需授权，forbid 禁止转载。
       'is_private' => false,
       'created_at' => $date_time,

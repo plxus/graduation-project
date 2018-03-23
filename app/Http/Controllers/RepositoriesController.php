@@ -13,7 +13,9 @@ class RepositoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', [
+          'except' => [''],
+        ]);
     }
 
     /**
@@ -77,8 +79,11 @@ class RepositoriesController extends Controller
     */
     public function show(Repository $repository)
     {
-        $repoAuthor = User::find($repository->user_id);  // 该知识清单的作者实例
-        return view('repositories.show', compact('repository', 'repoAuthor'));
+        // $repoAuthor = User::find($repository->user_id);  // 该知识清单的作者实例
+        $repoAuthor = $repository->user;  // 该知识清单的作者实例
+        $repoCategory = $repository->category;  // 该知识清单的类别实例
+        $repoStarNum = $repository->starNum();  // 知识清单收藏数
+        return view('repositories.show', compact('repository', 'repoAuthor', 'repoCategory', 'repoStarNum'));
     }
 
     /**
