@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use Auth;
+use App\Follow;
 
 class FollowsController extends Controller
 {
@@ -40,5 +41,13 @@ class FollowsController extends Controller
         }
 
         return redirect()->route('users.show', $user->id);
+    }
+
+    // 用户关注列表视图（后台管理）
+    public function index(User $user)
+    {
+        // $this->authorize('userIndex', $user);
+        $follows = Follow::paginate(10);
+        // return view('users.index', compact('users'));
     }
 }

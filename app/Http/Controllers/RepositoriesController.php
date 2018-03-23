@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Repository;
 use Auth;
+use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 
 class RepositoriesController extends Controller
 {
@@ -25,7 +26,6 @@ class RepositoriesController extends Controller
     */
     public function index()
     {
-        //
     }
 
     /**
