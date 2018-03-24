@@ -22,16 +22,30 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="row">
           <div class="col-md-12">
-            <form action="#" method="post">
-              <button type="button" class="btn btn-primary pull-right star-btn"><i class="fas fa-star"></i> 收藏 <span class="badge">{{ $repoStarNum }}</span></button>
-            </form>
+            {{-- 收藏/取消收藏按钮 --}}
+            @if (Auth::user()->isStar($repository->id))
+              {{-- 取消收藏按钮 --}}
+              <form action="{{ route('stars.destroy', $repository->id) }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-default pull-right star-btn"><i class="fas fa-star"></i>&emsp;取消收藏&emsp;<span class="badge">{{ $repoStarNum }}</span></button>
+              </form>
+            @else
+              {{-- 收藏按钮 --}}
+              <form action="{{ route('stars.store', $repository->id) }}" method="post">
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-primary pull-right star-btn"><i class="fas fa-star"></i>&emsp;收藏&emsp;<span class="badge">{{ $repoStarNum }}</span></button>
+              </form>
+            @endif
+
+            {{-- 知识清单标题 --}}
             <h2 class="repo-title">{{ $repository->title }}</h2>
+            {{-- 作者 --}}
             <p class="repo-author">
-              {{-- 作者 --}}
               <a href="{{ route('users.show', $repoAuthor->id) }}">{{ $repoAuthor->name }}</a>
             </p>
+            {{-- 简介 --}}
             <p class="repo-description">
-              {{-- 简介 --}}
               {{ $repository->description }}
             </p>
             <p>
@@ -40,11 +54,11 @@
               {{-- 类别 --}}
               <span class="repo-category pull-right"><i class="fas fa-th-list"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
             </p>
+            {{-- 创建和更新时间 --}}
             <p class="repo-created-at small-p">
-              {{-- 时间 --}}
               创建于 {{ $repository->created_at->diffForHumans() }}，最近更新于 {{ $repository->updated_at->diffForHumans() }}。
             </p>
-            {{-- 知识清单基本信息：标题、作者、简介、分类、标签 --}}
+            {{-- 知识清单基本信息 --}}
           </div>
         </div>
 

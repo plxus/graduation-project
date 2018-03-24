@@ -26,7 +26,7 @@ class RepositoryDimmer extends AbstractWidget
         $string = '知识清单';
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-archive',
+            'icon'   => 'voyager-documentation',
             'title'  => "{$count} {$string}",
             'text'   => __('您有 '.$count.' 知识清单 在数据库中。点击下面的按钮查看所有'.$string.'。', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [

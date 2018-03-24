@@ -4,23 +4,24 @@
       <img src="{{ $following->gravatar('100') }}" alt="{{ $following->name }}" class="flow-user-avatar img-rounded" width="50px"/>
     </a>
   </div>
+  
   <div class="media-body">
+    {{-- 当前用户访问自己的个人主页 --}}
     @if ($user->id === Auth::user()->id)
-      {{-- 当前用户访问自己的个人主页 --}}
-      {{-- <span class="flow-follow-form pull-right"> --}}
-        @if (Auth::user()->isFollowing($following->id))
-          <form action="{{ route('follows.destroy', $following->id) }}" method="post">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <button type="submit" class="btn btn-default btn-sm flow-follow-btn pull-right">取消关注</button>
-          </form>
-        @else
-          <form action="{{ route('follows.store', $following->id) }}" method="post">
-            {{ csrf_field() }}
-            <button type="submit" class="btn btn-primary btn-sm flow-follow-btn pull-right">&emsp;关注&emsp;</button>
-          </form>
-        @endif
-      {{-- </span> --}}
+      {{-- 取消关注按钮 --}}
+      @if (Auth::user()->isFollowing($following->id))
+        <form action="{{ route('follows.destroy', $following->id) }}" method="post">
+          {{ csrf_field() }}
+          {{ method_field('DELETE') }}
+          <button type="submit" class="btn btn-default btn-sm flow-follow-btn pull-right">取消关注</button>
+        </form>
+      @else
+        {{-- 关注按钮 --}}
+        <form action="{{ route('follows.store', $following->id) }}" method="post">
+          {{ csrf_field() }}
+          <button type="submit" class="btn btn-primary btn-sm flow-follow-btn pull-right">&emsp;关注&emsp;</button>
+        </form>
+      @endif
     @endif
 
     <div class="flow-top-row">

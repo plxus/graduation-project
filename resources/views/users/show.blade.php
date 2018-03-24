@@ -18,6 +18,7 @@
           {{ $user->bio }}
         </p>
 
+        {{-- 关注/取消关注用户的按钮 --}}
         @if ($user->id !== Auth::user()->id)
           <div class="follow-form text-center">
             @if (Auth::user()->isFollowing($user->id))
@@ -49,14 +50,14 @@
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;发布的清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>
-          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;收藏的清单 <span class="badge"></span>&emsp;</a></li>
+          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;收藏的清单 <span class="badge">{{ $user->stars->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">&emsp;关注的用户 <span class="badge">{{ $user->followings->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">&emsp;关注者 <span class="badge">{{ $user->followers->count() }}</span>&emsp;</a></li>
         </ul>
 
         {{-- Tab panes --}}
         <div class="tab-content">
-          {{-- 用户发布的 --}}
+          {{-- 用户发布的知识清单 --}}
           <div role="tabpanel" class="tab-pane fade in active" id="posts">
             <div class="repo-flow-order">
               排序：最新
@@ -69,12 +70,17 @@
             @endif
           </div>
 
-          {{-- 用户收藏的 --}}
+          {{-- 用户收藏的知识清单 --}}
           <div role="tabpanel" class="tab-pane fade" id="stars">
             <div class="repo-flow-order">
               排序：最新
             </div>
-
+            @if (count($repositories_star))
+              @foreach ($repositories_star as $feed_item)
+                @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user])
+              @endforeach
+              {!! $repositories_star->render() !!}
+            @endif
           </div>
 
           {{-- 用户关注的其他用户 --}}

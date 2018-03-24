@@ -44,10 +44,10 @@ class FollowsController extends Controller
     }
 
     // 用户关注列表视图（后台管理）
-    public function index(User $user)
-    {
-        // $this->authorize('userIndex', $user);
-        $follows = Follow::paginate(10);
-        // return view('users.index', compact('users'));
-    }
+    // public function index(User $user)
+    // {
+    //     // $this->authorize('userIndex', $user);
+    //     $follows = Follow::paginate(10);
+    //     // return view('users.index', compact('users'));
+    // }
 }

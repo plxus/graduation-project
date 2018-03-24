@@ -27,6 +27,9 @@ Auth::routes();
 // 用户 CRUD 路由
 Route::resource('/users', 'UsersController');
 
+// 知识清单 CRUD 路由
+Route::resource('/repositories', 'RepositoriesController');
+
 // 用户关注视图路由
 Route::get('/users/{user}/followings','UsersController@followings')->name('users.followings');
 Route::get('/users/{user}/followers','UsersController@followers')->name('users.followers');
@@ -35,8 +38,9 @@ Route::get('/users/{user}/followers','UsersController@followers')->name('users.f
 Route::post('/users/follows/{user}','FollowsController@store')->name('follows.store');
 Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follows.destroy');
 
-// 知识清单 CRUD 路由
-Route::resource('/repositories', 'RepositoriesController');
+// 用户收藏/取消收藏知识清单操作路由
+Route::post('/users/stars/{repository}', 'StarsController@store')->name('stars.store');
+Route::delete('/users/stars/{repository}', 'StarsController@destroy')->name('stars.destroy');
 
 // Voyager 管理后台路由
 Route::group(['prefix' => 'admin'], function () {

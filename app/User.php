@@ -98,26 +98,26 @@ class User extends \TCG\Voyager\Models\User
     }
 
     // 收藏操作。
-    public function star($repositories)
+    public function star($repository_ids)
     {
-        if (!is_array($repositories)) {
-            $repositories = compact('repositories');
+        if (!is_array($repository_ids)) {
+            $repository_ids = compact('repository_ids');
         }
-        $this->stars()->sync($repositories, false);
+        $this->stars()->sync($repository_ids, false);
     }
 
     // 取消收藏操作。
-    public function unstar($repositories)
+    public function unstar($repository_ids)
     {
-        if (!is_array($repositories)) {
-            $repositories = compact('repositories');
+        if (!is_array($repository_ids)) {
+            $repository_ids = compact('repository_ids');
         }
-        $this->stars()->detach($repositories);
+        $this->stars()->detach($repository_ids);
     }
 
     // 判断用户是否收藏了该知识清单。
-    public function isStar($repository)
+    public function isStar($repository_id)
     {
-        return $this->stars->contains($repository);  // stars 属性返回关注的用户的 Eloquent 集合
+        return $this->stars->contains($repository_id);  // stars 属性返回关注的用户的 Eloquent 集合
     }
 }

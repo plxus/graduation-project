@@ -8,7 +8,6 @@ use App\Category;
 use App\Tag;
 use App\Star;
 
-// 知识清单模型，对应 repositories 数据表。
 class Repository extends Model
 {
     protected $table = 'repositories';
