@@ -3,7 +3,11 @@
 @section('title', '创建知识清单')
 
 @section('style')
+  {{-- 标签添加插件 --}}
   <link rel="stylesheet" href="/css/taggle.css">
+  {{-- Markdown 编辑器 --}}
+  <link rel="stylesheet" href="/css/simplemde.min.css">
+  {{-- jQuery 文件上传插件 --}}
   {{-- <link rel="stylesheet" href="/css/jquery.fileupload-ui.css"> --}}
   <link rel="stylesheet" href="/css/jquery.fileupload.css">
 @stop
@@ -147,8 +151,16 @@
 @stop
 
 @section('script')
+  {{-- Markdown 编辑器 --}}
+  <script src="/js/simplemde.min.js"></script>
+
+  <script>
+  var simplemde = new SimpleMDE({ element: $("#MyID")[0] });
+  </script>
+
   {{-- Taggle 添加标签 --}}
   <script src="/js/taggle.js"></script>
+
   <script type="text/javascript">
   window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
     duplicateTagClass: 'bounce',
