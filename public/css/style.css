@@ -278,8 +278,8 @@ ul.nav-tabs li {
   padding: 20px 15px;
 }
 
-.category-wall {
-  /* padding: 8px; */
+.category-wall .form-category-select{
+  display: inline-block !important;
 }
 
 .category-wall .btn-category {

@@ -18,6 +18,7 @@ class StarsController extends Controller
     {
         if (!Auth::user()->isStar($repository->id)) {
             Auth::user()->star($repository->id);  // 收藏操作
+			$repository->star_num = $repository->star_num + 1;
         }
 
         return redirect()->route('repositories.show', $repository->id);
@@ -28,6 +29,8 @@ class StarsController extends Controller
     {
         if (Auth::user()->isStar($repository->id)) {
             Auth::user()->unstar($repository->id);  // 取消收藏操作
+			$repository->star_num = $repository->star_num - 1;
+
         }
 
         return redirect()->route('repositories.show', $repository->id);

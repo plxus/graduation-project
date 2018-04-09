@@ -13,7 +13,7 @@ class Repository extends Model
     protected $table = 'repositories';
 
     protected $fillable = [
-    'title', 'description', 'content', 'category_id', 'copyright', 'is_private'
+    'title', 'description', 'content', 'category_id', 'copyright', 'is_private', 'star_num'
   ];
 
     // 指明一个知识清单只能由一个用户创建。

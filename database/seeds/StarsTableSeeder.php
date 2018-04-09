@@ -14,7 +14,7 @@ class StarsTableSeeder extends Seeder
     public function run()
     {
         $user_ids = ['1','2','3','4'];  // 为前四个用户添加收藏知识清单的假数据
-        $repository_ids = Repository::pluck('id');
+        $repository_ids = Repository::pluck('id')->get();
 
         foreach ($user_ids as $user_id) {
             $user = User::find($user_id);

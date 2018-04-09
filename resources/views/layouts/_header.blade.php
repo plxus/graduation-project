@@ -13,9 +13,10 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form action="#" class="navbar-form navbar-left" method="get">
+      <form action="{{ route('home') }}" class="navbar-form navbar-left" method="get">
+        {{ csrf_field() }}
         <div class="form-group">
-          <input type="text" class="form-control" name="search_keywords" placeholder="搜索你感兴趣的内容">
+          <input type="text" class="form-control" name="keywords" placeholder="搜索你感兴趣的内容" required>
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>

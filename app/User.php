@@ -45,13 +45,13 @@ class User extends \TCG\Voyager\Models\User
     }
 
     // 获取 Feed 信息流数据
-    public function feed()
+    public function feed($sort_rule)
     {
         $feed_user_ids = Auth::user()->followings->pluck('id')->toArray();
         array_push($feed_user_ids, Auth::user()->id);  // 将当前用户的 id 加入到数组中
         return Repository::whereIn('user_id', $feed_user_ids)
         ->with('user')
-        ->orderBy('created_at', 'desc');
+        ->orderBy("$sort_rule", 'desc');
         // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
     }
 
@@ -104,6 +104,11 @@ class User extends \TCG\Voyager\Models\User
             $repository_ids = compact('repository_ids');
         }
         $this->stars()->sync($repository_ids, false);
+        // repositories 表中 star_num 字段加 1
+        foreach ($repository_ids as $repository_id) {
+            $repository_item = Repository::find($repository_id);
+            $repository_item->star_num = $repository_item->star_num + 1;
+        }
     }
 
     // 取消收藏操作。
@@ -113,9 +118,14 @@ class User extends \TCG\Voyager\Models\User
             $repository_ids = compact('repository_ids');
         }
         $this->stars()->detach($repository_ids);
+        // repositories 表中 star_num 字段减 1
+        foreach ($repository_ids as $repository_id) {
+            $repository_item = Repository::find($repository_id);
+            $repository_item->star_num = $repository_item->star_num - 1;
+        }
     }
 
-    // 判断用户是否收藏了该知识清单。
+    // 判断用户是否收藏了某知识清单。
     public function isStar($repository_id)
     {
         return $this->stars->contains($repository_id);  // stars 属性返回关注的用户的 Eloquent 集合
