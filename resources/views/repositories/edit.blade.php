@@ -26,7 +26,7 @@
     </div>
 
     <div class="row">
-      <form action="{{ route('repositories.update') }}" method="POST">
+      <form action="{{ route('repositories.update', $repository->id) }}" method="POST">
         {{ csrf_field() }}
         <div class="col-md-9 repo-create-left">
           <div class="form-group">

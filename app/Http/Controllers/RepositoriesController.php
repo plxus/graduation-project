@@ -78,7 +78,7 @@ class RepositoriesController extends Controller
       ]);
     }
 
-    session()->flash('success', '知识清单创建成功！');
+    session()->flash('success', '知识清单创建成功');
 
     return redirect()->route('repositories.show', $repository->id);
   }
@@ -125,7 +125,35 @@ class RepositoriesController extends Controller
   */
   public function update(Repository $repository, Request $request)
   {
+    $this->validate($request, [
+      'title' => 'required|string|max:191',
+      'description' => 'nullable|string|max:191',
+      'category_id' => 'required|integer',
+      'taggles' => 'nullable',
+      'content' => 'required|string',
+      'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。
+      'is_private' => 'required',
+    ]);
 
+    $repository = Auth::user()->repositories()->create([
+      'title' => $request->title,
+      'description' => $request->description,
+      'category_id' => $request->category_id,
+      'content' => $request->content,
+      'copyright' => $request->copyright,
+      'is_private' => $request->is_private,
+    ]);
+
+    foreach ($request->input('taggles') as $tag) {
+      $repository->tags()->create([
+        'repository_id' => $repository->id,
+        'name' => $tag,
+      ]);
+    }
+
+    session()->flash('success', '知识清单已修订');
+
+    return redirect()->route('repositories.show', $repository->id);
   }
 
   /**
