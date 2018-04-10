@@ -19,7 +19,7 @@ class User extends \TCG\Voyager\Models\User
     * @var array
     */
     protected $fillable = [
-    'role_id', 'name', 'email', 'avatar', 'password', 'bio',
+    'role_id', 'name', 'email', 'avatar', 'password', 'bio', 'url',
   ];
 
     /**
@@ -108,6 +108,7 @@ class User extends \TCG\Voyager\Models\User
         foreach ($repository_ids as $repository_id) {
             $repository_item = Repository::find($repository_id);
             $repository_item->star_num = $repository_item->star_num + 1;
+            $repository_item->save();
         }
     }
 
@@ -122,6 +123,7 @@ class User extends \TCG\Voyager\Models\User
         foreach ($repository_ids as $repository_id) {
             $repository_item = Repository::find($repository_id);
             $repository_item->star_num = $repository_item->star_num - 1;
+            $repository_item->save();
         }
     }
 

@@ -21,7 +21,8 @@ class UsersTableSeeder extends Seeder
         $user->email = 'xplusxu@163.com';
         $user->avatar = 'users/plusxu.png';
         $user->password = bcrypt('123456');
-        $user->bio = '这是用户个人简介的示例文本。';
+        $user->bio = '用户个人简介的示例文本。';
+        $user->url = 'https://github.com/plxus';
         $user->is_admin = true;
         $user->role_id = 1;  // 1：管理员，2：用户
         $user->save();

@@ -47,7 +47,7 @@ class UsersController extends Controller
     public function update(User $user, Request $request)
     {
         // 验证表单提交的数据
-        if ($user->name===$request->name) {
+        if ($user->name === $request->name) {
             $this->validate($request, [
         'name' => 'required|string|max:32',
       ]);
@@ -57,7 +57,7 @@ class UsersController extends Controller
       ]);
         }
 
-        if ($user->email===$request->email) {
+        if ($user->email === $request->email) {
             $this->validate($request, [
         'email' => 'required|string|email|max:255',
       ]);
@@ -69,6 +69,7 @@ class UsersController extends Controller
 
         $this->validate($request, [
       'bio' => 'nullable|string|max:128',
+      'url' => 'nullable|string|max:128',
       'password' => 'nullable|confirmed|min:6'
     ]);
 
@@ -79,6 +80,7 @@ class UsersController extends Controller
       'name' => $request->name,
       'email' => $request->email,
       'bio' => $request->bio,
+      'url' => $request->url,
     ];
 
         if ($request->password) {

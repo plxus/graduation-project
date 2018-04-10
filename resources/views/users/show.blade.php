@@ -38,9 +38,15 @@
           <div class="follow-form-blank"></div>
         @endif
 
+        {{-- 邮箱和 URL --}}
         <p>
-          <i class="far fa-envelope icon-gray"></i>&nbsp;<a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+          <i class="far fa-envelope icon-gray"></i>&nbsp;<a href="mailto:{{ $user->email }}" target="_blank">{{ $user->email }}</a>
         </p>
+        @if ($user->url)
+          <p>
+            <i class="fas fa-external-link-alt icon-gray"></i>&nbsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
+          </p>
+        @endif
       </div>
 
       <div class="col-md-8">
@@ -49,8 +55,8 @@
 
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;发布的清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>
-          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;收藏的清单 <span class="badge">{{ $user->stars->count() }}</span>&emsp;</a></li>
+          <li role="presentation" class="active"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">&emsp;发布的知识清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>
+          <li role="presentation"><a href="#stars" aria-controls="stars" role="tab" data-toggle="tab">&emsp;收藏的知识清单 <span class="badge">{{ $user->stars->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="#following" aria-controls="following" role="tab" data-toggle="tab">&emsp;关注的用户 <span class="badge">{{ $user->followings->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="#followers" aria-controls="followers" role="tab" data-toggle="tab">&emsp;关注者 <span class="badge">{{ $user->followers->count() }}</span>&emsp;</a></li>
         </ul>
@@ -63,8 +69,8 @@
               排序：最新
             </div>
             @if (count($repositories))
-              @foreach ($repositories as $repository)
-                @include('repositories._repo_flow_self')
+              @foreach ($repositories as $feed_item)
+                @include('repositories._repo_flow_self', ['repoCategory' => $feed_item->category])
               @endforeach
               {!! $repositories->render() !!}
             @endif
@@ -77,7 +83,7 @@
             </div>
             @if (count($repositories_star))
               @foreach ($repositories_star as $feed_item)
-                @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user])
+                @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
               @endforeach
               {!! $repositories_star->render() !!}
             @endif

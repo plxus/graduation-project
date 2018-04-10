@@ -22,41 +22,48 @@
                   {{ csrf_field() }}
 
                   <div class="form-group">
-                    <label for="name">用户名：</label>
+                    <label for="name">用户名</label>
                     <input type="text" name="name" class="form-control" value="{{ $user->name }}">
                   </div>
 
                   <br />
 
                   <div class="form-group">
-                    <label for="email">E-Mail：</label>
+                    <label for="email">E-Mail</label>
                     <input type="text" name="email" class="form-control" value="{{ $user->email }}">
                   </div>
 
                   <br />
 
                   <div class="form-group">
-                    <label for="email">个人简介：</label>
+                    <label for="bio">个人简介</label>
                     <input type="text" name="bio" class="form-control" value="{{ $user->bio }}">
                   </div>
 
                   <br />
 
                   <div class="form-group">
-                    <label for="password">新密码：</label>
+                    <label for="url">URL</label>
+                    <input type="text" name="url" class="form-control" value="{{ $user->url }}">
+                  </div>
+
+                  <br />
+
+                  <div class="form-group">
+                    <label for="password">新密码</label>
                     <input type="password" name="password" class="form-control" value="{{ old('password') }}">
                   </div>
 
                   <br />
 
                   <div class="form-group">
-                    <label for="password_confirmation">确认密码：</label>
+                    <label for="password_confirmation">确认密码</label>
                     <input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
                   </div>
 
                   <br />
 
-                  <button type="submit" class="btn btn-primary pull-right">保存更改</button>
+                  <button type="submit" class="btn btn-primary pull-right">&emsp;保存更改&emsp;</button>
                 </form>
               </div>
             </div>

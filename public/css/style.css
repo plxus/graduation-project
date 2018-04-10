@@ -35,6 +35,18 @@ svg.icon-gray-active {
   color: #616161;
 }
 
+svg.icon-red {
+  color: #EF5350;
+}
+
+svg.icon-blue {
+  color: #008FF7;
+}
+
+svg.icon-green {
+  color: #66BB6A;
+}
+
 /* Typography */
 
 h1,
@@ -428,4 +440,9 @@ p.repo-author {
 
 .repo-created-at {
   color: #757575;
+}
+
+.repo-copyright {
+  color: #757575;
+  font-weight: 500;
 }

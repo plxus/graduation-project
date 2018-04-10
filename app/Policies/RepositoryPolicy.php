@@ -26,6 +26,12 @@ class RepositoryPolicy
   {
     return $user->id === $repository->user_id || $user->is_admin;
   }
+
+  // 用户修改知识清单时的授权策略。
+  public function update(User $user, Repository $repository)
+  {
+    return $user->id === $repository->user_id || $user->is_admin;
+  }
 }
 
 trait VoyagerPolicyTrait

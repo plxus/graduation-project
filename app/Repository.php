@@ -37,7 +37,7 @@ class Repository extends Model
     // 指明一个知识清单可以有多个标签。
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'tags', 'repository_id', 'name');
+        return $this->hasMany(Tag::class, 'repository_id', 'id');
     }
 
     // 获取知识清单的收藏数。

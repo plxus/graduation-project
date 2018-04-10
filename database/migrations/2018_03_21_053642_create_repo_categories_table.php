@@ -16,7 +16,7 @@ class CreateRepoCategoriesTable extends Migration
         Schema::create('repo_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category_level_1');  // 一级类别
-            $table->string('category_level_2')->nullable();  // 二级类别
+            // $table->string('category_level_2')->nullable();  // 二级类别
             $table->timestamps();
         });
     }

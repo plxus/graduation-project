@@ -63,7 +63,7 @@
             <div class="col-md-12" id="feed_flow">
               @if (count($feed_items))
                 @foreach ($feed_items as $feed_item)
-                  @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user])
+                  @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
                   {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
                 @endforeach
                 {!! $feed_items->render() !!}

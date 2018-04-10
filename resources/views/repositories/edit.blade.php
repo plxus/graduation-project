@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '创建知识清单')
+@section('title', '修订知识清单')
 
 @section('style')
   {{-- 标签添加插件 --}}
@@ -21,12 +21,12 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h1>创建知识清单</h1>
+        <h1>修订知识清单</h1>
       </div>
     </div>
 
     <div class="row">
-      <form action="{{ route('repositories.store') }}" method="POST">
+      <form action="{{ route('repositories.update') }}" method="POST">
         {{ csrf_field() }}
         <div class="col-md-9 repo-create-left">
           <div class="form-group">
@@ -144,7 +144,15 @@
       </li>
     </ul>
 
-    <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;创建&emsp;</button>
+    {{-- 填写修订记录 --}}
+    <div class="panel panel-default">
+      <div class="panel-heading">修订记录</div>
+      <div class="panel-body">
+        <textarea class="form-control autosize" rows="2" id="repo-revision" name="log" placeholder="填写此次修订的记录"></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;提交修订&emsp;</button>
   </div>
   {{-- <input type="hidden" name="create" value="true" /> --}}
 </form>

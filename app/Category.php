@@ -9,12 +9,12 @@ class Category extends Model
     protected $table = 'repo_categories';
 
     protected $fillable = [
-      'category_level_1','category_level_2',
+      'category_level_1',
     ];
 
     // 指明一个类别中可以有多个知识清单。
     public function repositories()
     {
-        return $this->hasMany(Repository::class);
+        return $this->hasMany(Repository::class, 'category_id', 'id');
     }
 }
