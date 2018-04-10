@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Auth;
   <!-- Scripts -->
   <script src="/js/app.js"></script>
   <script src="/js/fontawesome-all.min.js"></script>
+  <script src="/js/autosize.min.js"></script>
   @yield('script', '')
 </body>
 </html>
