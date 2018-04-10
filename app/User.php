@@ -49,7 +49,7 @@ class User extends \TCG\Voyager\Models\User
     {
         $feed_user_ids = Auth::user()->followings->pluck('id')->toArray();
         array_push($feed_user_ids, Auth::user()->id);  // 将当前用户的 id 加入到数组中
-        return Repository::whereIn('user_id', $feed_user_ids)
+        return Repository::where('is_private', 'false')->whereIn('user_id', $feed_user_ids)
         ->with('user')
         ->orderBy("$sort_rule", 'desc');
         // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题

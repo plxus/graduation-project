@@ -137,6 +137,42 @@
     //     }
     //   });
     // });
+
+    $('#sort_by_time').bind("click", function(){
+      $.ajax({
+        type: 'GET',
+        url: '/',
+        data: {sort: 'created_at'},
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        dataType: 'json',
+        success: function(response){
+
+        },
+        error: function(){
+          alert("error!");
+        }
+      });
+    });
+
+    $('#sort_by_star').bind("click", function(){
+      $.ajax({
+        type: 'GET',
+        url: '/',
+        data: {sort: 'star_num'},
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        dataType: 'json',
+        success: function(response){
+
+        },
+        error: function(){
+          alert("error!");
+        }
+      });
+    });
   });
   </script>
 @stop

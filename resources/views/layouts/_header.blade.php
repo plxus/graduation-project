@@ -28,7 +28,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus"></i>&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{{ route('repositories.create') }}">新建知识清单</a></li>
+              <li><a href="{{ route('repositories.create') }}">创建知识清单</a></li>
             </ul>
           </li>
           <li class="dropdown">

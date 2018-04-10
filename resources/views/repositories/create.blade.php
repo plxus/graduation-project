@@ -33,14 +33,14 @@
         <div class="col-md-9 repo-create-left">
           <div class="form-group">
             <label for="repo-title">标题</label>
-            <input type="text" class="form-control" id="repo-title" name="title" placeholder="填写该知识清单的标题" required>
+            <input type="text" class="form-control" id="repo-title" name="title" placeholder="填写知识清单的标题" required>
           </div>
 
           <br />
 
           <div class="form-group">
             <label for="repo-description">简介</label>
-            <textarea class="form-control" rows="2" id="repo-description" name="description" placeholder="选填该知识清单的描述"></textarea>
+            <textarea class="form-control" rows="2" id="repo-description" name="description" placeholder="选填知识清单的描述"></textarea>
           </div>
 
           <br />
@@ -48,12 +48,12 @@
           <div class="form-group">
             <label for="repo-category">类别</label>
             <select class="form-control" id="repo-category" name="category">
-              <option value="null" checked>
-                请选择
+              <option value="" checked>
+                选择一个类别
               </option>
-              @foreach ($categories_level_1 as $category_level_1)
-                <option>
-                  {{ $category_level_1 }}
+              @foreach ($category_items as $category_item)
+                <option value="{{ $category_item->id }}">
+                  {{ $category_item->category_level_1 }}
                 </option>
               @endforeach
             </select>
@@ -70,13 +70,13 @@
           <br />
 
           <div class="form-group">
-            <label for="repo-content">正文内容</label>
-
+            <label for="repo_content">正文内容</label>
+            <textarea class="form-control" id="repo_content" name="content" placeholder="输入知识清单的正文内容"></textarea>
           </div>
 
           <br />
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="fileupload">上传附件</label>
             <br />
             <span class="btn btn-default fileinput-button">
@@ -86,13 +86,13 @@
               <input id="fileupload" type="file" name="files[]" multiple>
             </span>
             <br />
-            {{-- <br />
+            <br />
             <div id="progress" class="progress">
             <div class="progress-bar progress-bar-success"></div>
-          </div> --}}
+          </div>
           <div id="files" class="files"></div>
           <p class="help-block small-p">可上传不超过 50 MB 的文件。</p>
-        </div>
+        </div> --}}
       </div>
 
       <div class="col-md-3">
@@ -144,7 +144,7 @@
 
         <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;创建&emsp;</button>
       </div>
-      <input type="hidden" name="create" value="true" />
+      {{-- <input type="hidden" name="create" value="true" /> --}}
     </form>
   </div>
 </div>
@@ -153,30 +153,32 @@
 @section('script')
   {{-- Markdown 编辑器 --}}
   <script src="/js/simplemde.min.js"></script>
-
   <script>
-  var simplemde = new SimpleMDE({ element: $("#MyID")[0] });
+  var simplemde = new SimpleMDE({
+    element: $("#repo_content")[0],
+    spellChecker: false,
+    toolbar: false,
+  });
   </script>
 
   {{-- Taggle 添加标签 --}}
   <script src="/js/taggle.js"></script>
-
   <script type="text/javascript">
   window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
     duplicateTagClass: 'bounce',
-    placeholder: '为该知识清单添加标签'
+    placeholder: '为知识清单添加标签'
   });
   </script>
 
   {{-- jQuery File Upload --}}
-  <script src="/js/jQuery_file_upload/vendor/jquery.ui.widget.js"></script>
+  {{-- <script src="/js/jQuery_file_upload/vendor/jquery.ui.widget.js"></script>
   <script src="/js/jQuery_file_upload/jquery.iframe-transport.js"></script>
   <script src="/js/jQuery_file_upload/jquery.fileupload.js"></script>
   <script src="/js/jQuery_file_upload/jquery.fileupload-validate.js"></script>
-  <script src="/js/jQuery_file_upload/jquery.fileupload-image.js"></script>
+  <script src="/js/jQuery_file_upload/jquery.fileupload-image.js"></script> --}}
   {{-- <script src="/js/jQuery_file_upload/jquery.fileupload-ui.js"></script>
   <script src="/js/jQuery_file_upload/jquery.fileupload-jquery-ui.js"></script> --}}
-  <script>
+  {{-- <script>
   /*jslint unparam: true, regexp: true */
   /*global window, $ */
   $(function () {
@@ -273,5 +275,5 @@
     }).prop('disabled', !$.support.fileInput)
     .parent().addClass($.support.fileInput ? undefined : 'disabled');
   });
-</script>
+</script> --}}
 @stop

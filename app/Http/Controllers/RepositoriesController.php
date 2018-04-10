@@ -36,8 +36,9 @@ class RepositoriesController extends Controller
     */
     public function create()
     {
-        $categories_level_1 = DB::table('repo_categories')->pluck('category_level_1')->toArray();
-        return view('repositories.create', compact('categories_level_1'));
+        // 获取所有类别记录
+        $category_items = DB::table('repo_categories')->get()->toArray();
+        return view('repositories.create', compact('category_items'));
     }
 
     /**
