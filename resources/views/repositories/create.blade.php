@@ -155,40 +155,29 @@
 @stop
 
 @section('script')
+  {{-- textarea 自动调整高度 --}}
   <script>
   autosize($('textarea.autosize'));
   </script>
 
-  {{-- Markdown 编辑器 --}}
-  <script src="/js/simplemde.min.js"></script>
-  {{-- <script>
-  var simplemde = new SimpleMDE({
-  element: $("#repo_content")[0],
-  spellChecker: false,
-  toolbar: false,
-});
-</script> --}}
-
-{{-- StackEdit Markdown 编辑器 --}}
-<script src="/js/stackedit.min.js"></script>
-<script>
-const el = document.querySelector('#repo_content');
-const stackedit = new Stackedit();
-
-// Open the iframe
-$('#btn_repo_edit').click(function(){
-  stackedit.openFile({
-    // name: 'Filename', // with an optional filename
-    content: {
-      text: el.value // and the Markdown content.
-    }
+  {{-- StackEdit Markdown 编辑器 --}}
+  <script src="/js/stackedit.min.js"></script>
+  <script>
+  const el = document.querySelector('#repo_content');
+  const stackedit = new Stackedit();
+  // Open the iframe
+  $('#btn_repo_edit').click(function(){
+    stackedit.openFile({
+      // name: 'Filename', // with an optional filename
+      content: {
+        text: el.value // and the Markdown content.
+      }
+    });
   });
-});
-
-// Listen to StackEdit events and apply the changes to the textarea.
-stackedit.on('fileChange', (file) => {
-  el.value = file.content.text;
-});
+  // Listen to StackEdit events and apply the changes to the textarea.
+  stackedit.on('fileChange', (file) => {
+    el.value = file.content.text;
+  });
 </script>
 
 {{-- Taggle 添加标签 --}}
