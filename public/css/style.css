@@ -356,6 +356,8 @@ ul.nav-tabs li {
 
 .flow-timestamp {
   color: #757575;
+  vertical-align: middle;
+  margin-top: 3px;
 }
 
 .flow-repo-title {
@@ -414,7 +416,7 @@ button.delete-user {
 
 .star-btn {
   position: relative;
-  margin-top: 8px;
+  margin-top: 7px;
 }
 
 a.repo-title {
@@ -461,4 +463,11 @@ p.repo-author {
 
 .revision-time {
   color: #757575 !important;
+}
+
+/* Search 搜索结果页 */
+
+h3.search-result {
+  margin: 0;
+  padding-top: 5px;
 }

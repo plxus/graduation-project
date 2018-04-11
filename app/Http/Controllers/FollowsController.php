@@ -30,7 +30,7 @@ class FollowsController extends Controller
     }
 
     // 处理取消关注用户表单提交的数据。
-    public function destroy(User $user, Request $request)
+    public function destroy(User $user)
     {
         if (Auth::user()->id === $user->id) {
             return redirect('/');
@@ -40,16 +40,6 @@ class FollowsController extends Controller
             Auth::user()->unfollow($user->id);  // 取消关注操作
         }
 
-        if ($request->input('ajax') === 'unfollow') {
-            return response()->json(['status' => 'success']);  // JSON 响应
-        }
-        else {
-            return redirect()->route('users.show', $user->id);
-        }
-    }
-
-    // 处理取消关注的 Ajax 请求
-    public function ajax_destroy(Request $request)
-    {
+        return redirect()->route('users.show', $user->id);
     }
 }

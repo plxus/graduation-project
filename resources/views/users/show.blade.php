@@ -40,13 +40,12 @@
 
         {{-- 邮箱和 URL --}}
         <p>
-          <i class="far fa-envelope icon-gray"></i>&nbsp;<a href="mailto:{{ $user->email }}" target="_blank">{{ $user->email }}</a>
+          <i class="far fa-envelope icon-gray"></i>&emsp;<a href="mailto:{{ $user->email }}" target="_blank">{{ $user->email }}</a>
+          @if ($user->url)
+            <br />
+            <i class="fas fa-globe icon-gray"></i>&emsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
+          @endif
         </p>
-        @if ($user->url)
-          <p>
-            <i class="fas fa-globe icon-gray"></i>&nbsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
-          </p>
-        @endif
       </div>
 
       <div class="col-md-8">
@@ -122,29 +121,5 @@
 @stop
 
 @section('script')
-  {{-- 关注用户列表中点击取消关注按钮的 ajax --}}
-  <script>
-  $(document).ready(function(){
-    $('.btn_unfollow').bind("click", function(){
-      $.ajax({
-        type: 'post',
-        url: '{{ route('follows.ajax_destroy') }}',
-        data: {
-          
-        },
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        dataType: 'json',
-        success: function(response){
-          var hide_item = '#following_item_'+response.id;
-          $(hide_item).hide();
-        },
-        error: function(){
-          // alert('Ajax error!')
-        }
-      });
-    });
-  });
-  </script>
+
 @stop

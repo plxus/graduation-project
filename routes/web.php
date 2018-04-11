@@ -19,9 +19,13 @@ name 方法用于命名路由。
 resource 方法遵从 RESTful 架构为用户资源生成路由。该方法接收两个参数，第一个参数为资源名称，第二个参数为控制器名称。
 */
 
+// 首页路由
 Route::get('/', 'HomeController@index')->name('home');
-/* Route::get('/search', 'HomeController@search')->name('search'); */
 
+// 搜索路由
+Route::get('/search', 'HomeController@search')->name('search');
+
+// 关于页路由
 Route::get('/about', 'StaticPagesController@about')->name('about');
 
 // 用户注册、登录相关路由
@@ -40,9 +44,6 @@ Route::get('/users/{user}/followers','UsersController@followers')->name('users.f
 // 用户关注/取消关注操作路由
 Route::post('/users/follows/{user}','FollowsController@store')->name('follows.store');
 Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follows.destroy');
-
-// 用户取消关注 Ajax 路由
-Route::post('/users/unfollow','FollowsController@ajax_destroy')->name('follows.ajax_destroy');
 
 // 用户收藏/取消收藏知识清单操作路由
 Route::post('/users/stars/{repository}', 'StarsController@store')->name('stars.store');

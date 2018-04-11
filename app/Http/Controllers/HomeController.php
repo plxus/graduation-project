@@ -46,17 +46,16 @@ class HomeController extends Controller
     }
 
     // 获取搜索结果
-    if ($request->input('keywords') !== null) {
-      $feed_items = Repository::where('is_private', 'false')->
-      where(function($query){
-        $query->where('title', 'like', '%'.$request->input('keywords').'%')
-        ->orWhere('description', 'like', '%'.$request->input('keywords').'%');
-      })
-      ->orderBy("$sort_rule", 'desc')
-      ->paginate(20);
-      // return view('home', compact('category_items', 'feed_items'));
-      return response()->json(['feed_items' => $feed_items]);  // JSON 响应
-    }
+    // if ($request->input('keywords') !== null) {
+    //   $feed_items = Repository::where('is_private', 'false')->
+    //   where(function($query){
+    //     $query->where('title', 'like', '%'.$request->input('keywords').'%')
+    //     ->orWhere('description', 'like', '%'.$request->input('keywords').'%');
+    //   })
+    //   ->orderBy("$sort_rule", 'desc')
+    //   ->paginate(20);
+    //   return view('home', compact('category_items', 'feed_items'));
+    // }
 
     // 获取类别筛选的结果
     if($request->input('category') !== null){
@@ -81,5 +80,32 @@ class HomeController extends Controller
     }
 
     return view('home', compact('category_items', 'feed_items'));
+  }
+
+  public function search(Request $request)
+  {
+    // 根据排序选项设置相应的查询
+    $sort_rule = 'created_at';
+    if($request->input('sort') !== null){
+      // 按收藏数排序：可以在 repositories 表中添加一个冗余字段表示收藏数
+      if($request->input('sort') === 'star_num'){
+        $sort_rule = 'star_num';
+      }
+      if($request->input('sort') === 'created_at'){
+        $sort_rule = 'created_at';
+      }
+    }
+
+    // 获取搜索结果
+    if ($request->input('keywords') !== null) {
+      $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+      ->orderBy("$sort_rule", 'desc')
+      ->paginate(20);
+      $search_keywords = $request->keywords;  // 搜索关键词
+      return view('search', compact('feed_items', 'search_keywords'));
+    }
+    else {
+      return redirect()->route('home');
+    }
   }
 }

@@ -49,8 +49,8 @@
             <p class="repo-description">
               {{ $repository->description }}
             </p>
+            {{-- 标签 --}}
             <p>
-              {{-- 标签 --}}
               @if ($repoTags->count())
                 @foreach ($repoTags as $repoTag)
                   <span class="repo-tags"><button type="button" class="btn btn-sm btn-tag"><i class="fas fa-hashtag"></i>&nbsp;{{ $repoTag->name }}</button></span>

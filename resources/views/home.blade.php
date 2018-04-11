@@ -4,8 +4,12 @@
 
 @section('content')
   <div class="container">
-    {{-- 错误提示 --}}
-    @include('shared._errors')
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {{-- 错误提示 --}}
+        @include('shared._errors')
+      </div>
+    </div>
 
     @auth
       <div class="row">
@@ -70,7 +74,7 @@
                 @endforeach
                 {!! $feed_items->render() !!}
               @else
-                <div class="alert alert-info text-center" role="alert">无知识清单条目</div>
+                <h4 class="msg-no-item">无知识清单条目</h4>
               @endif
             </div>
           </div>
