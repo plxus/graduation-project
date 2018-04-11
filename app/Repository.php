@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Category;
+use App\Revision;
 use App\Tag;
 use App\Star;
 
@@ -38,6 +39,12 @@ class Repository extends Model
     public function tags()
     {
         return $this->hasMany(Tag::class, 'repository_id', 'id');
+    }
+
+    // 指明一个知识清单可以有多个修订。
+    public function revisions()
+    {
+        return $this->hasMany(Revision::class, 'repository_id', 'id');
     }
 
     // 获取知识清单的收藏数。

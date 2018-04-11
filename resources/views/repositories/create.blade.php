@@ -46,7 +46,7 @@
           <div class="form-group">
             <label for="repo-category">类别</label>
             <select class="form-control" id="repo-category" name="category_id" required>
-              <option value="" checked>
+              <option value="" selected>
                 - 选择一个类别 -
               </option>
               @foreach ($category_items as $category_item)
@@ -73,7 +73,7 @@
               <button class="btn btn-success btn-sm" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>&emsp;<span class="help-block small-p" style="display: inline !important;vertical-align:bottom;">支持 Markdown 语法。</span>
             </div>
             <br />
-            <textarea class="form-control" id="repo_content" name="content" rows="10" placeholder="输入知识清单的正文内容" required></textarea>
+            <textarea class="form-control" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
           </div>
 
           <br />

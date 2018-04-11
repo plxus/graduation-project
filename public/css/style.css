@@ -72,13 +72,19 @@ h2 {
 }
 
 h3 {
-  font-size: 1.4em;
-  font-weight: 500;
+  font-size: 1.5em;
+  font-weight: 400;
   margin-bottom: 15px;
 }
 
 h4 {
+  font-size: 1.2em;
+  font-weight: 500;
   margin-top: 15px;
+}
+
+h4.msg-no-item {
+  color: #BDBDBD;
 }
 
 p {
@@ -221,7 +227,7 @@ button {
 }
 
 .panel-body {
-  padding: 40px 15px;
+  padding: 20px 15px;
 }
 
 .nav {

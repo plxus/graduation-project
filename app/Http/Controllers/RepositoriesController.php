@@ -95,8 +95,9 @@ class RepositoriesController extends Controller
     $repoAuthor = $repository->user;  // 该知识清单的作者实例
     $repoTags = $repository->tags;  // 该知识清单的标签
     $repoCategory = $repository->category;  // 该知识清单的类别实例
-    $repoStarNum = $repository->starNum();  // 知识清单收藏数
-    return view('repositories.show', compact('repository', 'repoAuthor', 'repoTags', 'repoCategory', 'repoStarNum'));
+    $repoStarNum = $repository->starNum();  // 该知识清单的收藏数
+    $repoRevisions = $repository->revisions()->orderBy('created_at', 'desc')->get();  // 该知识清单的修订
+    return view('repositories.show', compact('repository', 'repoAuthor', 'repoTags', 'repoCategory', 'repoStarNum', 'repoRevisions'));
   }
 
   /**

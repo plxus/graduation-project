@@ -90,7 +90,7 @@
               {{-- <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">&emsp;<i class="fas fa-paperclip"></i> 附件&emsp;</a></li> --}}
               <li role="presentation"><a href="#revisions" aria-controls="revisions" role="tab" data-toggle="tab">&emsp;<i class="far fa-edit"></i> 修订&emsp;</a></li>
               <li role="presentation"><a href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab">&emsp;<i class="far fa-comment-alt"></i> 讨论&emsp;</a></li>
-              @if ($repoAuthor->id === Auth::user()->id)
+              @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">&emsp;<i class="fas fa-sliders-h"></i> 设置&emsp;</a></li>
               @endif
             </ul>
@@ -114,7 +114,18 @@
               {{-- 修订 --}}
               <div role="tabpanel" class="tab-pane fade" id="revisions">
                 <h3>修订</h3>
-                修订时间，修订记录
+                @if ($repoRevisions->count())
+                  @foreach ($repoRevisions as $repoRevision)
+                    <div class="panel panel-default">
+                      <div class="panel-heading">{{ $repoRevision->created_at }}</div>
+                      <div class="panel-body">
+                        {{ $repoRevision->log }}
+                      </div>
+                    </div>
+                  @endforeach
+                @else
+                  <h4 class="text-center msg-no-item">无修订记录</h4>
+                @endif
               </div>
 
               {{-- 讨论 --}}
@@ -124,11 +135,10 @@
               </div>
 
               {{-- 设置 --}}
-              @if ($repoAuthor->id === Auth::user()->id)
+              @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
                 <div role="tabpanel" class="tab-pane fade" id="settings">
                   <h3>设置</h3>
                   <br />
-
                   {{-- 修订按钮 --}}
                   <p>
                     <a class="btn btn-default" href="{{ route('repositories.edit', $repository->id)}}" role="button">修订知识清单</a>
@@ -137,7 +147,6 @@
                     修订该知识清单的内容，并填写修订记录。
                   </p>
                   <br />
-
                   {{-- 删除按钮 --}}
                   <p>
                     <form action="{{ route('repositories.destroy', $repository->id) }}" method="post">

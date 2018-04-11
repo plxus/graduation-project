@@ -31,14 +31,14 @@
         <div class="col-md-9 repo-create-left">
           <div class="form-group">
             <label for="repo-title">标题</label>
-            <input type="text" class="form-control" id="repo-title" name="title" placeholder="填写知识清单的标题" required>
+            <input type="text" class="form-control" id="repo-title" name="title" value="{{ $repository->title }}" placeholder="填写知识清单的标题" required>
           </div>
 
           <br />
 
           <div class="form-group">
-            <label for="repo-description">简介</label>
-            <textarea class="form-control autosize" rows="2" id="repo-description" name="description" placeholder="选填知识清单的描述"></textarea>
+            <label for="repo_description">简介</label>
+            <textarea class="form-control autosize" rows="2" id="repo_description" name="description" placeholder="选填知识清单的描述"></textarea>
           </div>
 
           <br />
@@ -46,7 +46,7 @@
           <div class="form-group">
             <label for="repo-category">类别</label>
             <select class="form-control" id="repo-category" name="category_id" required>
-              <option value="" checked>
+              <option value="">
                 - 选择一个类别 -
               </option>
               @foreach ($category_items as $category_item)
@@ -73,7 +73,7 @@
               <button class="btn btn-success btn-sm" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>&emsp;<span class="help-block small-p" style="display: inline !important;vertical-align:bottom;">支持 Markdown 语法。</span>
             </div>
             <br />
-            <textarea class="form-control" id="repo_content" name="content" rows="10" placeholder="输入知识清单的正文内容" required></textarea>
+            <textarea class="form-control" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
           </div>
 
           <br />
@@ -105,7 +105,7 @@
           <p class="help-block small-p">声明他人是否有权转载该知识清单。</p>
           <div class="radio">
             <label>
-              <input type="radio" name="copyright" id="copyright-limit" value="limit" checked>
+              <input type="radio" name="copyright" id="copyright-limit" value="limit">
               转载需授权
             </label>
           </div>
@@ -130,7 +130,7 @@
           <p class="help-block small-p">设定谁有权查看该知识清单。</p>
           <div class="radio">
             <label>
-              <input type="radio" name="is_private" id="repo-public" value="false" checked>
+              <input type="radio" name="is_private" id="repo-public" value="false">
               公开
             </label>
           </div>
@@ -188,10 +188,33 @@
 
 {{-- Taggle 添加标签 --}}
 <script src="/js/taggle.js"></script>
-<script type="text/javascript">
+<?php
+$tags = [];
+foreach ($repoTags as $repoTag){
+  array_push($tags, strval($repoTag->name));
+}
+$tags_str = '[\''.join("','", array_values($tags)).'\']';
+?>
+<script>
 window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
   duplicateTagClass: 'bounce',
-  placeholder: '为知识清单添加标签'
+  placeholder: '为知识清单添加标签',
+  tags: <?php echo($tags_str) ?>,
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("option[value='{{ $repoCategory->id }}']").attr("selected", "selected");
+  $("input[value='{{ $repository->copyright }}']").attr("checked", "checked");
+  if ({{ $repository->is_private }}) {
+    $("input[value='true']").attr("checked", "checked");
+  }
+  else {
+    $("input[value='false']").attr("checked", "checked");
+  }
+  $('#repo_description').html('{{ $repository->description }}');
+  $('#repo_content').html('{{ $repository->content }}');
 });
 </script>
 
