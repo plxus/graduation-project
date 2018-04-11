@@ -4,8 +4,9 @@
 
 @section('style')
   {{-- Valine 评论系统 --}}
-  <script src="/js/av-min.js"></script>
-  <script src="/js/Valine.min.js"></script>
+  <script src="/js/av-min_beta9.js"></script>
+  <script src="/js/Valine_beta9.min.js"></script>
+  {{-- 自定义 Valine CSS --}}
   <link rel="stylesheet" href="/css/valine.css" />
 @stop
 
@@ -39,7 +40,7 @@
             @endif
 
             {{-- 知识清单标题 --}}
-            <h2 class="repo-title">{{ $repository->title }}</h2>
+            <h2 class="repo-title"><a href="{{ route('repositories.show', $repository->id) }}" class="repo-title">{{ $repository->title }}</a></h2>
             {{-- 作者 --}}
             <p class="repo-author">
               <a href="{{ route('users.show', $repoAuthor->id) }}" target="_blank">{{ $repoAuthor->name }}</a>
@@ -67,11 +68,11 @@
             {{-- 著作权声明 --}}
             @if ($repository->copyright === 'allow')
               <p class="repo-copyright small-p">
-                <i class="far fa-check-circle icon-green"></i>&nbsp;允许转载
+                <i class="far fa-check-circle icon-green"></i>&nbsp;允许转载（非商用）
               </p>
             @elseif ($repository->copyright === 'limit')
               <p class="repo-copyright small-p">
-                <i class="far fa-question-circle icon-blue"></i>&nbsp;转载需授权
+                <i class="far fa-question-circle icon-blue"></i>&nbsp;转载需获得授权
               </p>
             @elseif ($repository->copyright === 'forbid')
               <p class="repo-copyright small-p">
@@ -99,11 +100,10 @@
 
             {{-- Tab panes --}}
             <div class="tab-content">
-              {{-- 详情 --}}
+              {{-- 正文内容 --}}
               <div role="tabpanel" class="tab-pane fade in active" id="contents">
                 <div class="repo-content">
-                  <article>
-                    {{ $repository->content }}
+                  <article id="content">
                   </article>
                 </div>
               </div>
@@ -113,13 +113,17 @@
 
               {{-- 修订 --}}
               <div role="tabpanel" class="tab-pane fade" id="revisions">
-                <h3>修订</h3>
+                <h3>修订记录</h3>
                 @if ($repoRevisions->count())
                   @foreach ($repoRevisions as $repoRevision)
-                    <div class="panel panel-default">
-                      <div class="panel-heading">{{ $repoRevision->created_at }}</div>
-                      <div class="panel-body">
-                        {{ $repoRevision->log }}
+                    <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-default">
+                          <div class="panel-heading revision-time">{{ $repoRevision->created_at->toDateString() }}</div>
+                          <div class="panel-body">
+                            {{ $repoRevision->log }}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   @endforeach
@@ -131,7 +135,7 @@
               {{-- 讨论 --}}
               <div role="tabpanel" class="tab-pane fade" id="discuss">
                 <h3>讨论</h3>
-                @include('repositories._repo_discuss')
+                <div id="comment"></div>
               </div>
 
               {{-- 设置 --}}
@@ -171,6 +175,30 @@
 @stop
 
 @section('script')
+  {{-- textarea 自动调整高度 --}}
+  <script>
+  autosize($('textarea.autosize'));
+  </script>
+
+  {{-- Stackedit Markdown 渲染 --}}
+  <script src="/js/stackedit.min.js"></script>
+  <script>
+  let md_content = '<?php echo($repository->content); ?>';
+  var reg = new RegExp("<br />", "g");
+  md_content = md_content.replace(reg, "\n");
+  const el = document.querySelector('#content');
+  const stackedit = new Stackedit();
+  stackedit.openFile({
+    name: 'repo_content',
+    content: { text: md_content }
+  }, true /* silent mode */);
+  // In silent mode, the `fileChange` event is emitted only once.
+  stackedit.on('fileChange', (file) => {
+    el.innerHTML = file.content.html;
+  });
+  </script>
+
+  {{-- Valine 评论系统 --}}
   <script>
   new Valine({
     el: '#comment',
@@ -178,9 +206,10 @@
     verify: false,
     appId: 'IQxaTF92P4WrBdYnmROQx9Gp-gzGzoHsz',
     appKey: 'fmn5dHnEzyGaevaCrN44JS1m',
-    placeholder: '说点什么...',
+    placeholder: '说点什么……',
     path: window.location.pathname,  // 当前文章页路径，用于确保正确读取该文章页下的评论列表。
-    avatar: '',  // Gravatar 官方图形，隐藏头像
+    avatar: '',  // Gravatar 官方头像
+    avatar_cdn: 'https://gravatar.loli.net/avatar/',  // Gravatar头像镜像
     guest_info: ['nick', 'mail'],
     pageSize: 10,
   });
@@ -193,5 +222,7 @@
     "value": "{{ Auth::user()->email }}",
     "data-com.agilebits.onepassword.user-edited": "yes"
   });
+
+  $('button.vsubmit').html('发表');
   </script>
 @stop

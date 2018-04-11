@@ -10,6 +10,7 @@ use App\Star;
 use App\Repository;
 use App\Tag;
 use Auth;
+use App\Revision;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 
 class RepositoriesController extends Controller
@@ -66,7 +67,7 @@ class RepositoriesController extends Controller
       'title' => $request->title,
       'description' => $request->description,
       'category_id' => $request->category_id,
-      'content' => $request->content,
+      'content' => nl2br($request->content),  // 将 \n 换行符替换为 <br />
       'copyright' => $request->copyright,
       'is_private' => $request->is_private,
     ]);
@@ -134,17 +135,25 @@ class RepositoriesController extends Controller
       'content' => 'required|string',
       'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。
       'is_private' => 'required',
+      'log' => 'required|string|max:191',
     ]);
 
-    $repository = Auth::user()->repositories()->create([
+    $this->authorize('update', $repository);
+
+    $data = [
       'title' => $request->title,
       'description' => $request->description,
       'category_id' => $request->category_id,
-      'content' => $request->content,
+      'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
       'copyright' => $request->copyright,
       'is_private' => $request->is_private,
-    ]);
+    ];
 
+    // 更新知识清单
+    $repository->update($data);
+
+    // 更新知识清单的标签
+    Tag::where('repository_id', $repository->id)->delete();
     foreach ($request->input('taggles') as $tag) {
       $repository->tags()->create([
         'repository_id' => $repository->id,
@@ -152,7 +161,13 @@ class RepositoriesController extends Controller
       ]);
     }
 
-    session()->flash('success', '知识清单已修订');
+    // 添加修订记录
+    $repository->revisions()->create([
+      'repository_id' => $repository->id,
+      'log' => $request->log,
+    ]);
+
+    session()->flash('success', '该知识清单已修订');
 
     return redirect()->route('repositories.show', $repository->id);
   }
@@ -170,14 +185,14 @@ class RepositoriesController extends Controller
 
     // 删除标签表中的相关记录
     Tag::where('repository_id', $repository->id)->delete();
-    // $repository->tags->delete();
     // 删除收藏表中的相关记录
     Star::where('repository_id', $repository->id)->delete();
     // 删除修订表中的相关记录
-    // Revision::where('repository_id', $repository->id)->delete();
-
+    Revision::where('repository_id', $repository->id)->delete();
+    // 删除知识清单表中的记录
     $repository->delete();
-    session()->flash('success', '该知识清单已被删除。');
+
+    session()->flash('success', '该知识清单已被删除');
     return redirect()->route('home');
   }
 }

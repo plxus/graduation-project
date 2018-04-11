@@ -8,109 +8,108 @@ use App\User;
 
 class UsersController extends Controller
 {
-    // 在构造函数中，使用身份认证（Auth）中间件过滤未登录用户的某些动作，“except”为排除的动作，“only”为限定的动作。
-    // middleware 方法有两个参数，第一个为中间件的名称，第二个为要进行过滤的动作。
-    public function __construct()
-    {
-        $this->middleware('auth', [
-            'except' => []
-        ]);
-    }
+  // 在构造函数中，使用身份认证（Auth）中间件过滤未登录用户的某些动作，“except”为排除的动作，“only”为限定的动作。
+  // middleware 方法有两个参数，第一个为中间件的名称，第二个为要进行过滤的动作。
+  public function __construct()
+  {
+    $this->middleware('auth', [
+      'except' => []
+    ]);
+  }
 
-    // 用户个人主页视图
-    public function show(User $user)
-    {
-        $repositories = $user->repositories()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户创建的所有知识清单
-        $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
-        $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
-        $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
-        return view('users.show', compact('user', 'repositories', 'repositories_star', 'followings', 'followers'));
-        // 对象通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
-    }
+  // 用户个人主页视图
+  public function show(User $user)
+  {
+    $repositories = $user->repositories()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户创建的所有知识清单
+    $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
+    $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
+    $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
+    return view('users.show', compact('user', 'repositories', 'repositories_star', 'followings', 'followers'));
+    // 对象通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
+  }
 
-    // 返回关注的用户视图。
-    public function followings(User $user)
-    {
-        $followings = $user->followings()->paginate(20);  // 当前用户关注的其他用户
-        return view('users.followings', compact('followings'));
-    }
+  // 返回关注的用户视图。
+  public function followings(User $user)
+  {
+    $followings = $user->followings()->paginate(20);  // 当前用户关注的其他用户
+    return view('users.followings', compact('followings'));
+  }
 
-    // 用户修改个人信息（设置）视图
-    public function edit(User $user)
-    {
-        // 使用 authorize 方法验证授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
-        $this->authorize('update', $user);
-        return view('users.edit', compact('user'));
-    }
+  // 用户修改个人信息（设置）视图
+  public function edit(User $user)
+  {
+    // 使用 authorize 方法验证授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
+    $this->authorize('update', $user);
+    return view('users.edit', compact('user'));
+  }
 
-    // 处理用户个人信息表单提交数据
-    public function update(User $user, Request $request)
-    {
-        // 验证表单提交的数据
-        if ($user->name === $request->name) {
-            $this->validate($request, [
+  // 处理用户个人信息表单提交数据
+  public function update(User $user, Request $request)
+  {
+    // 验证表单提交的数据
+    if ($user->name === $request->name) {
+      $this->validate($request, [
         'name' => 'required|string|max:32',
       ]);
-        } else {
-            $this->validate($request, [
+    } else {
+      $this->validate($request, [
         'name' => 'required|string|max:32|unique:users',
       ]);
-        }
+    }
 
-        if ($user->email === $request->email) {
-            $this->validate($request, [
+    if ($user->email === $request->email) {
+      $this->validate($request, [
         'email' => 'required|string|email|max:255',
       ]);
-        } else {
-            $this->validate($request, [
+    } else {
+      $this->validate($request, [
         'email' => 'required|string|email|max:255|unique:users',
       ]);
-        }
+    }
 
-        $this->validate($request, [
+    $this->validate($request, [
       'bio' => 'nullable|string|max:128',
       'url' => 'nullable|string|max:128',
       'password' => 'nullable|confirmed|min:6'
     ]);
 
-        $this->authorize('update', $user);
+    $this->authorize('update', $user);
 
-        // 更新用户对象
-        $data = [
+    $data = [
       'name' => $request->name,
       'email' => $request->email,
       'bio' => $request->bio,
       'url' => $request->url,
     ];
 
-        if ($request->password) {
-            $data['password'] = bcrypt($request->password);
-        }
-
-        // 更新用户对象
-        $user->update($data);
-
-        // 向会话中添加闪存信息
-        session()->flash('success', '个人信息修改成功！');
-
-        return redirect()->route('users.show', $user->id);
+    if ($request->password) {
+      $data['password'] = bcrypt($request->password);
     }
 
-    // 用户列表视图（后台管理）
-    public function index(User $user)
-    {
-        $this->authorize('userIndex', $user);
-        $users = User::paginate(10);
-        return view('users.index', compact('users'));
-    }
+    // 更新用户对象
+    $user->update($data);
 
-    // 处理删除用户表单提交的数据
-    public function destroy(User $user)
-    {
-        $this->authorize('destroy', $user);
-        // 删除用户对象
-        $user->delete();
-        session()->flash('success', '用户 '.$user->name.' 已删除。');
-        return redirect()->route('users.index');
-    }
+    // 向会话中添加闪存信息
+    session()->flash('success', '个人信息修改成功！');
+
+    return redirect()->route('users.show', $user->id);
+  }
+
+  // 用户列表视图（后台管理）
+  public function index(User $user)
+  {
+    $this->authorize('userIndex', $user);
+    $users = User::paginate(10);
+    return view('users.index', compact('users'));
+  }
+
+  // 处理删除用户表单提交的数据
+  public function destroy(User $user)
+  {
+    $this->authorize('destroy', $user);
+    // 删除用户对象
+    $user->delete();
+    session()->flash('success', '用户 '.$user->name.' 已删除。');
+    return redirect()->route('users.index');
+  }
 }

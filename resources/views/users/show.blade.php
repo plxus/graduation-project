@@ -44,7 +44,7 @@
         </p>
         @if ($user->url)
           <p>
-            <i class="fas fa-external-link-alt icon-gray"></i>&nbsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
+            <i class="fas fa-globe icon-gray"></i>&nbsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
           </p>
         @endif
       </div>

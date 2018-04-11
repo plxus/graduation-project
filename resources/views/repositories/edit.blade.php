@@ -19,6 +19,8 @@
       </div>
     </div>
 
+    <a class="btn btn-default" href="{{ route('repositories.show', $repository->id) }}" role="button"><i class="fas fa-arrow-left"></i> 退出编辑</a>
+
     <div class="row">
       <div class="col-md-12">
         <h1>修订知识清单</h1>
@@ -27,6 +29,7 @@
 
     <div class="row">
       <form action="{{ route('repositories.update', $repository->id) }}" method="POST">
+        {{ method_field('PATCH') }}
         {{ csrf_field() }}
         <div class="col-md-9 repo-create-left">
           <div class="form-group">
@@ -38,7 +41,7 @@
 
           <div class="form-group">
             <label for="repo_description">简介</label>
-            <textarea class="form-control autosize" rows="2" id="repo_description" name="description" placeholder="选填知识清单的描述"></textarea>
+            <textarea class="form-control autosize" rows="2" id="repo_description" name="description" placeholder="选填知识清单的描述">{{ $repository->description }}</textarea>
           </div>
 
           <br />
@@ -73,7 +76,7 @@
               <button class="btn btn-success btn-sm" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>&emsp;<span class="help-block small-p" style="display: inline !important;vertical-align:bottom;">支持 Markdown 语法。</span>
             </div>
             <br />
-            <textarea class="form-control" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
+            <textarea class="form-control autosize" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required>{{ str_replace("<br />", "\r\n", $repository->content) }}</textarea>
           </div>
 
           <br />
@@ -148,7 +151,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">修订记录</div>
       <div class="panel-body">
-        <textarea class="form-control autosize" rows="2" id="repo-revision" name="log" placeholder="填写此次修订的记录"></textarea>
+        <textarea class="form-control autosize" rows="2" id="repo-revision" name="log" placeholder="填写此次修订的记录" required></textarea>
       </div>
     </div>
 
@@ -204,7 +207,6 @@ window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
 </script>
 
 <script>
-$(document).ready(function(){
   $("option[value='{{ $repoCategory->id }}']").attr("selected", "selected");
   $("input[value='{{ $repository->copyright }}']").attr("checked", "checked");
   if ({{ $repository->is_private }}) {
@@ -213,9 +215,6 @@ $(document).ready(function(){
   else {
     $("input[value='false']").attr("checked", "checked");
   }
-  $('#repo_description').html('{{ $repository->description }}');
-  $('#repo_content').html('{{ $repository->content }}');
-});
 </script>
 
 {{-- jQuery File Upload --}}

@@ -7,7 +7,7 @@
 }
 
 .v .vinput {
-  font-size: 14px !important;
+  font-size: 16px !important;
 }
 
 div.power {
@@ -17,7 +17,7 @@ div.power {
 .v .vbtn {
   color: #323232;
   font-size: 14px !important;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 3px;
 }
 
@@ -26,26 +26,37 @@ div.power {
   border-color: #1976D2 !important;
 }
 
-.v .vlist .vcard section .vfooter .vat {
-  color: #1976D2 !important;
-  font-weight: 500 !importants;
-}
-
-.v .vinfo .col {
-  font-size: 18px;
-}
-
-.v .vinfo .vcount .vnum {
-  font-size: 18px;
-}
-
-a.vname {
+.v .vlist .vcard .vhead .vname {
   font-size: 14px !important;
   font-weight: 500 !important;
 }
 
-a:hover.vname {
+.v .vlist .vcard .vhead .vname:hover {
   color: #1976D2 !important;
+}
+
+.v .vlist .vcard .vcontent a {
+  font-size: 16px !important;
+  color: #1976D2 !important;
+}
+
+.v .vlist .vcard section .vfooter {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.v .vlist .vcard section .vfooter .vat {
+  color: #1976D2 !important;
+  font-weight: 400 !important;
+}
+
+.v .vinfo .col {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.v .vinfo .vcount .vnum {
+  font-size: 18px !important;
 }
 
 span.vsys {

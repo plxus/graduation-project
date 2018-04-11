@@ -28,7 +28,7 @@ textarea {
 }
 
 svg.icon-gray {
-  color: #BDBDBD;
+  color: #9E9E9E;
 }
 
 svg.icon-gray-active {
@@ -36,7 +36,7 @@ svg.icon-gray-active {
 }
 
 svg.icon-red {
-  color: #EF5350;
+  color: #E57373;
 }
 
 svg.icon-blue {
@@ -44,7 +44,7 @@ svg.icon-blue {
 }
 
 svg.icon-green {
-  color: #66BB6A;
+  color: #81C784;
 }
 
 /* Typography */
@@ -74,7 +74,7 @@ h2 {
 h3 {
   font-size: 1.5em;
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -186,7 +186,7 @@ button {
 }
 
 .btn-waring {
-  background-color: #FFC107;
+  background-color: #FFF176;
 }
 
 .btn-danger {
@@ -223,10 +223,11 @@ button {
 }
 
 .panel-heading {
-  padding: 10px 20px;
+  padding: 10px 15px;
 }
 
 .panel-body {
+  font-size: 16px;
   padding: 20px 15px;
 }
 
@@ -290,10 +291,6 @@ ul.nav-tabs li {
   /* position: fixed;
   top: 84px; */
   padding-right: 40px;
-}
-
-.home-left .panel-body {
-  padding: 20px 15px;
 }
 
 .category-wall .form-category-select{
@@ -420,6 +417,14 @@ button.delete-user {
   margin-top: 8px;
 }
 
+a.repo-title {
+  color: #323232;
+}
+
+a:hover.repo-title {
+  color: #1976D2;
+}
+
 h2.repo-title {
   padding-right: 200px;
   margin-top: 10px;
@@ -440,8 +445,9 @@ p.repo-author {
   background-color: #EEEEEE;
   -webkit-box-shadow: none;
   box-shadow: none;
-  color: #1976D2 !important;
-  margin: 0 10px 0 0;
+  color: #008FF7 !important;
+  font-weight: 500;
+  margin: 0 5px 0 0;
 }
 
 .repo-created-at {
@@ -451,4 +457,8 @@ p.repo-author {
 .repo-copyright {
   color: #757575;
   font-weight: 500;
+}
+
+.revision-time {
+  color: #757575 !important;
 }
