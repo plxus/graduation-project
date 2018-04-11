@@ -120,3 +120,31 @@
     </div>
   </div>
 @stop
+
+@section('script')
+  {{-- 关注用户列表中点击取消关注按钮的 ajax --}}
+  <script>
+  $(document).ready(function(){
+    $('.btn_unfollow').bind("click", function(){
+      $.ajax({
+        type: 'post',
+        url: '{{ route('follows.ajax_destroy') }}',
+        data: {
+          
+        },
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        dataType: 'json',
+        success: function(response){
+          var hide_item = '#following_item_'+response.id;
+          $(hide_item).hide();
+        },
+        error: function(){
+          // alert('Ajax error!')
+        }
+      });
+    });
+  });
+  </script>
+@stop

@@ -32,11 +32,13 @@
               <div class="category-wall">
                 {{-- 获取类别表中的每一行记录 --}}
                 @foreach ($category_items as $category_item)
-                  <form action="{{ route('home') }}" method="get" class="form-inline form-category-select">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="category" value="{{ $category_item->id }}">
-                    <button class="btn btn-default btn-sm btn-category" type="submit">{{ $category_item->category_level_1 }}</button>
-                  </form>
+                  <span>
+                    <form action="{{ route('home') }}" method="get" class="form-inline form-category-select">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="category" value="{{ $category_item->id }}">
+                      <button class="btn btn-default btn-sm btn-category" type="submit">{{ $category_item->category_level_1 }}</button>
+                    </form>
+                  </span>
                 @endforeach
               </div>
             </div>
@@ -93,10 +95,11 @@
 @stop
 
 @section('script')
+  {{-- holmes 插件 --}}
   <script src="/js/holmes.js"></script>
   <script>
   holmes({
-    find: '.category-wall button'
+    find: '.category-wall span'
   });
 
   $(document).ready(function(){

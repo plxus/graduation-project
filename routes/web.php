@@ -1,4 +1,5 @@
 <?php
+use Encore\Admin\Middleware\Pjax;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::get('/users/{user}/followers','UsersController@followers')->name('users.f
 // 用户关注/取消关注操作路由
 Route::post('/users/follows/{user}','FollowsController@store')->name('follows.store');
 Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follows.destroy');
+
+// 用户取消关注 Ajax 路由
+Route::post('/users/unfollow','FollowsController@ajax_destroy')->name('follows.ajax_destroy');
 
 // 用户收藏/取消收藏知识清单操作路由
 Route::post('/users/stars/{repository}', 'StarsController@store')->name('stars.store');

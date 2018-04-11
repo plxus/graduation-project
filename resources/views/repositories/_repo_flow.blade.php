@@ -28,6 +28,6 @@
       </p>
     </div>
     {{-- 类别 --}}
-    <span class="pull-right small"><i class="fas fa-th-list icon-gray"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
+    <span class="pull-right small-p"><i class="fas fa-th-list icon-gray"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
   </div>
 </div>
