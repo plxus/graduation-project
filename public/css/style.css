@@ -152,6 +152,11 @@ article {
   border: 1px solid #fff;
 }
 
+input.navbar-search {
+  width: 256px !important;
+  font-weight: 500 !important;
+}
+
 /* Footer */
 
 footer {

@@ -96,16 +96,15 @@ class HomeController extends Controller
       }
     }
 
+    $this->validate($request, [
+      'keywords' => 'required|string|max:191',
+    ]);
+
     // 获取搜索结果
-    if ($request->input('keywords') !== null) {
-      $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
-      ->orderBy("$sort_rule", 'desc')
-      ->paginate(20);
-      $search_keywords = $request->keywords;  // 搜索关键词
-      return view('search', compact('feed_items', 'search_keywords'));
-    }
-    else {
-      return redirect()->route('home');
-    }
+    $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+    ->orderBy("$sort_rule", 'desc')
+    ->paginate(20);
+    $search_keywords = $request->keywords;  // 搜索关键词
+    return view('search', compact('feed_items', 'search_keywords'));
   }
 }

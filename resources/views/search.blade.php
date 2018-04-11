@@ -39,7 +39,11 @@
                 @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
                 {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
               @endforeach
-              {!! $feed_items->render() !!}
+              {{ $feed_items->appends([
+                '_token' => csrf_token(),
+                'keywords' => $search_keywords,
+                ])->links() }}
+              {{-- 渲染分页视图时添加 URI --}}
             @else
               <h4 class="msg-no-item">无结果</h4>
             @endif
@@ -54,7 +58,7 @@
   {{-- 显示搜索关键词 --}}
   <script>
   @if ($search_keywords !== null)
-    $('input.navbar-search').attr('value', '{{ $search_keywords }}');
+  $('input.navbar-search').attr('value', '{{ $search_keywords }}');
   @endif
   </script>
 

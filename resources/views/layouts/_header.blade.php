@@ -17,9 +17,9 @@
       <form action="{{ route('search') }}" class="navbar-form navbar-left" method="get">
         {{ csrf_field() }}
         <div class="form-group">
-          <input type="text" class="form-control navbar-search" name="keywords" placeholder="搜索你感兴趣的内容">
+          <input type="text" class="form-control navbar-search" name="keywords" placeholder="搜索你感兴趣的内容" required>
         </div>
-        <button type="submit" class="btn btn-default">搜索</button>
+        <button type="submit" class="btn btn-default hidden">搜索</button>
       </form>
       <ul class="nav navbar-nav">
         <li><a href="{{ route('about') }}">关于</a></li>
