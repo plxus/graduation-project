@@ -46,22 +46,6 @@ class HomeController extends Controller
       }
     }
 
-    // 获取类别筛选的结果
-    if($request->input('category') !== null){
-      if($request->input('category') === 'all'){
-        // 筛选全部类别中的知识清单
-        $feed_items = Repository::where('is_private', 'false')->orderBy("$sort_rule", 'desc')->paginate(20);
-        // return view('home', compact('category_items', 'feed_items'));
-        return response()->json(['feed_items' => $feed_items]);  // JSON 响应
-      }
-      elseif (is_integer($request->input('category'))){
-        // 筛选特定类别中的知识清单
-        $feed_items = Repository::where('is_private', 'false')->where('category_id','=',"$request->input('category')")->orderBy("$sort_rule", 'desc')->paginate(20);
-        // return view('home', compact('category_items', 'feed_items'));
-        return response()->json(['feed_items' => $feed_items]);  // JSON 响应
-      }
-    }
-
     // 获取首页信息流中的条目（默认为当前用户和其关注的用户发布的知识清单）
     $feed_items = [];
     if (Auth::check()) {
@@ -88,28 +72,73 @@ class HomeController extends Controller
 
     if ($request->keywords !== null) {
       $this->validate($request, [
-        'keywords' => 'required|string|max:191',
+        'keywords' => 'string|max:191',
       ]);
     }
 
     if ($request->category !== null) {
       $this->validate($request, [
-        'category' => 'required|integer',
+        'category' => 'required',
       ]);
     }
 
     // 获取关键词的搜索结果
-    $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
-    ->orderBy("$sort_rule", 'desc')
-    ->paginate(20);
-    $search_keywords = $request->keywords;  // 搜索关键词
+    if ($request->keywords !== null && $request->category == null) {
+      $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+      ->orderBy("$sort_rule", 'desc')
+      ->paginate(20);
+      $search_keywords = $request->keywords;  // 搜索关键词
+    }
 
     // 获取指定类别的搜索结果
-    $feed_items = Repository::where('category_id', $request->category)
-    ->orderBy("$sort_rule", 'desc')
-    ->paginate(20);
-    $search_category = Category::find($request->category)->category_level_1;  // 搜索类别名
+    if ($request->category !== null && $request->keywords == null) {
+      // 全部类别
+      if ($request->category === 'all') {
+        $feed_items = Repository::where('is_private', false)
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_category_id = $request->category;  // 搜索类别 ID（all）
+        $search_category = '全部类别';
+      }
+      // 指定类别
+      else {
+        $feed_items = Repository::where('is_private', false)
+        ->where('category_id', $request->category)
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_category_id = $request->category;  // 搜索类别 ID
+        $search_category = Category::find($request->category)->category_level_1;  // 搜索类别名
+      }
+    }
 
-    return view('search', compact('feed_items', 'search_keywords', 'search_category'));
+    // 获取关键词+指定类别的搜索结果
+    if ($request->keywords !== null && $request->category !== null) {
+      // 全部类别
+      if ($request->category === 'all') {
+        $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_keywords = $request->keywords;  // 搜索关键词
+        $search_category_id = $request->category;  // 搜索类别 ID（all）
+        $search_category = '全部类别';
+      }
+      // 指定类别
+      else {
+        $feed_items = Repository::where('category_id', $request->category)
+        ->whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_keywords = $request->keywords;  // 搜索关键词
+        $search_category_id = $request->category;  // 搜索类别 ID
+        $search_category = Category::find($request->category)->category_level_1;  // 搜索类别名
+      }
+    }
+
+    // 无搜索关键词和指定类别
+    if ($request->keywords == null && $request->category == null) {
+      $feed_items = [];
+    }
+
+    return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category'));
   }
 }

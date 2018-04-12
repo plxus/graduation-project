@@ -31,7 +31,9 @@ class UsersController extends Controller
   // 用户收藏的知识清单列表视图
   public function stars(User $user)
   {
-    $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
+    $repositories_star = $user->stars()
+    ->orderBy('created_at', 'desc')
+    ->paginate(20);  // 目标用户收藏的所有知识清单
     return view('users.stars', compact('user', 'repositories_star'));
   }
 

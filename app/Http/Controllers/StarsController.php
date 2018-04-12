@@ -14,6 +14,7 @@ class StarsController extends Controller
   }
 
   // 处理用户收藏知识清单的表单提交的数据。
+  // 私有的知识清单也可以被收藏，但是无法查看内容详情。
   public function store(Repository $repository)
   {
     if (!Auth::user()->isStar($repository->id)) {

@@ -22,7 +22,11 @@
             </div>
 
             <div class="panel-body">
-              <button type="button" class="btn btn-default btn-lg btn-block" id="btn_all_categories">全部类别&nbsp;<span class="badge">{{ count($category_items) }}</span></button>
+              <form action="{{ route('search') }}" method="get">
+                {{ csrf_field() }}
+                <input type="hidden" name="category" value="all" />
+                <button type="submit" class="btn btn-default btn-lg btn-block">全部类别&nbsp;<span class="badge">{{ count($category_items) }}</span></button>
+              </form>
               <br />
 
               <div class="form-inline">
@@ -107,44 +111,6 @@
   });
 
   $(document).ready(function(){
-    /* 点击全部类别按钮 */
-    $('#btn_all_categories').bind("click", function(){
-      $.ajax({
-        type: 'GET',
-        url: '/',
-        data: {category: 'all'},
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        dataType: 'json',
-        success: function(response){
-
-        },
-        error: function(){
-          // alert('Ajax error!')
-        }
-      });
-    });
-
-    /* 点击特定类别 */
-    // $('.btn_specific_category').bind("click", function(){
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: '/',
-    //     data: .serialize(),
-    //     headers: {
-    //       'X-CSRF-TOKEN': '',
-    //     },
-    //     dataType: 'json',
-    //     success: function(response){
-    //
-    //     },
-    //     error: function(){
-    //       // alert('Ajax error!')
-    //     }
-    //   });
-    // });
-
     $('#sort_by_time').bind("click", function(){
       $.ajax({
         type: 'GET',

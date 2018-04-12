@@ -21,14 +21,20 @@ class RepositoryPolicy
     //
   }
 
-  // 用户删除知识清单时的授权策略。
-  public function destroy(User $user, Repository $repository)
+  // 用户访问知识清单时的授权策略
+  public function show(User $user, Repository $repository)
   {
-    return $user->id === $repository->user_id || $user->is_admin;
+    return $repository->is_private == false || $user->id === $repository->user_id;
   }
 
   // 用户修改知识清单时的授权策略。
   public function update(User $user, Repository $repository)
+  {
+    return $user->id === $repository->user_id || $user->is_admin;
+  }
+
+  // 用户删除知识清单时的授权策略。
+  public function destroy(User $user, Repository $repository)
   {
     return $user->id === $repository->user_id || $user->is_admin;
   }

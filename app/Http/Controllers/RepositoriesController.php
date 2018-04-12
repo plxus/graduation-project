@@ -93,6 +93,8 @@ class RepositoriesController extends Controller
   */
   public function show(Repository $repository)
   {
+    $this->authorize('show', $repository);
+
     $repoAuthor = $repository->user;  // 该知识清单的作者实例
     $repoTags = $repository->tags;  // 该知识清单的标签
     $repoCategory = $repository->category;  // 该知识清单的类别实例
@@ -146,7 +148,7 @@ class RepositoriesController extends Controller
       'category_id' => $request->category_id,
       'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
       'copyright' => $request->copyright,
-      'is_private' => $request->is_private,
+      'is_private' => $request->is_private === 'true' ? true : false,
     ];
 
     // 更新知识清单
@@ -167,7 +169,7 @@ class RepositoriesController extends Controller
       'log' => $request->log,
     ]);
 
-    session()->flash('success', '该知识清单已修订');
+    session()->flash('success', '已修订该知识清单');
 
     return redirect()->route('repositories.show', $repository->id);
   }

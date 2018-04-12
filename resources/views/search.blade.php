@@ -13,13 +13,17 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <a class="btn btn-default" href="{{ route('home') }}" role="button"><i class="fas fa-arrow-left"></i> 返回首页</a>
+        <a class="btn btn-default" href="javascript:history.go(-1);" role="button"><i class="fas fa-arrow-left"></i> 返回</a>
 
         <div class="row">
           <div class="col-md-12 home-btn-row">
             <h2>搜索结果</h2>
-            @if ($search_category !== null)
-              <h3 class="search-result">在“{{ $search_category }}”类别</h3><br />
+            @if (isset($search_category))
+              @if ($search_category_id === 'all')
+                <h3 class="search-result">{{ $search_category }}</h3><br />
+              @else
+                <h3 class="search-result">在“{{ $search_category }}”类别</h3><br />
+              @endif
             @endif
             {{-- 排序按钮 --}}
             <div class="btn-group pull-right">
@@ -45,7 +49,8 @@
               @endforeach
               {{ $feed_items->appends([
                 '_token' => csrf_token(),
-                'keywords' => $search_keywords,
+                'keywords' => isset($search_keywords) ? $search_keywords : '',
+                'category' => isset($search_category_id) ? $search_category_id : '',
                 ])->links() }}
                 {{-- 渲染分页视图时添加 URI --}}
               @else
@@ -61,7 +66,7 @@
   @section('script')
     {{-- 显示搜索关键词 --}}
     <script>
-    @if ($search_keywords !== null)
+    @if (isset($search_keywords))
     $('input.navbar-search').attr('value', '{{ $search_keywords }}');
     @endif
     </script>
