@@ -44,6 +44,9 @@
             {{-- 作者 --}}
             <p class="repo-author">
               <a href="{{ route('users.show', $repoAuthor->id) }}" target="_blank">{{ $repoAuthor->name }}</a>
+              @if ($repository->is_private)
+                <span class="small-p is-private"><i class="fas fa-lock icon-gray-active"></i>&nbsp;私有</span>
+              @endif
             </p>
             {{-- 简介 --}}
             <p class="repo-description">

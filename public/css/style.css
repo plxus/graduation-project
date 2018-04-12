@@ -450,6 +450,11 @@ p.repo-author {
   font-weight: 500;
 }
 
+span.is-private {
+  color: #757575;
+  margin-left: 15px;
+}
+
 .repo-category {
   color: #616161;
   font-size: 14px;

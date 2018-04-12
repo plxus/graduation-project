@@ -20,6 +20,9 @@
     {{-- 知识清单标题 --}}
     <div class="flow-repo-title">
       <a href="{{ route('repositories.show', $feed_item->id) }}" target="_blank">{{ $feed_item->title }}</a>
+      @if ($feed_item->is_private)
+        <span class="small-p">&emsp;<i class="fas fa-lock icon-gray-active"></i></span>
+      @endif
     </div>
     {{-- 知识清单简介 --}}
     <div class="flow-repo-description">
