@@ -38,7 +38,7 @@
               <li class="dropdown-header">登录为 {{ Auth::user()->name }}</li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ route('users.show', Auth::user()->id) }}">个人主页</a></li>
-              <li><a href="#">我的收藏</a></li>
+              <li><a href="{{ route('users.stars', Auth::user()->id) }}">我的收藏</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="{{ route('users.edit', Auth::user()->id) }}">设置</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault();

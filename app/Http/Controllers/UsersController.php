@@ -21,18 +21,32 @@ class UsersController extends Controller
   public function show(User $user)
   {
     $repositories = $user->repositories()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户创建的所有知识清单
-    $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
-    $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
-    $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
-    return view('users.show', compact('user', 'repositories', 'repositories_star', 'followings', 'followers'));
+    // $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
+    // $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
+    // $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
+    return view('users.show', compact('user', 'repositories'));
     // 对象通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
   }
 
-  // 返回关注的用户视图。
+  // 用户收藏的知识清单列表视图
+  public function stars(User $user)
+  {
+    $repositories_star = $user->stars()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户收藏的所有知识清单
+    return view('users.stars', compact('user', 'repositories_star'));
+  }
+
+  // 关注的其他用户列表视图
   public function followings(User $user)
   {
-    $followings = $user->followings()->paginate(20);  // 当前用户关注的其他用户
-    return view('users.followings', compact('followings'));
+    $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
+    return view('users.followings', compact('user', 'followings'));
+  }
+
+  // 关注者列表视图
+  public function followers(User $user)
+  {
+    $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
+    return view('users.followers', compact('user', 'followers'));
   }
 
   // 用户修改个人信息（设置）视图

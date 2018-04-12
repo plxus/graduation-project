@@ -15,10 +15,10 @@
       <div class="row">
 
         <div class="col-md-4 home-left">
-          <div class="panel panel-default">
+          <div class="panel panel-default home-panel">
             <!-- Default panel contents -->
             <div class="panel-heading">
-              <h5><i class="fas fa-th-list icon-gray-active"></i> 知识清单类别</h5>
+              <h4><i class="fas fa-th-list icon-gray"></i> 知识清单类别</h4>
             </div>
 
             <div class="panel-body">
@@ -28,7 +28,7 @@
               <div class="form-inline">
                 <div class="form-group">
                   <label for="search-category">&nbsp;<i class="fas fa-search icon-gray"></i>&nbsp;</label>
-                  <input type="search" class="form-control" id="search-category" name="search-category" placeholder="选择特定类别" style="width: 274px;">
+                  <input type="search" class="form-control" id="search-category" name="search-category" placeholder="搜索指定类别" style="width: 274px;">
                 </div>
               </div>
               <br />
@@ -37,7 +37,7 @@
                 {{-- 获取类别表中的每一行记录 --}}
                 @foreach ($category_items as $category_item)
                   <span>
-                    <form action="{{ route('home') }}" method="get" class="form-inline form-category-select">
+                    <form action="{{ route('search') }}" method="get" class="form-inline form-category-select">
                       {{ csrf_field() }}
                       <input type="hidden" name="category" value="{{ $category_item->id }}">
                       <button class="btn btn-default btn-sm btn-category" type="submit">{{ $category_item->category_level_1 }}</button>
@@ -58,7 +58,7 @@
                   <i class="fas fa-sort-amount-down"></i> 排序 <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a id="sort_by_time" role="button">按发布时间</a></li>
+                  <li><a id="sort_by_time" role="button">按创建时间</a></li>
                   <li><a id="sort_by_star" role="button">按收藏数</a></li>
                 </ul>
               </div>
@@ -74,7 +74,7 @@
                 @endforeach
                 {!! $feed_items->render() !!}
               @else
-                <h4 class="msg-no-item">无知识清单条目</h4>
+                <h4 class="msg-no-item text-center">暂无知识清单<br />你可以创建一份知识清单，或者关注其他用户</h4>
               @endif
             </div>
           </div>

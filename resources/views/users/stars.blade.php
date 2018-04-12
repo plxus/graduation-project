@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', $user->name.' 个人主页')
+@section('title', $user->name)
 
 @section('content')
   <div class="container">
@@ -54,9 +54,9 @@
 
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation"><a href="{{ route('users.show', $user->id) }}" aria-controls="posts" role="tab">&emsp;发布的知识清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>
           {{-- 激活 --}}
-          <li role="presentation" class="active"><a href="{{ route('users.show', $user->id) }}" aria-controls="posts" role="tab">&emsp;发布的知识清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>
-          <li role="presentation"><a href="{{ route('users.stars', $user->id) }}" aria-controls="stars" role="tab">&emsp;收藏的知识清单 <span class="badge">{{ $user->stars->count() }}</span>&emsp;</a></li>
+          <li role="presentation" class="active"><a href="{{ route('users.stars', $user->id) }}" aria-controls="stars" role="tab">&emsp;收藏的知识清单 <span class="badge">{{ $user->stars->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="{{ route('users.followings', $user->id) }}" aria-controls="following" role="tab">&emsp;关注的用户 <span class="badge">{{ $user->followings->count() }}</span>&emsp;</a></li>
           <li role="presentation"><a href="{{ route('users.followers', $user->id) }}" aria-controls="followers" role="tab">&emsp;关注者 <span class="badge">{{ $user->followers->count() }}</span>&emsp;</a></li>
         </ul>
@@ -64,21 +64,21 @@
         {{-- Tab panes --}}
         <div class="tab-content">
           {{-- 用户发布的知识清单 --}}
-          <div role="tabpanel" class="tab-pane fade in active" id="posts">
+
+          {{-- 用户收藏的知识清单 --}}
+          <div role="tabpanel" class="tab-pane fade in active" id="stars">
             <div class="repo-flow-order">
               排序：最新
             </div>
-            @if (count($repositories))
-              @foreach ($repositories as $feed_item)
-                @include('repositories._repo_flow_self', ['repoCategory' => $feed_item->category])
+            @if (count($repositories_star))
+              @foreach ($repositories_star as $feed_item)
+                @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
               @endforeach
-              {!! $repositories->render() !!}
+              {!! $repositories_star->render() !!}
             @else
               <h4 class="msg-no-item text-center">无知识清单</h4>
             @endif
           </div>
-
-          {{-- 用户收藏的知识清单 --}}
 
           {{-- 用户关注的其他用户 --}}
 

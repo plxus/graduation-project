@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Category;
 use App\User;
 use App\Repository;
 
@@ -24,7 +25,7 @@ class HomeController extends Controller
   }
 
   /**
-  * Show the application dashboard.
+  * 首页视图
   *
   * @return \Illuminate\Http\Response
   */
@@ -44,18 +45,6 @@ class HomeController extends Controller
         $sort_rule = 'created_at';
       }
     }
-
-    // 获取搜索结果
-    // if ($request->input('keywords') !== null) {
-    //   $feed_items = Repository::where('is_private', 'false')->
-    //   where(function($query){
-    //     $query->where('title', 'like', '%'.$request->input('keywords').'%')
-    //     ->orWhere('description', 'like', '%'.$request->input('keywords').'%');
-    //   })
-    //   ->orderBy("$sort_rule", 'desc')
-    //   ->paginate(20);
-    //   return view('home', compact('category_items', 'feed_items'));
-    // }
 
     // 获取类别筛选的结果
     if($request->input('category') !== null){
@@ -82,6 +71,7 @@ class HomeController extends Controller
     return view('home', compact('category_items', 'feed_items'));
   }
 
+  // 搜索视图
   public function search(Request $request)
   {
     // 根据排序选项设置相应的查询
@@ -96,15 +86,30 @@ class HomeController extends Controller
       }
     }
 
-    $this->validate($request, [
-      'keywords' => 'required|string|max:191',
-    ]);
+    if ($request->keywords !== null) {
+      $this->validate($request, [
+        'keywords' => 'required|string|max:191',
+      ]);
+    }
 
-    // 获取搜索结果
+    if ($request->category !== null) {
+      $this->validate($request, [
+        'category' => 'required|integer',
+      ]);
+    }
+
+    // 获取关键词的搜索结果
     $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
     ->orderBy("$sort_rule", 'desc')
     ->paginate(20);
     $search_keywords = $request->keywords;  // 搜索关键词
-    return view('search', compact('feed_items', 'search_keywords'));
+
+    // 获取指定类别的搜索结果
+    $feed_items = Repository::where('category_id', $request->category)
+    ->orderBy("$sort_rule", 'desc')
+    ->paginate(20);
+    $search_category = Category::find($request->category)->category_level_1;  // 搜索类别名
+
+    return view('search', compact('feed_items', 'search_keywords', 'search_category'));
   }
 }

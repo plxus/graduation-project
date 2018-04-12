@@ -37,6 +37,9 @@ Route::resource('/users', 'UsersController');
 // 知识清单 CRUD 路由
 Route::resource('/repositories', 'RepositoriesController');
 
+// 用户收藏知识清单视图路由
+Route::get('/users/{user}/stars','UsersController@stars')->name('users.stars');
+
 // 用户关注视图路由
 Route::get('/users/{user}/followings','UsersController@followings')->name('users.followings');
 Route::get('/users/{user}/followers','UsersController@followers')->name('users.followers');
