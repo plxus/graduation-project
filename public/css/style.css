@@ -68,12 +68,12 @@ h1 {
 h2 {
   font-size: 1.8em;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 h3 {
   font-size: 1.5em;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -84,7 +84,20 @@ h4 {
 }
 
 h4.msg-no-item {
+  font-size: 1.4em;
   color: #BDBDBD;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px;
 }
 
 p {
@@ -100,6 +113,20 @@ article {
 
 .small-p {
   font-size: 14px;
+}
+
+.light-h {
+  font-weight: 400;
+}
+
+.border-h {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 /* Header */
@@ -296,6 +323,10 @@ ul.nav-tabs li {
   /* position: fixed;
   top: 84px; */
   padding-right: 40px;
+}
+
+h3.repo-category-head {
+  margin: 15px 0;
 }
 
 .home-panel .panel-heading {

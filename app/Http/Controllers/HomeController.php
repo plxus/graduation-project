@@ -46,10 +46,18 @@ class HomeController extends Controller
       }
     }
 
-    // 获取首页信息流中的条目（默认为当前用户和其关注的用户发布的知识清单）
+    // 获取首页信息流中的条目（默认为当前用户发布的，以及其关注的用户公开发布的知识清单）
     $feed_items = [];
     if (Auth::check()) {
-      $feed_items = Auth::user()->feed($sort_rule)->paginate(20);
+      $following_ids = Auth::user()->followings->pluck('id')->toArray();  // 关注用户的 ID
+      $feed_items = Repository::where('user_id', Auth::user()->id)
+      ->orWhere([
+        ['is_private', false],
+        ['user_id', $following_ids],
+      ])
+      ->with('user')
+      ->orderBy("$sort_rule", 'desc')->paginate(20);
+      // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
     }
 
     return view('home', compact('category_items', 'feed_items'));

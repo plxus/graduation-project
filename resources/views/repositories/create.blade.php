@@ -69,14 +69,16 @@
 
           <div class="form-group">
             <label for="repo_content">正文内容</label>
-            <div>
-              <button class="btn btn-success btn-sm" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>&emsp;<span class="help-block small-p" style="display: inline !important;vertical-align:bottom;">支持 Markdown 语法。</span>
+            <div style="margin-top:15px;">
+              <button class="btn btn-success" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>
+              <span class="help-block small-p">支持 Markdown 语法。</span>
             </div>
-            <br />
-            <textarea class="form-control" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
+            <h4 class="border-h">
+              预览
+            </h4>
+            <article id="content_preview"></article>
+            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
           </div>
-
-          <br />
 
           {{-- <div class="form-group">
           <label for="fileupload">上传附件</label>
@@ -161,7 +163,8 @@
   {{-- StackEdit Markdown 编辑器 --}}
   <script src="/js/stackedit.min.js"></script>
   <script>
-  const el = document.querySelector('#repo_content');
+  const el = document.querySelector('#repo_content');  // textarea 元素
+  const pel = document.querySelector('#content_preview');  // 预览 article 元素
   const stackedit = new Stackedit();
   // Open the iframe
   $('#btn_repo_edit').click(function(){
@@ -175,6 +178,7 @@
   // Listen to StackEdit events and apply the changes to the textarea.
   stackedit.on('fileChange', (file) => {
     el.value = file.content.text;
+    pel.innerHTML = file.content.html;
   });
 </script>
 

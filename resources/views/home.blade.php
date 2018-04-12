@@ -18,7 +18,7 @@
           <div class="panel panel-default home-panel">
             <!-- Default panel contents -->
             <div class="panel-heading">
-              <h4><i class="fas fa-th-list icon-gray"></i> 知识清单类别</h4>
+              <h3 class="light-h repo-category-head"><i class="fas fa-th-list icon-gray"></i> 知识清单类别</h3>
             </div>
 
             <div class="panel-body">

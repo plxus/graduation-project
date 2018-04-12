@@ -44,17 +44,6 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasMany(Repository::class, 'user_id', 'id');
     }
 
-    // 获取 Feed 信息流数据
-    public function feed($sort_rule)
-    {
-        $feed_user_ids = Auth::user()->followings->pluck('id')->toArray();
-        array_push($feed_user_ids, Auth::user()->id);  // 将当前用户的 id 加入到数组中
-        return Repository::where('is_private', 'false')->whereIn('user_id', $feed_user_ids)
-        ->with('user')
-        ->orderBy("$sort_rule", 'desc');
-        // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
-    }
-
     // 指明一个用户可以拥有多个关注者。belongsToMany() 方法的第二个参数是关联关系的表名，第三个参数是定义在关联表中的模型外键名，第四个参数是关联表中要合并的关联键名。
     public function followers()
     {

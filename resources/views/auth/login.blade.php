@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                <div class="panel-heading"><h5>登录</h5></div>
+                <div class="panel-heading"><h4>登录</h4></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -58,7 +58,7 @@
                                     忘记密码？
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    登录
+                                    &emsp;登录&emsp;
                                 </button>
                               </div>
                             </div>

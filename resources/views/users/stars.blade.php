@@ -11,9 +11,9 @@
         <p class="text-center">
           <img src="{{ $user->gravatar('320') }}" alt="{{ $user->name.'_avatar' }}" class="img-thumbnail" width="160px"/>
         </p>
-        <h2 class="text-center">
+        <h3 class="text-center">
           {{ $user->name }}
-        </h2>
+        </h3>
         <p class="text-center">
           {{ $user->bio }}
         </p>

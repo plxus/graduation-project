@@ -20,9 +20,9 @@
             <h2>搜索结果</h2>
             @if (isset($search_category))
               @if ($search_category_id === 'all')
-                <h3 class="search-result">{{ $search_category }}</h3><br />
+                <h3 class="search-result light-h">{{ $search_category }}</h3><br />
               @else
-                <h3 class="search-result">在“{{ $search_category }}”类别</h3><br />
+                <h3 class="search-result light-h">在“{{ $search_category }}”类别</h3><br />
               @endif
             @endif
             {{-- 排序按钮 --}}
