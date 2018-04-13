@@ -68,19 +68,21 @@ h1 {
 h2 {
   font-size: 1.8em;
   font-weight: 500;
+  margin-top: 40px;
   margin-bottom: 25px;
 }
 
 h3 {
   font-size: 1.5em;
   font-weight: 500;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
 h4 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 500;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 h4.msg-no-item {
@@ -122,6 +124,10 @@ article {
 .border-h {
   padding-bottom: 10px;
   border-bottom: 1px solid #E0E0E0;
+}
+
+.top-h {
+  margin-top: 0;
 }
 
 label {

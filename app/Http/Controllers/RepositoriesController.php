@@ -65,11 +65,11 @@ class RepositoriesController extends Controller
 
     $repository = Auth::user()->repositories()->create([
       'title' => $request->title,
-      'description' => $request->description,
+      'description' => str_replace(["\r\n", "\n"], " ", $request->description),  // 将 \n、\r\n 换行符替换为空格
       'category_id' => $request->category_id,
-      'content' => nl2br($request->content),  // 将 \n 换行符替换为 <br />
+      'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
       'copyright' => $request->copyright,
-      'is_private' => $request->is_private,
+      'is_private' => $request->is_private === 'true' ? true : false,
     ]);
 
     foreach ($request->input('taggles') as $tag) {
@@ -144,7 +144,7 @@ class RepositoriesController extends Controller
 
     $data = [
       'title' => $request->title,
-      'description' => $request->description,
+      'description' => str_replace(["\r\n", "\n"], " ", $request->description),  // 将 \n、\r\n 换行符替换为空格
       'category_id' => $request->category_id,
       'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
       'copyright' => $request->copyright,

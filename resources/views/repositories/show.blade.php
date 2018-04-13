@@ -91,7 +91,6 @@
             {{-- Nav tabs --}}
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#contents" aria-controls="contents" role="tab" data-toggle="tab">&emsp;<i class="far fa-list-alt"></i> 详情&emsp;</a></li>
-              {{-- <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">&emsp;<i class="fas fa-paperclip"></i> 附件&emsp;</a></li> --}}
               <li role="presentation"><a href="#revisions" aria-controls="revisions" role="tab" data-toggle="tab">&emsp;<i class="far fa-edit"></i> 修订&emsp;</a></li>
               <li role="presentation"><a href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab">&emsp;<i class="far fa-comment-alt"></i> 讨论&emsp;</a></li>
               @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
