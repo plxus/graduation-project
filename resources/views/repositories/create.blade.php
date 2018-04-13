@@ -21,7 +21,7 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h1>创建知识清单</h1>
+        <h1>新建知识清单</h1>
       </div>
     </div>
 

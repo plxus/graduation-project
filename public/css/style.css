@@ -55,7 +55,7 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.3em;
+  line-height: 1.6em;
   margin-bottom: 15px;
 }
 
@@ -83,6 +83,12 @@ h4 {
   font-size: 1.2em;
   font-weight: 500;
   margin-top: 25px;
+}
+
+h4.panel-h {
+  font-size: 1.4em;
+  font-weight: 400;
+  margin: 15px 0;
 }
 
 h4.msg-no-item {
@@ -159,7 +165,7 @@ label {
 
 .dropdown-header {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #9E9E9E;
 }
 
@@ -318,11 +324,11 @@ ul.nav-tabs li {
 
 .jumbotron {
   text-align: center;
-  padding: 100px 60px;
+  padding: 50px 50px;
 }
 
 .jumbotron h1 {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .home-left {

@@ -11,6 +11,7 @@
       </div>
     </div>
 
+    {{-- 已登录用户的首页视图 --}}
     @auth
       <div class="row">
 
@@ -84,16 +85,17 @@
           </div>
         </div>
       </div>
+
+      {{-- 未登录用户的首页视图 --}}
     @else
       <div class="row">
         <div class="col-md-12">
           <div class="jumbotron">
             <h1>知所</h1>
+            <h3>面向大学生的<br />知识清单管理系统</h3>
+            <br />
             <p>
-              知识清单管理系统
-            </p>
-            <p>
-              <a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">现在注册</a>
+              <a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">&emsp;现在注册&emsp;</a>
             </p>
           </div>
         </div>
@@ -106,15 +108,17 @@
   {{-- holmes 插件 --}}
   <script src="/js/holmes.js"></script>
   <script>
+  @auth
   holmes({
     find: '.category-wall span'
   });
+  @endauth
 
   $(document).ready(function(){
     $('#sort_by_time').bind("click", function(){
       $.ajax({
         type: 'GET',
-        url: '/',
+        url: '{{ route('home') }}',
         data: {sort: 'created_at'},
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -132,7 +136,7 @@
     $('#sort_by_star').bind("click", function(){
       $.ajax({
         type: 'GET',
-        url: '/',
+        url: '{{ route('home') }}',
         data: {sort: 'star_num'},
         headers: {
           'X-CSRF-TOKEN': '{{ csrf_token() }}',

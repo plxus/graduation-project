@@ -29,21 +29,33 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @auth
+          <li><a href="#" title="通知与私信"><i class="fas fa-bell"></i>&nbsp;</a></li>
+
+          {{-- 创建知识清单 --}}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-plus"></i>&nbsp;<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="新建"><i class="fas fa-plus"></i>&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{{ route('repositories.create') }}">创建知识清单</a></li>
+              <li><a href="{{ route('repositories.create') }}">新建知识清单</a></li>
             </ul>
           </li>
+
+          {{-- 用户头像下拉菜单 --}}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Auth::user()->gravatar('56') }}" alt="{{ Auth::user()->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle navbar-avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img src="{{ Auth::user()->gravatar('56') }}" alt="{{ Auth::user()->name.'_avatar' }}" class="img-rounded navbar-avatar" width="28px"/>&nbsp;<span class="caret"></span>
+            </a>
             <ul class="dropdown-menu">
-              <li class="dropdown-header">登录为 {{ Auth::user()->name }}</li>
+              @if (Auth::user()->is_admin)
+                <li class="dropdown-header">管理员 {{ Auth::user()->name }}</li>
+                <li><a href="{{ route('voyager.dashboard') }}">进入后台管理面板</a></li>
+              @else
+                <li class="dropdown-header">登录为 {{ Auth::user()->name }}</li>
+              @endif
               <li role="separator" class="divider"></li>
               <li><a href="{{ route('users.show', Auth::user()->id) }}">个人主页</a></li>
               <li><a href="{{ route('users.stars', Auth::user()->id) }}">我的收藏</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('users.edit', Auth::user()->id) }}">设置</a></li>
+              <li><a href="{{ route('users.edit', Auth::user()->id) }}">用户设置</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">注销</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
