@@ -36,15 +36,19 @@ svg.icon-gray-active {
 }
 
 svg.icon-red {
-  color: #E57373;
+  color: #EF5350;
 }
 
 svg.icon-blue {
-  color: #008FF7;
+  color: #29B6F6;
 }
 
 svg.icon-green {
-  color: #81C784;
+  color: #66BB6A;
+}
+
+svg.icon-yellow {
+  color: #FFCA28;
 }
 
 /* Typography */
@@ -80,9 +84,10 @@ h3 {
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 500;
   margin-top: 25px;
+  margin-bottom: 20px;
 }
 
 h4.panel-h {
@@ -258,7 +263,7 @@ button {
 
 .btn-default .badge {
   color: #fff;
-  background-color: #008FF7;
+  background-color: #008FF7 !important;
 }
 
 .panel {
@@ -378,13 +383,13 @@ h3.repo-category-head {
 .follow-form {
   margin: 60px auto 40px auto;
   padding-bottom: 40px;
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .follow-form-blank {
   margin: 30px auto 40px auto;
   padding-bottom: 20px;
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .repo-flow-order {

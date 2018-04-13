@@ -68,7 +68,8 @@
           {{-- 用户收藏的知识清单 --}}
           <div role="tabpanel" class="tab-pane fade in active" id="stars">
             <div class="repo-flow-order">
-              排序：最新
+              排序：最新收藏
+              <br />
             </div>
             @if (count($repositories_star))
               @foreach ($repositories_star as $feed_item)

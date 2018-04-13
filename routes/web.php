@@ -52,6 +52,10 @@ Route::delete('/users/follows/{user}','FollowsController@destroy')->name('follow
 Route::post('/users/stars/{repository}', 'StarsController@store')->name('stars.store');
 Route::delete('/users/stars/{repository}', 'StarsController@destroy')->name('stars.destroy');
 
+// 通知与私信视图路由
+Route::resource('/notifications', 'NotificationsController');
+// Route::get('/notifications','NotificationsController');
+
 // Voyager 管理后台路由
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

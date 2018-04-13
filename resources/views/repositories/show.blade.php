@@ -52,6 +52,7 @@
             <p class="repo-description">
               {{ $repository->description }}
             </p>
+            <br />
             {{-- 标签 --}}
             <p>
               @if ($repoTags->count())
@@ -71,17 +72,18 @@
             {{-- 著作权声明 --}}
             @if ($repository->copyright === 'allow')
               <p class="repo-copyright small-p">
-                <i class="far fa-check-circle icon-green"></i>&nbsp;允许转载（非商用）
+                <i class="fas fa-check-circle icon-green"></i>&nbsp;允许转载（非商用）
               </p>
             @elseif ($repository->copyright === 'limit')
               <p class="repo-copyright small-p">
-                <i class="far fa-question-circle icon-blue"></i>&nbsp;转载需获得授权
+                <i class="fas fa-exclamation-triangle icon-yellow"></i></i>&nbsp;转载需获得作者授权
               </p>
             @elseif ($repository->copyright === 'forbid')
               <p class="repo-copyright small-p">
                 <i class="fas fa-ban icon-red"></i>&nbsp;禁止任何形式的转载
               </p>
             @endif
+            <br />
             {{-- 知识清单基本信息 --}}
           </div>
         </div>
@@ -90,7 +92,7 @@
           <div class="col-md-12">
             {{-- Nav tabs --}}
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#contents" aria-controls="contents" role="tab" data-toggle="tab">&emsp;<i class="far fa-list-alt"></i> 详情&emsp;</a></li>
+              <li role="presentation" class="active"><a href="#contents" aria-controls="contents" role="tab" data-toggle="tab">&emsp;<i class="far fa-list-alt"></i> 内容&emsp;</a></li>
               <li role="presentation"><a href="#revisions" aria-controls="revisions" role="tab" data-toggle="tab">&emsp;<i class="far fa-edit"></i> 修订&emsp;</a></li>
               <li role="presentation"><a href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab">&emsp;<i class="far fa-comment-alt"></i> 讨论&emsp;</a></li>
               @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
@@ -102,7 +104,7 @@
 
             {{-- Tab panes --}}
             <div class="tab-content">
-              {{-- 正文内容 --}}
+              {{-- 内容 --}}
               <div role="tabpanel" class="tab-pane fade in active" id="contents">
                 <div class="repo-content">
                   <article id="content">
@@ -110,13 +112,11 @@
                 </div>
               </div>
 
-              {{-- 附件 --}}
-              {{-- <div role="tabpanel" class="tab-pane fade" id="attachments">展示附件，下载按钮</div> --}}
-
               {{-- 修订 --}}
               <div role="tabpanel" class="tab-pane fade" id="revisions">
-                <h3>修订记录</h3>
                 @if ($repoRevisions->count())
+                  <h4>{{ $repoRevisions->count() }} 条修订记录</h4>
+                  <br />
                   @foreach ($repoRevisions as $repoRevision)
                     <div class="row">
                       <div class="col-md-10 col-md-offset-1">
@@ -136,14 +136,12 @@
 
               {{-- 讨论 --}}
               <div role="tabpanel" class="tab-pane fade" id="discuss">
-                <h3>讨论</h3>
                 <div id="comment"></div>
               </div>
 
               {{-- 设置 --}}
               @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
                 <div role="tabpanel" class="tab-pane fade" id="settings">
-                  <h3>设置</h3>
                   <br />
                   {{-- 修订按钮 --}}
                   <p>

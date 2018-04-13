@@ -66,7 +66,7 @@
           {{-- 用户发布的知识清单 --}}
           <div role="tabpanel" class="tab-pane fade in active" id="posts">
             <div class="repo-flow-order">
-              排序：最新
+              排序：最新发布
             </div>
             @if (count($repositories))
               @foreach ($repositories as $feed_item)
