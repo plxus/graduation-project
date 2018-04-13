@@ -63,7 +63,8 @@ class HomeController extends Controller
     return view('home', compact('category_items', 'feed_items'));
   }
 
-  // 搜索视图
+  // 搜索结果视图
+  // 搜索结果的信息流中不包含任何私有的知识清单
   public function search(Request $request)
   {
     // 根据排序选项设置相应的查询
@@ -80,7 +81,7 @@ class HomeController extends Controller
 
     if ($request->keywords !== null) {
       $this->validate($request, [
-        'keywords' => 'string|max:191',
+        'keywords' => 'required|string|max:191',
       ]);
     }
 
@@ -93,6 +94,7 @@ class HomeController extends Controller
     // 获取关键词的搜索结果
     if ($request->keywords !== null && $request->category == null) {
       $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+      ->with('user')
       ->orderBy("$sort_rule", 'desc')
       ->paginate(20);
       $search_keywords = $request->keywords;  // 搜索关键词
@@ -103,15 +105,17 @@ class HomeController extends Controller
       // 全部类别
       if ($request->category === 'all') {
         $feed_items = Repository::where('is_private', false)
+        ->with('user')
         ->orderBy("$sort_rule", 'desc')
         ->paginate(20);
         $search_category_id = $request->category;  // 搜索类别 ID（all）
-        $search_category = '全部类别';
+        $search_category = '全部类别';  // 搜索类别名
       }
       // 指定类别
       else {
         $feed_items = Repository::where('is_private', false)
         ->where('category_id', $request->category)
+        ->with('user')
         ->orderBy("$sort_rule", 'desc')
         ->paginate(20);
         $search_category_id = $request->category;  // 搜索类别 ID
@@ -124,6 +128,7 @@ class HomeController extends Controller
       // 全部类别
       if ($request->category === 'all') {
         $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+        ->with('user')
         ->orderBy("$sort_rule", 'desc')
         ->paginate(20);
         $search_keywords = $request->keywords;  // 搜索关键词
@@ -134,6 +139,7 @@ class HomeController extends Controller
       else {
         $feed_items = Repository::where('category_id', $request->category)
         ->whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+        ->with('user')
         ->orderBy("$sort_rule", 'desc')
         ->paginate(20);
         $search_keywords = $request->keywords;  // 搜索关键词

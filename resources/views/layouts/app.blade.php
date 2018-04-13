@@ -31,9 +31,9 @@
           </button>
 
           <!-- Branding Image -->
-          <a class="navbar-brand" href="{{ url('/') }}">
+          <a class="navbar-brand" href="{{ route('home') }}">
             {{-- {{ config('app.name', 'Laravel') }} --}}
-            知所
+            知识清单管理系统
           </a>
         </div>
 

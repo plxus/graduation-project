@@ -1,8 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Auth;
-
-// 获取当前已认证的用户
-// $user = Auth::user();
 ?>
 
 <!DOCTYPE html>
