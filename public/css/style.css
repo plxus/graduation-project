@@ -331,6 +331,10 @@ ul.nav-tabs li {
   font-weight: 300;
 }
 
+.home-intro-row {
+  margin-top: 50px;
+}
+
 .home-left {
   /* position: fixed;
   top: 84px; */

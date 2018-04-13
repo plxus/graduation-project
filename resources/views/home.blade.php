@@ -90,6 +90,7 @@
     @else
       <div class="row">
         <div class="col-md-12">
+          {{-- 巨幕 --}}
           <div class="jumbotron">
             <h1>知所</h1>
             <h3>面向大学生的<br />知识清单管理系统</h3>
@@ -97,6 +98,34 @@
             <p>
               <a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">&emsp;现在注册&emsp;</a>
             </p>
+          </div>
+
+          {{-- 系统图文展示 --}}
+          <div class="row home-intro-row">
+            <div class="col-md-6 text-center">
+              <h2 class="light-h">分享与探索<br />各个学科领域的知识</h2>
+            </div>
+            <div class="col-md-6 text-center">
+
+            </div>
+          </div>
+
+          <div class="row home-intro-row">
+            <div class="col-md-6 text-center">
+
+            </div>
+            <div class="col-md-6 text-center">
+              <h2 class="light-h">个性化推荐<br />精准搜索</h2>
+            </div>
+          </div>
+
+          <div class="row home-intro-row">
+            <div class="col-md-6 text-center">
+              <h2 class="light-h">版本跟踪<br />权限控制</h2>
+            </div>
+            <div class="col-md-6 text-center">
+
+            </div>
           </div>
         </div>
       </div>
