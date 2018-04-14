@@ -25,7 +25,8 @@ class NotificationsController extends Controller
     $sent_msg = Notification::where([
       ['send_id', Auth::user()->id],
       ['receive_id', '<>', 0]
-      ])->latest()->get();
+      ])
+      ->latest()->get();
 
       return view('notification', compact('notifications', 'received_msg', 'sent_msg'));
     }
