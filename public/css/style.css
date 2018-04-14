@@ -72,7 +72,7 @@ h1 {
 h2 {
   font-size: 1.8em;
   font-weight: 500;
-  margin-top: 40px;
+  margin-top: 35px;
   margin-bottom: 25px;
 }
 
@@ -98,6 +98,7 @@ h4.panel-h {
 
 h4.msg-no-item {
   font-size: 1.4em;
+  font-weight: 400;
   color: #BDBDBD;
 }
 

@@ -37,10 +37,11 @@ Route::resource('/users', 'UsersController');
 // 知识清单 CRUD 路由
 Route::resource('/repositories', 'RepositoriesController');
 
-// 用户收藏知识清单视图路由
+
+// 用户收藏知识清单列表视图路由
 Route::get('/users/{user}/stars','UsersController@stars')->name('users.stars');
 
-// 用户关注视图路由
+// 用户关注列表视图路由
 Route::get('/users/{user}/followings','UsersController@followings')->name('users.followings');
 Route::get('/users/{user}/followers','UsersController@followers')->name('users.followers');
 
@@ -53,8 +54,11 @@ Route::post('/users/stars/{repository}', 'StarsController@store')->name('stars.s
 Route::delete('/users/stars/{repository}', 'StarsController@destroy')->name('stars.destroy');
 
 // 通知与私信视图路由
-Route::resource('/notifications', 'NotificationsController');
-// Route::get('/notifications','NotificationsController');
+Route::get('/notifications', 'NotificationsController@show')->name('notifications.show');
+
+// 发送、删除通知与私信操作路由
+Route::post('/notifications/{user}', 'NotificationsController@store')->name('notifications.store');
+Route::delete('/notifications/{user}', 'NotificationsController@destroy')->name('notifications.destroy');
 
 // Voyager 管理后台路由
 Route::group(['prefix' => 'admin'], function () {

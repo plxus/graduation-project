@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UsersTableSeeder::class);
         $this->call(RepositoriesTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
         $this->call(FollowsTableSeeder::class);
         $this->call(StarsTableSeeder::class);
         $this->call(VoyagerDatabaseSeeder::class);
-        // $this->call(TagsTableSeeder::class);
 
         Model::reguard();
     }

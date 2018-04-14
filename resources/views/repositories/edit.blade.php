@@ -80,7 +80,7 @@
               预览
             </h4>
             <article id="content_preview"></article>
-            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required>{{ str_replace("<br />", "\r\n", $repository->content) }}</textarea>
+            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required>{{ str_replace("<br />", "\n", $repository->content) }}</textarea>
           </div>
 
           <br />

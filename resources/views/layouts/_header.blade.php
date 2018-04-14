@@ -29,7 +29,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @auth
-          <li><a href="#" title="通知与私信"><i class="fas fa-bell"></i>&nbsp;</a></li>
+          {{-- 通知与私信 --}}
+          <li><a href="{{ route('notifications.show') }}" title="通知与私信"><i class="fas fa-bell"></i>&nbsp;</a></li>
 
           {{-- 创建知识清单 --}}
           <li class="dropdown">

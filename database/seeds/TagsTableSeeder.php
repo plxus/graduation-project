@@ -14,7 +14,7 @@ class TagsTableSeeder extends Seeder
   public function run()
   {
     $tags = ['学术','方法','教程'];
-    $repository_ids = Repository::pluck('id')->get();
+    $repository_ids = Repository::pluck('id')->toArray();
     foreach ($repository_ids as $repository_id) {
       foreach ($tags as $tag) {
         Tag::create([
