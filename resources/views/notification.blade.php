@@ -26,15 +26,16 @@
           {{-- 系统通知 --}}
           <div role="tabpanel" class="tab-pane fade in active" id="notifications">
             @if ($notifications->count())
+              <br />
               <ul class="list-group">
               @foreach ($notifications as $notification)
                   <li class="list-group-item">
-                    <h5>{{ $notification->subject }}</h5>
+                    <h6>{{ $notification->subject }}</h6>
                     <p>
                       {{ $notification->content }}
                     </p>
                     <p class="small text-right">
-                      {{ $notification->created_at }}
+                      {{ $notification->created_at->diffForHumans() }}
                     </p>
                   </li>
               @endforeach
@@ -45,17 +46,18 @@
           </div>
 
           {{-- 收到的私信 --}}
-          <div role="tabpanel" class="tab-pane fade in active" id="received">
+          <div role="tabpanel" class="tab-pane fade" id="received">
             @if ($received_msg->count())
+              <br />
               <ul class="list-group">
               @foreach ($received_msg as $msg_item)
                   <li class="list-group-item">
-                    <h5>{{ $msg_item->subject }}</h5>
+                    <h6>{{ $msg_item->subject }}</h6>
                     <p>
                       {{ $msg_item->content }}
                     </p>
                     <p class="small text-right">
-                      {{ $msg_item->created_at }}
+                      {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
               @endforeach
@@ -66,17 +68,18 @@
           </div>
 
           {{-- 发出的私信 --}}
-          <div role="tabpanel" class="tab-pane fade in active" id="sent">
+          <div role="tabpanel" class="tab-pane fade" id="sent">
             @if ($sent_msg->count())
+              <br />
               <ul class="list-group">
               @foreach ($sent_msg as $msg_item)
                   <li class="list-group-item">
-                    <h5>{{ $msg_item->subject }}</h5>
+                    <h6>{{ $msg_item->subject }}</h6>
                     <p>
                       {{ $msg_item->content }}
                     </p>
                     <p class="small text-right">
-                      {{ $msg_item->created_at }}
+                      {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
               @endforeach
