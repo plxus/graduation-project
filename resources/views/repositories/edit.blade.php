@@ -84,24 +84,6 @@
           </div>
 
           <br />
-
-          {{-- <div class="form-group">
-          <label for="fileupload">上传附件</label>
-          <br />
-          <span class="btn btn-default fileinput-button">
-          <i class="glyphicon glyphicon-plus"></i>&nbsp;
-          <span>添加文件</span>
-          <!-- The file input field used as target for the file upload widget -->
-          <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
-        <br />
-        <br />
-        <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-success"></div>
-      </div>
-      <div id="files" class="files"></div>
-      <p class="help-block small-p">可上传不超过 50 MB 的文件。</p>
-    </div> --}}
   </div>
 
   <div class="col-md-3">
