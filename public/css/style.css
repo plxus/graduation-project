@@ -150,6 +150,10 @@ article {
   color: #1976D2;
 }
 
+.gray-p {
+  color: #757575;
+}
+
 label {
   font-size: 14px;
   font-weight: 400;

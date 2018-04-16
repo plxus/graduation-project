@@ -36,8 +36,14 @@
         <br />
         <div class="panel panel-success">
           <div class="panel-body">
-            <form action="#" method="post">
-
+            <form action="{{ route('notifications.store', $user->id)}}" method="post">
+              {{ csrf_field()}}
+              <div class="form-group">
+                <input type="text" class="form-control" name="msg_subject" placeholder="主题（选填）">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control autosize" name="msg_content" rows="2" placeholder="内容" required></textarea>
+              </div>
               <button type="submit" class="btn btn-success pull-right">发送</button>
             </form>
           </div>

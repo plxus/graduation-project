@@ -70,21 +70,21 @@ class UsersController extends Controller
     // 验证表单提交的数据
     if ($user->name === $request->name) {
       $this->validate($request, [
-        'name' => 'required|string|max:32',
+        'name' => 'required|string|max:64',
       ]);
     } else {
       $this->validate($request, [
-        'name' => 'required|string|max:32|unique:users',
+        'name' => 'required|string|max:64|unique:users',
       ]);
     }
 
     if ($user->email === $request->email) {
       $this->validate($request, [
-        'email' => 'required|string|email|max:255',
+        'email' => 'required|string|email|max:191',
       ]);
     } else {
       $this->validate($request, [
-        'email' => 'required|string|email|max:255|unique:users',
+        'email' => 'required|string|email|max:191|unique:users',
       ]);
     }
 

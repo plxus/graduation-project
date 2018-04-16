@@ -58,5 +58,8 @@
 @stop
 
 @section('script')
-
+  {{-- textarea 自动调整高度 --}}
+  <script>
+  autosize($('textarea.autosize'));
+  </script>
 @stop

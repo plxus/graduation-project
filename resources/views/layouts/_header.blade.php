@@ -17,7 +17,7 @@
       <form action="{{ route('search') }}" class="navbar-form navbar-left" method="get">
         {{ csrf_field() }}
         <div class="form-group">
-          <input type="text" class="form-control navbar-search" name="keywords" placeholder="搜索你感兴趣的内容">
+          <input type="text" class="form-control navbar-search" name="keywords" placeholder="搜索你感兴趣的内容" required>
         </div>
         @if (isset($search_category_id))
           <input type="hidden" name="category" value="{{ $search_category_id }}" />

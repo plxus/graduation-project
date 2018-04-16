@@ -154,7 +154,8 @@ class HomeController extends Controller
 
     // 无搜索关键词和指定类别
     if ($request->keywords == null && $request->category == null) {
-      $feed_items = [];
+      $feed_items = null;
+      return redirect()->route('home');
     }
 
     return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category', 'sort_rule'));

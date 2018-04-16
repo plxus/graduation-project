@@ -40,11 +40,16 @@
               <ul class="list-group">
               @foreach ($notifications as $notification)
                   <li class="list-group-item">
-                    <h5 class="color-h">{{ $notification->subject }}</h5>
+                    @if ($notification->subject)
+                      <h5 class="color-h">{{ $notification->subject }}</h5>
+                    @else
+                      <h5></h5>
+                    @endif
                     <p>
                       {{ $notification->content }}
                     </p>
-                    <p class="small text-right">
+                    <p class="small text-right gray-p">
+                      知所团队敬上，
                       {{ $notification->created_at->diffForHumans() }}
                     </p>
                   </li>
@@ -62,11 +67,16 @@
               <ul class="list-group">
               @foreach ($received_msg as $msg_item)
                   <li class="list-group-item">
-                    <h5 class="color-h">{{ $msg_item->subject }}</h5>
+                    @if ($msg_item->subject)
+                      <h5 class="color-h">{{ $msg_item->subject }}</h5>
+                    @else
+                      <h5></h5>
+                    @endif
                     <p>
                       {{ $msg_item->content }}
                     </p>
-                    <p class="small text-right">
+                    <p class="small text-right gray-p">
+                      来自&nbsp;<a href="{{ route('users.show', $msg_item->send_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，
                       {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
@@ -84,11 +94,16 @@
               <ul class="list-group">
               @foreach ($sent_msg as $msg_item)
                   <li class="list-group-item">
-                    <h5 class="color-h">{{ $msg_item->subject }}</h5>
+                    @if ($msg_item->subject)
+                      <h5 class="color-h">{{ $msg_item->subject }}</h5>
+                    @else
+                      <h5></h5>
+                    @endif
                     <p>
                       {{ $msg_item->content }}
                     </p>
-                    <p class="small text-right">
+                    <p class="small text-right gray-p">
+                      发送给&nbsp;<a href="{{ route('users.show', $msg_item->receive_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，
                       {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
