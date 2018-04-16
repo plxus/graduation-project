@@ -5,53 +5,19 @@
 @section('content')
   <div class="container">
     <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        {{-- 错误提示 --}}
+        @include('shared._errors')
+      </div>
+    </div>
 
+    <div class="row">
       <div class="col-md-4 user-profile">
-        {{-- 用户个人信息 --}}
-        <p class="text-center">
-          <img src="{{ $user->gravatar('320') }}" alt="{{ $user->name.'_avatar' }}" class="img-thumbnail" width="160px"/>
-        </p>
-        <h3 class="text-center">
-          {{ $user->name }}
-        </h3>
-        <p class="text-center">
-          {{ $user->bio }}
-        </p>
-
-        {{-- 关注/取消关注用户的按钮 --}}
-        @if ($user->id !== Auth::user()->id)
-          <div class="follow-form text-center">
-            @if (Auth::user()->isFollowing($user->id))
-              <form action="{{ route('follows.destroy', $user->id) }}" method="post">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-default">&emsp;取消关注&emsp;</button>
-              </form>
-            @else
-              <form action="{{ route('follows.store', $user->id) }}" method="post">
-                {{ csrf_field() }}
-                <button type="submit" class="btn btn-primary">&emsp;关注&emsp;</button>
-              </form>
-            @endif
-          </div>
-        @else
-          <div class="follow-form-blank"></div>
-        @endif
-
-        {{-- 邮箱和 URL --}}
-        <p>
-          <i class="far fa-envelope icon-gray"></i>&emsp;<a href="mailto:{{ $user->email }}" target="_blank">{{ $user->email }}</a>
-          @if ($user->url)
-            <br />
-            <i class="fas fa-globe icon-gray"></i>&emsp;<a href="{{ $user->url }}" target="_blank">{{ $user->url }}</a>
-          @endif
-        </p>
+        {{-- 用户个人信息视图 --}}
+        @include('users._user_profile', ['user' => $user])
       </div>
 
       <div class="col-md-8">
-        {{-- 错误提示 --}}
-        @include('shared._errors')
-
         {{-- Nav tabs --}}
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation"><a href="{{ route('users.show', $user->id) }}" aria-controls="posts" role="tab">&emsp;发布的知识清单 <span class="badge">{{ $user->repositories->count() }}</span>&emsp;</a></li>

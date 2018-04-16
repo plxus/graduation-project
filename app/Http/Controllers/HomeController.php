@@ -78,6 +78,9 @@ class HomeController extends Controller
       if($request->input('sort') === 'created_at'){
         $sort_rule = 'created_at';
       }
+      if($request->input('sort') === 'updated_at'){
+        $sort_rule = 'updated_at';
+      }
     }
 
     if ($request->keywords !== null) {
@@ -154,6 +157,6 @@ class HomeController extends Controller
       $feed_items = [];
     }
 
-    return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category'));
+    return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category', 'sort_rule'));
   }
 }

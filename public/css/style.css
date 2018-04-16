@@ -334,6 +334,10 @@ ul.nav-tabs li {
   font-weight: 500;
 }
 
+hr {
+  border-top: 1px solid #E0E0E0;
+}
+
 /* Home 首页 */
 
 .jumbotron {
@@ -395,16 +399,8 @@ h3.repo-category-head {
   padding-right: 40px;
 }
 
-.follow-form {
-  margin: 60px auto 40px auto;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #E0E0E0;
-}
-
-.follow-form-blank {
-  margin: 30px auto 40px auto;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #E0E0E0;
+.user-social {
+  margin: 46px auto 46px auto;
 }
 
 .repo-flow-order {

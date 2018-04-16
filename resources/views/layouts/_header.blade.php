@@ -22,6 +22,9 @@
         @if (isset($search_category_id))
           <input type="hidden" name="category" value="{{ $search_category_id }}" />
         @endif
+        @if (isset($sort_rule))
+          <input type="hidden" name="sort" value="{{ $sort_rule }}" />
+        @endif
         <button type="submit" class="btn btn-default hidden">搜索</button>
       </form>
       <ul class="nav navbar-nav">
