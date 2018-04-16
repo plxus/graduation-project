@@ -9,10 +9,9 @@
   {{ $user->bio }}
 </p>
 
-{{-- 关注/取消关注用户的按钮 --}}
-{{-- 发私信按钮&表单 --}}
 @if ($user->id !== Auth::user()->id)
   <div class="user-social text-center">
+    {{-- 关注/取消关注用户的按钮 --}}
     <div class="follow-form">
       @if (Auth::user()->isFollowing($user->id))
         <form action="{{ route('follows.destroy', $user->id) }}" method="post">
@@ -27,8 +26,11 @@
         </form>
       @endif
     </div>
+
     <br />
-    <div class="msg-form">
+
+    {{-- 发私信按钮 --}}
+    <div>
       <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#message" aria-expanded="false" aria-controls="message">
         &emsp;发私信&emsp;
       </button>

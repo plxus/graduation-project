@@ -58,6 +58,7 @@ Route::get('/notifications', 'NotificationsController@show')->name('notification
 
 // 发送、删除通知与私信操作路由
 Route::post('/notifications/{user}', 'NotificationsController@store')->name('notifications.store');
+// Route::post('/notifications/{user}', 'NotificationsController@store_admin')->name('notifications.store_admin');
 Route::delete('/notifications/{user}', 'NotificationsController@destroy')->name('notifications.destroy');
 
 // Voyager 管理后台路由

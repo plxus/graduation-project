@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Auth;
   {{--  页眉  --}}
   @include('layouts._header')
 
-  {{--  .container 类用于固定宽度并支持响应式布局的容器.  --}}
-  {{--  .container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器.  --}}
-
   {{-- 消息提示框 --}}
   <div class="container">
     @include('shared._messages')
@@ -42,6 +39,7 @@ use Illuminate\Support\Facades\Auth;
   <script src="/js/app.js"></script>
   <script src="/js/fontawesome-all.min.js"></script>
   <script src="/js/autosize.min.js"></script>
+  {{-- 自定义脚本 --}}
   @yield('script', '')
 </body>
 </html>

@@ -47,7 +47,7 @@ class NotificationsController extends Controller
     return view('notification', compact('notifications', 'received_msg', 'sent_msg'));
   }
 
-  // 处理发送通知私信表单提交的数据
+  // 处理发送私信表单提交的数据
   public function store(User $user, Request $request)
   {
     $this->validate($request, [
@@ -64,7 +64,32 @@ class NotificationsController extends Controller
 
     session()->flash('success', '发送成功');
 
-    return redirect()->route('users.show', $user->id);
+    if ($user->id === 0) {
+      return redirect()->route('notifications.show');
+    }
+    else {
+      return redirect()->route('users.show', $user->id);
+    }
+  }
+
+  // 处理发送通知表单提交的数据
+  public function store_admin(User $user, Request $request)
+  {
+    $this->validate($request, [
+      'msg_subject' => 'nullable|string|max:128',
+      'msg_content' => 'required|string|max:191',
+    ]);
+
+    Notification::create([
+      'send_id' => Auth::user()->id,
+      'receive_id' => 0,
+      'subject' => $request->msg_subject,
+      'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
+    ]);
+
+    session()->flash('success', '发送成功');
+
+    return redirect()->route('notifications.show');
   }
 
   // 处理删除通知私信表单提交的数据

@@ -29,7 +29,26 @@
             @if (Auth::user()->is_admin)
               <br />
               <p>
-                <button type="button" class="btn btn-primary">发送系统通知</button>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#notification" aria-expanded="false" aria-controls="notification">
+                  发送系统通知
+                </button>
+                <div class="collapse" id="notification">
+                  <br />
+                  <div class="panel panel-success">
+                    <div class="panel-body">
+                      <form action="{{ route('notifications.store', 0) }}" method="post">
+                        {{ csrf_field()}}
+                        <div class="form-group">
+                          <input type="text" class="form-control" name="msg_subject" placeholder="主题（选填）">
+                        </div>
+                        <div class="form-group">
+                          <textarea class="form-control autosize" name="msg_content" rows="2" placeholder="内容" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right">发送</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </p>
               <p>
                 以管理员身份向全部用户发送系统通知。
@@ -38,7 +57,7 @@
             @if ($notifications->count())
               <br />
               <ul class="list-group">
-              @foreach ($notifications as $notification)
+                @foreach ($notifications as $notification)
                   <li class="list-group-item">
                     @if ($notification->subject)
                       <h5 class="color-h">{{ $notification->subject }}</h5>
@@ -53,8 +72,8 @@
                       {{ $notification->created_at->diffForHumans() }}
                     </p>
                   </li>
-              @endforeach
-            </ul>
+                @endforeach
+              </ul>
             @else
               <h4 class="text-center msg-no-item">暂无系统通知</h4>
             @endif
@@ -65,7 +84,7 @@
             @if ($received_msg->count())
               <br />
               <ul class="list-group">
-              @foreach ($received_msg as $msg_item)
+                @foreach ($received_msg as $msg_item)
                   <li class="list-group-item">
                     @if ($msg_item->subject)
                       <h5 class="color-h">{{ $msg_item->subject }}</h5>
@@ -80,8 +99,8 @@
                       {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
-              @endforeach
-            </ul>
+                @endforeach
+              </ul>
             @else
               <h4 class="text-center msg-no-item">暂无私信</h4>
             @endif
@@ -92,7 +111,7 @@
             @if ($sent_msg->count())
               <br />
               <ul class="list-group">
-              @foreach ($sent_msg as $msg_item)
+                @foreach ($sent_msg as $msg_item)
                   <li class="list-group-item">
                     @if ($msg_item->subject)
                       <h5 class="color-h">{{ $msg_item->subject }}</h5>
@@ -107,8 +126,8 @@
                       {{ $msg_item->created_at->diffForHumans() }}
                     </p>
                   </li>
-              @endforeach
-            </ul>
+                @endforeach
+              </ul>
             @else
               <h4 class="text-center msg-no-item">暂无私信</h4>
             @endif
@@ -117,4 +136,11 @@
       </div>
     </div>
   </div>
+@stop
+
+@section('script')
+  {{-- textarea 自动调整高度 --}}
+  <script>
+  autosize($('textarea.autosize'));
+  </script>
 @stop
