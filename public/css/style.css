@@ -377,6 +377,12 @@ h3.repo-category-head {
   box-shadow: none;
   color: #616161;
   margin: 0 5px 10px 0;
+  transition: 0.2s;
+}
+
+.category-wall .btn-category:hover {
+  color: #1976D2;
+  transition: 0.2s;
 }
 
 .home-btn-row {

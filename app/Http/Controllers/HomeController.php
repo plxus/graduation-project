@@ -37,12 +37,14 @@ class HomeController extends Controller
     // 根据排序选项设置相应的查询
     $sort_rule = 'created_at';
     if($request->input('sort') !== null){
-      // 按收藏数排序：可以在 repositories 表中添加一个冗余字段表示收藏数
       if($request->input('sort') === 'star_num'){
         $sort_rule = 'star_num';
       }
       if($request->input('sort') === 'created_at'){
         $sort_rule = 'created_at';
+      }
+      if($request->input('sort') === 'updated_at'){
+        $sort_rule = 'updated_at';
       }
     }
 
@@ -60,7 +62,7 @@ class HomeController extends Controller
       // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
     }
 
-    return view('home', compact('category_items', 'feed_items'));
+    return view('home', compact('category_items', 'feed_items', 'sort_rule'));
   }
 
   // 搜索结果视图
@@ -70,7 +72,6 @@ class HomeController extends Controller
     // 根据排序选项设置相应的查询
     $sort_rule = 'created_at';
     if($request->input('sort') !== null){
-      // 按收藏数排序：可以在 repositories 表中添加一个冗余字段表示收藏数
       if($request->input('sort') === 'star_num'){
         $sort_rule = 'star_num';
       }

@@ -59,12 +59,24 @@
             <div class="col-md-12 home-btn-row">
               {{-- 排序按钮 --}}
               <div class="btn-group pull-right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-sort-amount-down"></i> 排序 <span class="caret"></span>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a id="sort_by_time" role="button">按创建时间</a></li>
-                  <li><a id="sort_by_star" role="button">按收藏数</a></li>
+                  {{-- 按创建时间排序 --}}
+                  <li id="li_created_at"><a id="sort_by_created_at" role="button">最近创建</a></li>
+                  <form method="get" action="{{ route('home') }}" class="hidden" id="form_created_at">
+                    <input type="hidden" name="sort" value="created_at" />
+                  </form>
+                  {{-- 按更新时间排序 --}}
+                  <li id="li_updated_at"><a id="sort_by_updated_at" role="button">最近更新</a></li>
+                  <form method="get" action="{{ route('home') }}" class="hidden" id="form_updated_at">
+                    <input type="hidden" name="sort" value="updated_at" />
+                  </form>
+                  {{-- 按收藏数排序 --}}
+                  <li id="li_star_num"><a id="sort_by_star_num" role="button">最多收藏</a></li>
+                  <form method="get" action="{{ route('home') }}" class="hidden" id="form_star_num">
+                    <input type="hidden" name="sort" value="star_num" />
+                  </form>
                 </ul>
               </div>
             </div>
@@ -79,7 +91,7 @@
                 @endforeach
                 {!! $feed_items->render() !!}
               @else
-                <h4 class="msg-no-item text-center">暂无知识清单<br />你可以创建一份知识清单，或者关注其他用户</h4>
+                <h4 class="msg-no-item text-center">暂无知识清单<br /><a href="{{ route('repositories.create') }}">创建你的第一份知识清单</a>，或者关注其他用户</h4>
               @endif
             </div>
           </div>
@@ -143,42 +155,38 @@
   });
   @endauth
 
-  $(document).ready(function(){
-    $('#sort_by_time').bind("click", function(){
-      $.ajax({
-        type: 'GET',
-        url: '{{ route('home') }}',
-        data: {sort: 'created_at'},
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        dataType: 'json',
-        success: function(response){
-
-        },
-        error: function(){
-          alert("error!");
-        }
-      });
+  $().ready(function(){
+    // 按创建时间排序
+    $('#sort_by_created_at').bind("click", function(){
+      $('#form_created_at').submit();
     });
 
-    $('#sort_by_star').bind("click", function(){
-      $.ajax({
-        type: 'GET',
-        url: '{{ route('home') }}',
-        data: {sort: 'star_num'},
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}',
-        },
-        dataType: 'json',
-        success: function(response){
-
-        },
-        error: function(){
-          alert("error!");
-        }
-      });
+    // 按更新时间排序
+    $('#sort_by_updated_at').bind("click", function(){
+      $('#form_updated_at').submit();
     });
+
+    // 按收藏数排序
+    $('#sort_by_star_num').bind("click", function(){
+      $('#form_star_num').submit();
+    });
+
+    var sort_rule = '{{ $sort_rule }}';
+    // 根据排序规则显示相应排序按钮的激活状态
+    if (sort_rule === 'created_at'){
+      $('#li_created_at').addClass('active');
+      $('#sort_by').text('最近创建');
+    }
+
+    if (sort_rule === 'updated_at'){
+      $('#li_updated_at').addClass('active');
+      $('#sort_by').text('最近更新');
+    }
+
+    if (sort_rule === 'star_num'){
+      $('#li_star_num').addClass('active');
+      $('#sort_by').text('最多收藏');
+    }
   });
   </script>
 @stop
