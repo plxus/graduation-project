@@ -55,19 +55,33 @@ class NotificationsController extends Controller
       'msg_content' => 'required|string|max:191',
     ]);
 
-    Notification::create([
-      'send_id' => Auth::user()->id,
-      'receive_id' => $user->id,
-      'subject' => $request->msg_subject,
-      'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
-    ]);
+    if ($user->is_admin && $request->receive_id == 0) {
+      // 系统通知
+      Notification::create([
+        'send_id' => Auth::user()->id,
+        'receive_id' => 0,
+        'subject' => $request->msg_subject,
+        'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
+      ]);
+    }
+    else {
+      // 私信
+      Notification::create([
+        'send_id' => Auth::user()->id,
+        'receive_id' => $user->id,
+        'subject' => $request->msg_subject,
+        'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
+      ]);
+    }
 
     session()->flash('success', '发送成功');
 
-    if ($user->id === 0) {
+    if ($user->is_admin && $request->receive_id == 0) {
+      // 系统通知
       return redirect()->route('notifications.show');
     }
     else {
+      // 私信
       return redirect()->route('users.show', $user->id);
     }
   }
