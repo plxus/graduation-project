@@ -404,7 +404,11 @@ h3.repo-category-head {
 }
 
 .user-social {
-  margin: 46px auto 46px auto;
+  margin: 46px 0 46px 0;
+}
+
+button.user-social-btn  {
+  width: 40%;
 }
 
 .repo-flow-order {

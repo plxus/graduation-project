@@ -17,12 +17,12 @@
         <form action="{{ route('follows.destroy', $user->id) }}" method="post">
           {{ csrf_field() }}
           {{ method_field('DELETE') }}
-          <button type="submit" class="btn btn-default">&emsp;取消关注&emsp;</button>
+          <button type="submit" class="btn btn-default user-social-btn">&emsp;取消关注&emsp;</button>
         </form>
       @else
         <form action="{{ route('follows.store', $user->id) }}" method="post">
           {{ csrf_field() }}
-          <button type="submit" class="btn btn-primary">&emsp;关注&emsp;</button>
+          <button type="submit" class="btn btn-primary user-social-btn">&emsp;关注&emsp;</button>
         </form>
       @endif
     </div>
@@ -30,8 +30,8 @@
     <br />
 
     {{-- 发私信按钮 --}}
-    <div>
-      <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#message" aria-expanded="false" aria-controls="message">
+    <div class="msg-form">
+      <button class="btn btn-success user-social-btn" type="button" data-toggle="collapse" data-target="#message" aria-expanded="false" aria-controls="message">
         &emsp;发私信&emsp;
       </button>
       <div class="collapse" id="message">
