@@ -256,7 +256,8 @@ button {
 }
 
 .btn-waring {
-  background-color: #FFF176;
+  color: #323232;
+  background-color: #FFCA28;
 }
 
 .btn-danger {
@@ -319,7 +320,8 @@ button {
 }
 
 .alert-warning {
-  background-color: #FFC107;
+  color: #323232;
+  background-color: #FFCA28;
 }
 
 .alert-danger {
@@ -348,6 +350,18 @@ ul.nav-tabs li {
 
 hr {
   border-top: 1px solid #E0E0E0;
+}
+
+.modal-header {
+  padding: 20px;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  padding: 20px;
 }
 
 /* Home 首页 */

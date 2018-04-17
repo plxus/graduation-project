@@ -151,16 +151,39 @@
                     修订该知识清单的内容，并填写修订记录。
                   </p>
                   <br />
+
                   {{-- 删除按钮 --}}
                   <p>
                     <form action="{{ route('repositories.destroy', $repository->id) }}" method="post">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
-                      <button type="submit" class="btn btn-danger">删除知识清单</button>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_repo_delete">删除知识清单</button>
+
+                      {{-- 模态框 --}}
+                      <div class="modal fade" id="modal_repo_delete" tabindex="-1" role="dialog" aria-labelledby="modal_label">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="modal_label">删除知识清单</h4>
+                            </div>
+                            <div class="modal-body">
+                              <p>
+                                确定删除该知识清单以及相关的修订、讨论等信息？该操作不可撤销。
+                              </p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                              &emsp;
+                              <button type="submit" class="btn btn-danger">删除</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </form>
                   </p>
                   <p class="small-p">
-                    删除该知识清单及相关的修订、讨论等信息。该操作不可撤销。
+                    删除该知识清单以及相关的修订、讨论等信息。该操作不可撤销。
                   </p>
                 </div>
               @endif
