@@ -32,7 +32,7 @@ class HomeController extends Controller
   public function index(Request $request)
   {
     // 获取所有类别记录
-    $category_items = DB::table('repo_categories')->get();
+    $category_items = Category::all();
 
     // 根据排序选项设置相应的查询
     $sort_rule = 'created_at';
@@ -51,12 +51,12 @@ class HomeController extends Controller
     // 获取首页信息流中的条目（默认为当前用户发布的，以及其关注的用户公开发布的知识清单）
     $feed_items = [];
     if (Auth::check()) {
-      $following_ids = Auth::user()->followings->pluck('id')->toArray();  // 关注用户的 ID
       $feed_items = Repository::where('user_id', Auth::user()->id)
-      ->orWhere([
-        ['is_private', false],
-        ['user_id', $following_ids],
-      ])
+      ->orWhere(function($query){
+        $following_ids = Auth::user()->followings->pluck('id')->toArray();  // 关注用户的 ID
+        $query->where('is_private', false)
+        ->whereIn('user_id', $following_ids);
+      })
       ->with('user')
       ->orderBy("$sort_rule", 'desc')->paginate(20);
       // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
@@ -102,6 +102,8 @@ class HomeController extends Controller
       ->orderBy("$sort_rule", 'desc')
       ->paginate(20);
       $search_keywords = $request->keywords;  // 搜索关键词
+      $search_category_id = 'all';  // 搜索类别 ID（all）
+      $search_category = '全部类别';  // 搜索类别名
     }
 
     // 获取指定类别的搜索结果

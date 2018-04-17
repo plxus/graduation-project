@@ -154,6 +154,14 @@ article {
   color: #757575;
 }
 
+.bold-5 {
+  font-weight: 500;
+}
+
+.bold-6 {
+  font-weight: 600;
+}
+
 label {
   font-size: 14px;
   font-weight: 400;

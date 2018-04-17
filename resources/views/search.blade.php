@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-md-12 home-btn-row">
             <h2>搜索结果</h2>
-            @if (isset($search_category))
+            @if (isset($search_category_id))
               @if ($search_category_id === 'all')
                 <h3 class="search-result light-h">{{ $search_category }}</h3><br />
               @else

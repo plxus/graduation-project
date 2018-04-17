@@ -94,7 +94,7 @@
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#contents" aria-controls="contents" role="tab" data-toggle="tab">&emsp;<i class="far fa-list-alt"></i> 内容&emsp;</a></li>
               <li role="presentation"><a href="#revisions" aria-controls="revisions" role="tab" data-toggle="tab">&emsp;<i class="far fa-edit"></i> 修订&emsp;</a></li>
-              <li role="presentation"><a href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab">&emsp;<i class="far fa-comment-alt"></i> 讨论&emsp;</a></li>
+              <li role="presentation"><a href="#discuss" aria-controls="discuss" role="tab" data-toggle="tab">&emsp;<i class="far fa-comments"></i> 讨论&emsp;</a></li>
               @if ($repoAuthor->id === Auth::user()->id || Auth::user()->is_admin)
                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">&emsp;<i class="fas fa-sliders-h"></i> 设置&emsp;</a></li>
               @endif
