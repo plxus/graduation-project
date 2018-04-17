@@ -163,8 +163,8 @@ class HomeController extends Controller
 
     // 获取标签名的搜索结果
     if ($request->tag !== null) {
-      // 有类别：重定向到首页
-      if ($request->category !== null) {
+      // 有特定类别：重定向到首页
+      if ($request->category !== null && $request->category !== 'all') {
         $feed_items = null;
         return redirect()->route('home');
       }

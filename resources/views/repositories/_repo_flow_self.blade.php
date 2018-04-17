@@ -20,10 +20,10 @@
       </p>
     </div>
     {{-- 收藏数，类别 --}}
-    <span class="pull-right small-p gray-p">
+    <span class="pull-right small-p deep-gray-p bold-5">
       <span><i class="fas fa-star icon-gray"></i>&nbsp;{{ $feed_item->star_num }}</span>
       &emsp;
-      <span class="bold-5"><i class="fas fa-th-list icon-gray"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
+      <span><i class="fas fa-th-list icon-gray"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
     </span>
   </div>
 </div>

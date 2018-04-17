@@ -154,6 +154,10 @@ article {
   color: #757575;
 }
 
+.deep-gray-p {
+  color: #616161;
+}
+
 .bold-5 {
   font-weight: 500;
 }
@@ -482,6 +486,7 @@ button.user-social-btn  {
 
 .flow-repo-description p {
   margin: 0;
+  margin-bottom: 10px;
 }
 
 .user-flow-item {
