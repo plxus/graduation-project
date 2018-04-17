@@ -37,14 +37,14 @@ class HomeController extends Controller
     // 根据排序选项设置相应的查询
     $sort_rule = 'created_at';
     if($request->input('sort') !== null){
-      if($request->input('sort') === 'star_num'){
-        $sort_rule = 'star_num';
-      }
       if($request->input('sort') === 'created_at'){
         $sort_rule = 'created_at';
       }
       if($request->input('sort') === 'updated_at'){
         $sort_rule = 'updated_at';
+      }
+      if($request->input('sort') === 'star_num'){
+        $sort_rule = 'star_num';
       }
     }
 
@@ -58,7 +58,8 @@ class HomeController extends Controller
         ->whereIn('user_id', $following_ids);
       })
       ->with('user')
-      ->orderBy("$sort_rule", 'desc')->paginate(20);
+      ->orderBy("$sort_rule", 'desc')
+      ->paginate(20);
       // 使用了 Eloquent 关联的预加载 with 方法，预加载避免了 N+1 查找的问题
     }
 
@@ -72,14 +73,14 @@ class HomeController extends Controller
     // 根据排序选项设置相应的查询
     $sort_rule = 'created_at';
     if($request->input('sort') !== null){
-      if($request->input('sort') === 'star_num'){
-        $sort_rule = 'star_num';
-      }
       if($request->input('sort') === 'created_at'){
         $sort_rule = 'created_at';
       }
       if($request->input('sort') === 'updated_at'){
         $sort_rule = 'updated_at';
+      }
+      if($request->input('sort') === 'star_num'){
+        $sort_rule = 'star_num';
       }
     }
 
@@ -160,14 +161,14 @@ class HomeController extends Controller
       }
     }
 
-    // 无搜索关键词和指定类别
-    if ($request->keywords == null && $request->category == null && $request->tag == null) {
-      $feed_items = null;
-      return redirect()->route('home');
-    }
-
     // 获取标签名的搜索结果
     if ($request->tag !== null) {
+      // 有类别：重定向到首页
+      if ($request->category !== null) {
+        $feed_items = null;
+        return redirect()->route('home');
+      }
+
       // 有标签和关键词
       if ($request->keywords !== null) {
         $feed_items = Repository::join('tags', 'repositories.id', '=', 'tags.repository_id')
@@ -180,7 +181,10 @@ class HomeController extends Controller
         ->paginate(20);
         $search_tag = $request->tag;  // 搜索标签名
         $search_keywords = $request->keywords;  // 搜索关键词
+        $search_category_id = 'all';  // 搜索类别 ID（all）
+        $search_category = '全部类别';  // 搜索类别名
       }
+
       // 只有标签，无关键词
       else {
         $feed_items = Repository::join('tags', 'repositories.id', '=', 'tags.repository_id')
@@ -194,7 +198,15 @@ class HomeController extends Controller
         ->orderBy("$sort_rule", 'desc')
         ->paginate(20);
         $search_tag = $request->tag;  // 搜索标签名
+        $search_category_id = 'all';  // 搜索类别 ID（all）
+        $search_category = '全部类别';  // 搜索类别名
       }
+    }
+
+    // 无类别、标签和搜索关键词
+    if ($request->keywords == null && $request->category == null && $request->tag == null) {
+      $feed_items = null;
+      return redirect()->route('home');
     }
 
     return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category', 'search_tag', 'sort_rule'));

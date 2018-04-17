@@ -18,13 +18,15 @@
         <div class="row">
           <div class="col-md-12 home-btn-row">
             <h2>搜索结果</h2>
+            {{-- 类别 --}}
             @if (isset($search_category_id))
               @if ($search_category_id === 'all')
                 <h3 class="search-result light-h">{{ $search_category }}</h3><br />
               @else
-                <h3 class="search-result light-h">在“{{ $search_category }}”类别</h3><br />
+                <h3 class="search-result light-h">在“{{ $search_category }}”类别中</h3><br />
               @endif
             @endif
+            {{-- 标签 --}}
             @if (isset($search_tag))
               <h3 class="search-result light-h">包含“{{ $search_tag }}”标签</h3><br />
             @endif
@@ -34,6 +36,7 @@
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
+
                 {{-- 按创建时间排序 --}}
                 <li id="li_created_at"><a id="sort_by_created_at" role="button">最近创建</a></li>
                 <form method="get" action="{{ route('search') }}" class="hidden" id="form_created_at">
@@ -44,8 +47,12 @@
                   @if (isset($search_category_id))
                     <input type="hidden" name="category" value="{{ $search_category_id }}" />
                   @endif
+                  @if (isset($search_tag))
+                    <input type="hidden" name="tag" value="{{ $search_tag }}" />
+                  @endif
                   <input type="hidden" name="sort" value="created_at" />
                 </form>
+
                 {{-- 按更新时间排序 --}}
                 <li id="li_updated_at"><a id="sort_by_updated_at" role="button">最近更新</a></li>
                 <form method="get" action="{{ route('search') }}" class="hidden" id="form_updated_at">
@@ -56,8 +63,12 @@
                   @if (isset($search_category_id))
                     <input type="hidden" name="category" value="{{ $search_category_id }}" />
                   @endif
+                  @if (isset($search_tag))
+                    <input type="hidden" name="tag" value="{{ $search_tag }}" />
+                  @endif
                   <input type="hidden" name="sort" value="updated_at" />
                 </form>
+
                 {{-- 按收藏数排序 --}}
                 <li id="li_star_num"><a id="sort_by_star_num" role="button">最多收藏</a></li>
                 <form method="get" action="{{ route('search') }}" class="hidden" id="form_star_num">
@@ -67,6 +78,9 @@
                   @endif
                   @if (isset($search_category_id))
                     <input type="hidden" name="category" value="{{ $search_category_id }}" />
+                  @endif
+                  @if (isset($search_tag))
+                    <input type="hidden" name="tag" value="{{ $search_tag }}" />
                   @endif
                   <input type="hidden" name="sort" value="star_num" />
                 </form>

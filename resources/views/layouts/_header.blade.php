@@ -19,9 +19,15 @@
         <div class="form-group">
           <input type="text" class="form-control navbar-search" name="keywords" placeholder="搜索你感兴趣的内容" required>
         </div>
+        {{-- 类别 --}}
         @if (isset($search_category_id))
           <input type="hidden" name="category" value="{{ $search_category_id }}" />
         @endif
+        {{-- 标签 --}}
+        @if (isset($search_tag))
+          <input type="hidden" name="tag" value="{{ $search_tag }}" />
+        @endif
+        {{-- 排序 --}}
         @if (isset($sort_rule))
           <input type="hidden" name="sort" value="{{ $sort_rule }}" />
         @endif
