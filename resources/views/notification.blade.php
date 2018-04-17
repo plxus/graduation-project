@@ -66,7 +66,7 @@
                       <h5></h5>
                     @endif
                     <p>
-                      {{ $notification->content }}
+                      {!! $notification->content !!}
                     </p>
                     <div class="small text-right gray-p" style="margin-bottom:15px;">
                       知所团队敬上，
@@ -93,7 +93,7 @@
                       <h5></h5>
                     @endif
                     <p>
-                      {{ $msg_item->content }}
+                      {!! $msg_item->content !!}
                     </p>
                     <div class="small text-right gray-p" style="margin-bottom:15px;">
                       来自&nbsp;<a href="{{ route('users.show', $msg_item->send_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，
@@ -127,7 +127,7 @@
                       <h5></h5>
                     @endif
                     <p>
-                      {{ $msg_item->content }}
+                      {!! $msg_item->content !!}
                     </p>
                     <div class="small text-right gray-p" style="margin-bottom:15px;">
                       发送给&nbsp;<a href="{{ route('users.show', $msg_item->receive_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，

@@ -613,9 +613,13 @@ h3.search-result {
 }
 
 .msg-delete-form button {
-  color: #EF5350 !important;
+  color: #E57373 !important;
   font-size: inherit !important;
   background-color: transparent;
   border: none;
   padding: 0;
+}
+
+.msg-delete-form button:hover {
+  color: #EF5350 !important;
 }

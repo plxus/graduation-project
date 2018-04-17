@@ -73,85 +73,66 @@
               <button class="btn btn-success" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>
               <span class="help-block small-p">支持 Markdown 语法。</span>
             </div>
+            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
             <h4 class="border-h">
               预览
             </h4>
             <article id="content_preview"></article>
-            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required></textarea>
-          </div>
-
-          {{-- <div class="form-group">
-          <label for="fileupload">上传附件</label>
-          <br />
-          <span class="btn btn-default fileinput-button">
-          <i class="glyphicon glyphicon-plus"></i>&nbsp;
-          <span>添加文件</span>
-          <!-- The file input field used as target for the file upload widget -->
-          <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
-        <br />
-        <br />
-        <div id="progress" class="progress">
-        <div class="progress-bar progress-bar-success"></div>
-      </div>
-      <div id="files" class="files"></div>
-      <p class="help-block small-p">可上传不超过 50 MB 的文件。</p>
-    </div> --}}
-  </div>
-
-  <div class="col-md-3">
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="form-group">
-          <label>著作权声明</label>
-          <p class="help-block small-p">声明他人是否有权转载该知识清单。</p>
-          <div class="radio">
-            <label>
-              <input type="radio" name="copyright" id="copyright-limit" value="limit" checked>
-              转载需授权
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="copyright" id="copyright-allow" value="allow">
-              允许转载
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="copyright" id="copyright-forbid" value="forbid">
-              禁止任何形式的转载
-            </label>
           </div>
         </div>
-      </li>
 
-      <li class="list-group-item">
-        <div class="form-group">
-          <label>访问权限</label>
-          <p class="help-block small-p">设定谁有权查看该知识清单。</p>
-          <div class="radio">
-            <label>
-              <input type="radio" name="is_private" id="repo-public" value="false" checked>
-              公开
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" name="is_private" id="repo-private" value="true">
-              私有
-            </label>
-          </div>
+        <div class="col-md-3">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="form-group">
+                <label>著作权声明</label>
+                <p class="help-block small-p">声明他人是否有权转载该知识清单。</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="copyright" id="copyright-limit" value="limit" checked>
+                    转载需授权
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="copyright" id="copyright-allow" value="allow">
+                    允许转载
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="copyright" id="copyright-forbid" value="forbid">
+                    禁止任何形式的转载
+                  </label>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="form-group">
+                <label>访问权限</label>
+                <p class="help-block small-p">设定谁有权查看该知识清单。</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="is_private" id="repo-public" value="false" checked>
+                    公开
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="is_private" id="repo-private" value="true">
+                    私有
+                  </label>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;创建&emsp;</button>
         </div>
-      </li>
-    </ul>
-
-    <button type="submit" class="btn btn-primary btn-lg pull-right">&emsp;创建&emsp;</button>
+      </form>
+    </div>
   </div>
-  {{-- <input type="hidden" name="create" value="true" /> --}}
-</form>
-</div>
-</div>
 @stop
 
 @section('script')

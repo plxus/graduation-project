@@ -125,8 +125,7 @@
               {{-- 内容 --}}
               <div role="tabpanel" class="tab-pane fade in active" id="contents">
                 <div class="repo-content">
-                  <article id="content">
-                  </article>
+                  <article id="content"></article>
                 </div>
               </div>
 
@@ -224,13 +223,12 @@
   {{-- Stackedit Markdown 渲染 --}}
   <script src="/js/stackedit.min.js"></script>
   <script>
-  let md_content = '<?php echo($repository->content); ?>';
+  let md_content = '{!! $repository->content !!}';
   var reg = new RegExp("<br />", "g");
   md_content = md_content.replace(reg, "\n");
   const el = document.querySelector('#content');
   const stackedit = new Stackedit();
   stackedit.openFile({
-    name: 'repo_content',
     content: { text: md_content }
   }, true /* silent mode */);
   // In silent mode, the `fileChange` event is emitted only once.

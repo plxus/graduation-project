@@ -61,7 +61,7 @@ class NotificationsController extends Controller
 
     if ($request->receive_id !== null) {
       $this->validate($request, [
-        'receive_id' => 'string|max:128',
+        'receive_id' => 'integer|max:1',
       ]);
     }
 
