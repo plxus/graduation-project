@@ -30,7 +30,10 @@ class NotificationsController extends Controller
     // 当前用户收到的私信
     $received_msg = Notification::join('users','users.id','=','notifications.send_id')
     ->select('notifications.*', 'users.name')
-    ->where('receive_id', Auth::user()->id)
+    ->where([
+      ['receive_id', Auth::user()->id],
+      ['receive_is_delete', false],
+    ])
     ->latest()
     ->get();
 
@@ -39,7 +42,8 @@ class NotificationsController extends Controller
     ->select('notifications.*', 'users.name')
     ->where([
       ['send_id', Auth::user()->id],
-      ['receive_id', '<>', 0]
+      ['receive_id', '<>', 0],
+      ['send_is_delete', false],
     ])
     ->latest()
     ->get();
@@ -55,12 +59,18 @@ class NotificationsController extends Controller
       'msg_content' => 'required|string|max:191',
     ]);
 
+    if ($request->receive_id !== null) {
+      $this->validate($request, [
+        'receive_id' => 'string|max:128',
+      ]);
+    }
+
     if ($user->is_admin && $request->receive_id == 0) {
       // 系统通知
       Notification::create([
-        'send_id' => Auth::user()->id,
-        'receive_id' => 0,
-        'subject' => $request->msg_subject,
+        'send_id' => $user->id,  // 发件人 ID
+        'receive_id' => 0,  // 全部用户
+        'subject' => isset($request->msg_subject) ? $request->msg_subject : '',
         'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
       ]);
     }
@@ -69,7 +79,7 @@ class NotificationsController extends Controller
       Notification::create([
         'send_id' => Auth::user()->id,
         'receive_id' => $user->id,
-        'subject' => $request->msg_subject,
+        'subject' => isset($request->msg_subject) ? $request->msg_subject : '',
         'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
       ]);
     }
@@ -86,29 +96,25 @@ class NotificationsController extends Controller
     }
   }
 
-  // 处理发送通知表单提交的数据
-  public function store_admin(User $user, Request $request)
+  // 处理删除私信表单提交的数据
+  public function update(Notification $msg)
   {
-    $this->validate($request, [
-      'msg_subject' => 'nullable|string|max:128',
-      'msg_content' => 'required|string|max:191',
-    ]);
+    if ($msg->send_id === Auth::user()->id) {
+      // 发件人删除私信
+      $msg->update([
+        'send_is_delete' => true
+      ]);
+    }
+    elseif ($msg->receive_id === Auth::user()->id) {
+      // 收件人删除私信
+      $msg->update([
+        'receive_is_delete' => true
+      ]);
+    }
 
-    Notification::create([
-      'send_id' => Auth::user()->id,
-      'receive_id' => 0,
-      'subject' => $request->msg_subject,
-      'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
-    ]);
-
-    session()->flash('success', '发送成功');
+    session()->flash('success', '已删除该私信');
 
     return redirect()->route('notifications.show');
   }
 
-  // 处理删除通知私信表单提交的数据
-  public function delete()
-  {
-
-  }
 }

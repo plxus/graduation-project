@@ -9,7 +9,7 @@ class Notification extends Model
   protected $table = 'notifications';
 
   protected $fillable = [
-    'send_id', 'receive_id', 'subject', 'content', 'is_delete'
+    'send_id', 'receive_id', 'subject', 'content', 'send_is_delete', 'receive_is_delete'
   ];
 
 }

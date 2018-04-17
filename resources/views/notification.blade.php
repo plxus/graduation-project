@@ -37,7 +37,7 @@
                   <div class="panel panel-success">
                     <div class="panel-body">
                       <form action="{{ route('notifications.store', Auth::user()->id) }}" method="post">
-                        {{ csrf_field()}}
+                        {{ csrf_field() }}
                         <div class="form-group">
                           <input type="text" class="form-control" name="msg_subject" placeholder="主题（选填）">
                         </div>
@@ -68,10 +68,10 @@
                     <p>
                       {{ $notification->content }}
                     </p>
-                    <p class="small text-right gray-p">
+                    <div class="small text-right gray-p" style="margin-bottom:15px;">
                       知所团队敬上，
                       {{ $notification->created_at->diffForHumans() }}
-                    </p>
+                    </div>
                   </li>
                 @endforeach
               </ul>
@@ -95,10 +95,17 @@
                     <p>
                       {{ $msg_item->content }}
                     </p>
-                    <p class="small text-right gray-p">
+                    <div class="small text-right gray-p" style="margin-bottom:15px;">
                       来自&nbsp;<a href="{{ route('users.show', $msg_item->send_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，
                       {{ $msg_item->created_at->diffForHumans() }}
-                    </p>
+                      &emsp;
+                      {{-- 删除私信表单 --}}
+                      <form method="post" action="{{ route('notifications.update', $msg_item->id) }}" class="msg-delete-form">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                        <button type="submit" class="text-danger"><i class="far fa-trash-alt"></i>&nbsp;删除</button>
+                      </form>
+                    </div>
                   </li>
                 @endforeach
               </ul>
@@ -122,10 +129,17 @@
                     <p>
                       {{ $msg_item->content }}
                     </p>
-                    <p class="small text-right gray-p">
+                    <div class="small text-right gray-p" style="margin-bottom:15px;">
                       发送给&nbsp;<a href="{{ route('users.show', $msg_item->receive_id)}}" target="_blank">{{ $msg_item->name }}</a>&nbsp;，
                       {{ $msg_item->created_at->diffForHumans() }}
-                    </p>
+                      &emsp;
+                      {{-- 删除私信表单 --}}
+                      <form method="post" action="{{ route('notifications.update', $msg_item->id) }}" class="msg-delete-form">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                        <button type="submit" class="text-danger"><i class="far fa-trash-alt"></i>&nbsp;删除</button>
+                      </form>
+                    </div>
                   </li>
                 @endforeach
               </ul>

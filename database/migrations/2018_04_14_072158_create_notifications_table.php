@@ -19,7 +19,8 @@ class CreateNotificationsTable extends Migration
             $table->integer('receive_id');  // 收件人 ID
             $table->string('subject')->nullable();  // 主题
             $table->string('content');  // 内容
-            $table->boolean('is_delete')->default(false);  // 判断收件人是否已删除某条私信
+            $table->boolean('send_is_delete')->default(false);  // 判断发件人是否已删除某条私信
+            $table->boolean('receive_is_delete')->default(false);  // 判断收件人是否已删除某条私信
             $table->timestamps();
         });
     }
