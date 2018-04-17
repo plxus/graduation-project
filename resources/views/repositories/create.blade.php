@@ -141,6 +141,15 @@
   autosize($('textarea.autosize'));
   </script>
 
+  {{-- 取消表单项按回车触发提交表单的操作 --}}
+  <script>
+  $('form').keydown(function(){
+    if(event.keyCode == 13){
+      return false;
+    }
+  });
+  </script>
+
   {{-- StackEdit Markdown 编辑器 --}}
   <script src="/js/stackedit.min.js"></script>
   <script>
