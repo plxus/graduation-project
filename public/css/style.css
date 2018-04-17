@@ -274,13 +274,13 @@ button {
   font-weight: 600 !important;
   color: #616161;
   background-color: #E0E0E0;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .active .badge {
   color: #fff;
   background-color: #008FF7;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .btn-default .badge {
@@ -407,12 +407,12 @@ h3.repo-category-head {
   box-shadow: none;
   color: #616161;
   margin: 0 5px 10px 0;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .category-wall .btn-category:hover {
   color: #1976D2;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .home-btn-row {
@@ -548,19 +548,37 @@ span.is-private {
   margin-left: 15px;
 }
 
-.repo-category {
+.repo-category button {
   color: #616161;
   font-size: 14px;
   font-weight: 600;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.repo-category button:hover {
+  color: #1976D2;
+  transition: all 0.2s ease;
+}
+
+.repo-tags-form {
+  display: inline-block !important;
 }
 
 .btn-tag {
-  background-color: #EEEEEE;
   -webkit-box-shadow: none;
   box-shadow: none;
-  color: #008FF7 !important;
+  color: #616161 !important;
+  background-color: #EEEEEE;
   font-weight: 500;
   margin: 0 5px 0 0;
+}
+
+.btn-tag:hover {
+  color: #1976D2 !important;
+  transition: all 0.2s ease;
 }
 
 .repo-created-at {

@@ -25,6 +25,10 @@
                 <h3 class="search-result light-h">在“{{ $search_category }}”类别</h3><br />
               @endif
             @endif
+            @if (isset($search_tag))
+              <h3 class="search-result light-h">包含“{{ $search_tag }}”标签</h3><br />
+            @endif
+
             {{-- 排序按钮 --}}
             <div class="btn-group pull-right">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
@@ -84,6 +88,7 @@
                 '_token' => csrf_token(),
                 'keywords' => isset($search_keywords) ? $search_keywords : '',
                 'category' => isset($search_category_id) ? $search_category_id : '',
+                'tag' => isset($search_tag) ? $search_tag : '',
                 'sort' => isset($sort_rule) ? $sort_rule : '',
                 ])->links() }}
                 {{-- 渲染分页视图时添加 URI --}}

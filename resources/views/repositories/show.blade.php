@@ -41,6 +41,7 @@
 
             {{-- 知识清单标题 --}}
             <h2 class="repo-title"><a href="{{ route('repositories.show', $repository->id) }}" class="repo-title">{{ $repository->title }}</a></h2>
+
             {{-- 作者 --}}
             <p class="repo-author">
               <a href="{{ route('users.show', $repoAuthor->id) }}" target="_blank">{{ $repoAuthor->name }}</a>
@@ -48,27 +49,44 @@
                 <span class="small-p is-private"><i class="fas fa-lock icon-gray-active"></i>&nbsp;私有</span>
               @endif
             </p>
+
             {{-- 简介 --}}
             <p class="repo-description">
               {{ $repository->description }}
             </p>
             <br />
-            {{-- 标签 --}}
+
             <p>
+              {{-- 标签 --}}
               @if ($repoTags->count())
                 @foreach ($repoTags as $repoTag)
-                  <span class="repo-tags"><button type="button" class="btn btn-sm btn-tag"><i class="fas fa-hashtag"></i>&nbsp;{{ $repoTag->name }}</button></span>
+                  <span class="repo-tags">
+                    <form action="{{ route('search') }}" method="get" class="form-inline repo-tags-form">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="tag" value="{{ $repoTag->name }}" />
+                      <button type="submit" class="btn btn-sm btn-tag"><i class="fas fa-hashtag"></i>&nbsp;{{ $repoTag->name }}</button>
+                    </form>
+                  </span>
                 @endforeach
               @else
                 <span class="repo-tags invisible"><button type="button" class="btn btn-sm btn-tag"><i class="fas fa-hashtag"></i>&nbsp;无标签</button></span>
               @endif
+
               {{-- 类别 --}}
-              <span class="repo-category pull-right"><i class="fas fa-th-list"></i>&nbsp;{{ $repoCategory->category_level_1 }}</span>
+              <span class="repo-category pull-right">
+                <form action="{{ route('search') }}" method="get" class="form-inline form-category-select">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="category" value="{{ $repoCategory->id }}">
+                  <button class="btn" type="submit"><i class="fas fa-th-list"></i>&nbsp;{{ $repoCategory->category_level_1 }}</button>
+                </form>
+              </span>
             </p>
+
             {{-- 创建和更新时间 --}}
             <p class="repo-created-at small-p">
               创建于 {{ $repository->created_at->diffForHumans() }}，最近更新于 {{ $repository->updated_at->diffForHumans() }}。
             </p>
+
             {{-- 著作权声明 --}}
             @if ($repository->copyright === 'allow')
               <p class="repo-copyright small-p">

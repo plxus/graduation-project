@@ -95,6 +95,12 @@ class HomeController extends Controller
       ]);
     }
 
+    if ($request->tag !== null) {
+      $this->validate($request, [
+        'tag' => 'required|string|max:191',
+      ]);
+    }
+
     // 获取关键词的搜索结果
     if ($request->keywords !== null && $request->category == null) {
       $feed_items = Repository::whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
@@ -155,11 +161,42 @@ class HomeController extends Controller
     }
 
     // 无搜索关键词和指定类别
-    if ($request->keywords == null && $request->category == null) {
+    if ($request->keywords == null && $request->category == null && $request->tag == null) {
       $feed_items = null;
       return redirect()->route('home');
     }
 
-    return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category', 'sort_rule'));
+    // 获取标签名的搜索结果
+    if ($request->tag !== null) {
+      // 有标签和关键词
+      if ($request->keywords !== null) {
+        $feed_items = Repository::join('tags', 'repositories.id', '=', 'tags.repository_id')
+        ->select('repositories.*', 'tags.name')
+        ->where('tags.name', 'like', '%'.$request->tag.'%')
+        ->whereRaw('is_private = false and (title like \'%'.$request->keywords.'%\' or description like \'%'.$request->keywords.'%\')')
+        ->distinct()
+        ->with('user')
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_tag = $request->tag;  // 搜索标签名
+        $search_keywords = $request->keywords;  // 搜索关键词
+      }
+      // 只有标签，无关键词
+      else {
+        $feed_items = Repository::join('tags', 'repositories.id', '=', 'tags.repository_id')
+        ->select('repositories.*', 'tags.name')
+        ->where([
+          ['tags.name', 'like', '%'.$request->tag.'%'],
+          ['is_private', false]
+        ])
+        ->distinct()
+        ->with('user')
+        ->orderBy("$sort_rule", 'desc')
+        ->paginate(20);
+        $search_tag = $request->tag;  // 搜索标签名
+      }
+    }
+
+    return view('search', compact('feed_items', 'search_keywords', 'search_category_id', 'search_category', 'search_tag', 'sort_rule'));
   }
 }
