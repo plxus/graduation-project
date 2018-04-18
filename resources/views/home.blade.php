@@ -55,9 +55,15 @@
         </div>
 
         <div class="col-md-8">
+          {{-- Tab 栏 --}}
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#timeline" aria-controls="timeline" role="tab">&emsp;时间线&emsp;</a></li>
+            <li role="presentation"><a href="{{ route('home.preferences') }}" aria-controls="preferred_categories" role="tab">&emsp;偏好的类别&emsp;</a></li>
+          </ul>
+
+          {{-- 排序按钮 --}}
           <div class="row">
             <div class="col-md-12 home-btn-row">
-              {{-- 排序按钮 --}}
               <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
                 </button>
@@ -85,21 +91,30 @@
             </div>
           </div>
 
-          <div class="row home-feed-flow">
-            <div class="col-md-12" id="feed_flow">
-              @if (count($feed_items))
-                @foreach ($feed_items as $feed_item)
-                  @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
-                  {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
-                @endforeach
-                {!! $feed_items->appends([
-                  '_token' => csrf_token(),
-                  'sort' => isset($sort_rule) ? $sort_rule : '',
-                  ])->links() !!}
-                  {{-- 渲染分页视图时添加 URI --}}
-                @else
-                  <h4 class="msg-no-item text-center">暂无知识清单<br /><a href="{{ route('repositories.create') }}">创建你的第一份知识清单</a>，或者关注其他用户</h4>
-                @endif
+          <div class="tab-content">
+            {{-- 时间线 --}}
+            <div role="tabpanel" class="tab-pane fade in active" id="timeline">
+              <div class="row home-feed-flow">
+                <div class="col-md-12" id="feed_flow">
+                  @if (count($feed_items))
+                    @foreach ($feed_items as $feed_item)
+                      @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
+                      {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
+                    @endforeach
+                    {!! $feed_items->appends([
+                      '_token' => csrf_token(),
+                      'sort' => isset($sort_rule) ? $sort_rule : '',
+                      ])->links() !!}
+                      {{-- 渲染分页视图时添加 URI --}}
+                    @else
+                      <h4 class="msg-no-item text-center">暂无知识清单<br /><a href="{{ route('repositories.create') }}">创建你的第一份知识清单</a>，或者关注其他用户</h4>
+                    @endif
+                  </div>
+                </div>
+              </div>
+
+              {{-- 偏好的类别 --}}
+              <div role="tabpanel" class="tab-pane fade" id="preferred_categories">
               </div>
             </div>
           </div>

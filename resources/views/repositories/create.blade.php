@@ -141,7 +141,6 @@
   $().ready(function(){
     $('.select2-style').select2({
       placeholder: "选择一个类别",
-      // allowClear: true
     });
   });
   </script>
@@ -171,10 +170,6 @@
 {{-- Taggle 添加标签 --}}
 <script src="/js/taggle.js"></script>
 <script type="text/javascript">
-// window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
-//   duplicateTagClass: 'bounce',
-//   placeholder: '为知识清单添加标签'
-// });
 new Taggle('repo_tag', {
   duplicateTagClass: 'bounce',
   placeholder: '为知识清单添加标签'

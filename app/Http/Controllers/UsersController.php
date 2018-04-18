@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Category;
+use App\PreferredCategory;
 
 class UsersController extends Controller
 {
@@ -65,8 +66,10 @@ class UsersController extends Controller
 
     // 获取所有类别记录
     $category_items = Category::all();
+    // 获取当前用户偏好的知识清单类别 ID
+    $preferred_category_ids_now = PreferredCategory::where('user_id', $user->id)->pluck('category_id')->toArray();
 
-    return view('users.edit', compact('user', 'category_items'));
+    return view('users.edit', compact('user', 'category_items', 'preferred_category_ids_now'));
   }
 
   // 处理用户个人信息表单提交数据
@@ -116,9 +119,29 @@ class UsersController extends Controller
     $user->update($data);
 
     // 向会话中添加闪存信息
-    session()->flash('success', '个人信息修改成功！');
+    session()->flash('success', '个人信息修改成功');
 
     return redirect()->route('users.show', $user->id);
+  }
+
+  // 处理用户选择偏好的知识清单类别表单提交的数据
+  public function preferences(User $user, Request $request)
+  {
+    if ($request->input('preferred_categories')) {
+      // 删除原有的偏好类别
+      PreferredCategory::where('user_id', $user->id)->delete();
+      // 设置新的偏好类别
+      foreach ($request->input('preferred_categories') as $preferred_category) {
+        PreferredCategory::create([
+          'user_id' => $user->id,
+          'category_id' => $preferred_category,
+        ]);
+      }
+    }
+
+    session()->flash('success', '已设置知识清单类别偏好');
+
+    return redirect()->route('home');
   }
 
   // 用户列表视图（后台管理）

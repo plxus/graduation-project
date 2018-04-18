@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
   <title>@yield('title', '知识清单管理系统') - 知所</title>
 
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   {{-- select2 插件 --}}
   <link rel="stylesheet" href="/css/select2.min.css" />
   <link rel="stylesheet" href="/css/select2-bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/app.css">
-  <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   {{-- 自定义 CSS --}}
   @yield('style', '')
   <link rel="stylesheet" href="/css/style.css">

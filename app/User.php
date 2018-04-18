@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use App\Repository;
+use App\Category;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -120,5 +121,11 @@ class User extends \TCG\Voyager\Models\User
     public function isStar($repository_id)
     {
         return $this->stars->contains($repository_id);  // stars 属性返回关注的用户的 Eloquent 集合
+    }
+
+    // 指明一个用户可以有多个偏好的知识清单类别
+    public function preferred_categories()
+    {
+      return $this->belongsToMany(Category::class, 'preferred_categories', 'user_id', 'category_id');
     }
 }

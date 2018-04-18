@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Auth;
 use App\User;
 use App\Star;
 use App\Repository;
+use App\Category;
 use App\Tag;
-use Auth;
 use App\Revision;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 

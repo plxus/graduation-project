@@ -18,7 +18,7 @@
       <div class="col-md-3">
         <ul class="nav nav-pills nav-stacked" role="tablist">
           <li role="presentation" class="active"><a href="#setting_profile" aria-controls="setting_profile" role="tab" data-toggle="pill">用户设置</a></li>
-          <li role="presentation"><a href="#setting_preferred_category" aria-controls="setting_preferred_category" role="tab" data-toggle="pill">类别偏好</a></li>
+          <li role="presentation"><a href="#setting_preferred_category" aria-controls="setting_preferred_category" role="tab" data-toggle="pill">知识清单类别偏好</a></li>
         </ul>
       </div>
 
@@ -119,9 +119,10 @@
                 <form action="{{ route('users.preferences', $user->id) }}" method="post">
                   {{ csrf_field() }}
                   <div class="form-group">
-                    <label for="preferred-categories">知识清单类别</label>
-                    <select class="form-control select2-style" id="preferred-categories" name="preferred_categories[]" required multiple="multiple">
-                      <option value=""></option>
+                    <label for="preferred_categories_select">知识清单类别</label>
+                    <br />
+                    <select class="form-control select2-style" id="preferred_categories_select" name="preferred_categories[]" required multiple style="width:100%;">
+                      <option></option>
                       @foreach ($category_items as $category_item)
                         <option value="{{ $category_item->id }}">
                           {{ $category_item->category_level_1 }}
@@ -145,13 +146,20 @@
 @stop
 
 @section('script')
+  <?php
+  $preferred_category_ids_now_str = '[\''.join("','", array_values($preferred_category_ids_now)).'\']';
+  ?>
   {{-- select2 插件 --}}
   <script>
   $().ready(function(){
     $('.select2-style').select2({
       placeholder: "搜索或选择你感兴趣的多个类别",
-      // allowClear: true
     });
+
+    @if ($preferred_category_ids_now)
+    $('.select2-style').val({!! $preferred_category_ids_now_str !!});
+    $('.select2-style').trigger('change'); // Notify any JS components that the value changed
+    @endif
   });
   </script>
 @stop

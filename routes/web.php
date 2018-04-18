@@ -22,6 +22,9 @@ resource 方法遵从 RESTful 架构为用户资源生成路由。该方法接�
 // 首页路由
 Route::get('/', 'HomeController@index')->name('home');
 
+// 首页偏好类别信息流路由
+Route::get('/preferences', 'HomeController@preferences')->name('home.preferences');
+
 // 搜索路由
 Route::get('/search', 'HomeController@search')->name('search');
 

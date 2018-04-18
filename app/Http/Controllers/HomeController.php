@@ -48,7 +48,7 @@ class HomeController extends Controller
       }
     }
 
-    // 获取首页信息流中的条目（默认为当前用户发布的，以及其关注的用户公开发布的知识清单）
+    // 获取首页时间线信息流中的条目（默认为当前用户发布的，以及其关注的用户公开发布的知识清单）
     $feed_items = [];
     if (Auth::check()) {
       $feed_items = Repository::where('user_id', Auth::user()->id)
@@ -64,6 +64,37 @@ class HomeController extends Controller
     }
 
     return view('home', compact('category_items', 'feed_items', 'sort_rule'));
+  }
+
+  // 首页偏好类别信息流视图
+  public function preferences(Request $request)
+  {
+    // 获取所有类别记录
+    $category_items = Category::all();
+
+    // 根据排序选项设置相应的查询
+    $sort_rule = 'created_at';
+    if($request->input('sort') !== null){
+      if($request->input('sort') === 'created_at'){
+        $sort_rule = 'created_at';
+      }
+      if($request->input('sort') === 'updated_at'){
+        $sort_rule = 'updated_at';
+      }
+      if($request->input('sort') === 'star_num'){
+        $sort_rule = 'star_num';
+      }
+    }
+
+    $preferred_category_ids = Auth::user()->preferred_categories->pluck('id');
+    // 获取首页偏好类别信息流中的条目
+    $preferred_feed_items = Repository::where('is_private', false)
+    ->whereIn('category_id', $preferred_category_ids)
+    ->with('user')
+    ->orderBy("$sort_rule", 'desc')
+    ->paginate(20);
+
+    return view('home_preferences', compact('category_items', 'preferred_feed_items', 'sort_rule'));
   }
 
   // 搜索结果视图
