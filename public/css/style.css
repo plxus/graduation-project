@@ -623,3 +623,46 @@ h3.search-result {
 .msg-delete-form button:hover {
   color: #EF5350 !important;
 }
+
+/* Taggle.js */
+
+span.taggle_placeholder {
+  top: 12px;
+  left: 16px;
+  font-size: 16px;
+}
+
+input.taggle_input {
+  width: 0;
+  border: none;
+  margin-top: 3px;
+}
+
+.textarea.input {
+  padding-bottom: 0;
+  min-height: 53px;
+}
+
+.taggle_list li {
+  margin-bottom: 8px;
+}
+
+ul.taggle_list {
+  margin: 0;
+}
+
+.taggle_list .taggle .close {
+  top: 2px;
+  right: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #EF5350;
+}
+
+.taggle_list .taggle .close:hover {
+  top: 2px;
+  right: 5px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #EF5350;
+}

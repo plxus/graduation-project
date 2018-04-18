@@ -38,7 +38,7 @@
         <br />
         <div class="panel panel-success">
           <div class="panel-body">
-            <form action="{{ route('notifications.store', $user->id)}}" method="post">
+            <form action="{{ route('notifications.store', $user->id)}}" method="post" class="noreact-enter">
               {{ csrf_field()}}
               <div class="form-group">
                 <input type="text" class="form-control" name="msg_subject" placeholder="主题（选填）">

@@ -5,9 +5,6 @@
 @section('style')
   {{-- 标签添加插件 --}}
   <link rel="stylesheet" href="/css/taggle.css">
-  {{-- jQuery 文件上传插件 --}}
-  {{-- <link rel="stylesheet" href="/css/jquery.fileupload-ui.css"> --}}
-  {{-- <link rel="stylesheet" href="/css/jquery.fileupload.css"> --}}
 @stop
 
 @section('content')
@@ -26,7 +23,7 @@
     </div>
 
     <div class="row">
-      <form action="{{ route('repositories.store') }}" method="POST">
+      <form action="{{ route('repositories.store') }}" method="POST" class="noreact-enter">
         {{ csrf_field() }}
         <div class="col-md-9 repo-create-left">
           <div class="form-group">
@@ -60,8 +57,8 @@
           <br />
 
           <div class="form-group">
-            <label for="repo-tag">标签</label>
-            <div id="repo-tag" class="input textarea clearfix repo_tag"></div>
+            <label for="repo_tag">标签</label>
+            <div id="repo_tag" class="input textarea clearfix"></div>
             {{-- Each tag contains an hidden input with a configurable name of taggles[] by default  --}}
           </div>
 
@@ -141,15 +138,6 @@
   autosize($('textarea.autosize'));
   </script>
 
-  {{-- 取消表单项按回车触发提交表单的操作 --}}
-  <script>
-  $('form').keydown(function(){
-    if(event.keyCode == 13){
-      return false;
-    }
-  });
-  </script>
-
   {{-- StackEdit Markdown 编辑器 --}}
   <script src="/js/stackedit.min.js"></script>
   <script>
@@ -175,7 +163,11 @@
 {{-- Taggle 添加标签 --}}
 <script src="/js/taggle.js"></script>
 <script type="text/javascript">
-window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
+// window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
+//   duplicateTagClass: 'bounce',
+//   placeholder: '为知识清单添加标签'
+// });
+new Taggle('repo_tag', {
   duplicateTagClass: 'bounce',
   placeholder: '为知识清单添加标签'
 });

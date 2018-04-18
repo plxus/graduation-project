@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
-  <link rel="stylesheet" href="/css/style.css">
   {{-- 自定义 CSS --}}
   @yield('style', '')
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -39,6 +39,16 @@ use Illuminate\Support\Facades\Auth;
   <script src="/js/app.js"></script>
   <script src="/js/fontawesome-all.min.js"></script>
   <script src="/js/autosize.min.js"></script>
+
+  {{-- 取消表单项按回车触发提交表单的操作 --}}
+  <script>
+  $("form.noreact-enter").keydown(function(){
+    if(event.keyCode == 13){
+      return false;
+    }
+  });
+  </script>
+
   {{-- 自定义脚本 --}}
   @yield('script', '')
 </body>
