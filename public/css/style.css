@@ -243,7 +243,8 @@ input,
 select,
 option,
 textarea,
-button {
+button,
+span {
   outline: none !important;
 }
 
@@ -278,12 +279,14 @@ button {
   font-weight: 600 !important;
   color: #616161;
   background-color: #E0E0E0;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 .active .badge {
   color: #fff;
   background-color: #008FF7;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -401,7 +404,7 @@ h3.repo-category-head {
   padding: 20px 15px;
 }
 
-.category-wall .form-category-select{
+.category-wall .form-category-select {
   display: inline-block !important;
 }
 
@@ -411,16 +414,24 @@ h3.repo-category-head {
   box-shadow: none;
   color: #616161;
   margin: 0 5px 10px 0;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 .category-wall .btn-category:hover {
   color: #1976D2;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
 .home-btn-row {
   margin-bottom: 20px;
+}
+
+/* Users Edit 设置页 */
+
+.user-setting-panel .panel-body {
+  padding: 30px 60px 40px 60px;
 }
 
 /* Users Show 用户个人主页 */
@@ -433,7 +444,7 @@ h3.repo-category-head {
   margin: 46px 0 46px 0;
 }
 
-button.user-social-btn  {
+button.user-social-btn {
   width: 40%;
 }
 
@@ -560,11 +571,13 @@ span.is-private {
   margin: 0;
   padding: 0;
   border: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .repo-category button:hover {
   color: #1976D2;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 
@@ -583,6 +596,7 @@ span.is-private {
 
 .btn-tag:hover {
   color: #1976D2 !important;
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 

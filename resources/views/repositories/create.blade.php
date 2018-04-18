@@ -42,10 +42,8 @@
 
           <div class="form-group">
             <label for="repo-category">类别</label>
-            <select class="form-control" id="repo-category" name="category_id" required>
-              <option value="" selected>
-                - 选择一个类别 -
-              </option>
+            <select class="form-control select2-style" id="repo-category" name="category_id" required>
+              <option value=""></option>
               @foreach ($category_items as $category_item)
                 <option value="{{ $category_item->id }}">
                   {{ $category_item->category_level_1 }}
@@ -136,6 +134,16 @@
   {{-- textarea 自动调整高度 --}}
   <script>
   autosize($('textarea.autosize'));
+  </script>
+
+  {{-- select2 插件 --}}
+  <script>
+  $().ready(function(){
+    $('.select2-style').select2({
+      placeholder: "选择一个类别",
+      // allowClear: true
+    });
+  });
   </script>
 
   {{-- StackEdit Markdown 编辑器 --}}

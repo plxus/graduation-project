@@ -65,7 +65,7 @@
               <li><a href="{{ route('users.show', Auth::user()->id) }}">个人主页</a></li>
               <li><a href="{{ route('users.stars', Auth::user()->id) }}">我的收藏</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="{{ route('users.edit', Auth::user()->id) }}">用户设置</a></li>
+              <li><a href="{{ route('users.edit', Auth::user()->id) }}">设置</a></li>
               <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">注销</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

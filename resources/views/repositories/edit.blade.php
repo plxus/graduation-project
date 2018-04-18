@@ -5,9 +5,6 @@
 @section('style')
   {{-- 标签添加插件 --}}
   <link rel="stylesheet" href="/css/taggle.css">
-  {{-- jQuery 文件上传插件 --}}
-  {{-- <link rel="stylesheet" href="/css/jquery.fileupload-ui.css"> --}}
-  {{-- <link rel="stylesheet" href="/css/jquery.fileupload.css"> --}}
 @stop
 
 @section('content')
@@ -48,10 +45,8 @@
 
           <div class="form-group">
             <label for="repo-category">类别</label>
-            <select class="form-control" id="repo-category" name="category_id" required>
-              <option value="">
-                - 选择一个类别 -
-              </option>
+            <select class="form-control select2-style" id="repo-category" name="category_id" required>
+              <option value="">选择一个类别</option>
               @foreach ($category_items as $category_item)
                 <option value="{{ $category_item->id }}">
                   {{ $category_item->category_level_1 }}
@@ -63,8 +58,8 @@
           <br />
 
           <div class="form-group">
-            <label for="repo-tag">标签</label>
-            <div id="repo-tag" class="input textarea clearfix repo_tag"></div>
+            <label for="repo_tag">标签</label>
+            <div id="repo_tag" class="input textarea clearfix"></div>
             {{-- Each tag contains an hidden input with a configurable name of taggles[] by default  --}}
           </div>
 
@@ -153,6 +148,16 @@
   autosize($('textarea.autosize'));
   </script>
 
+  {{-- select2 插件 --}}
+  <script>
+  $().ready(function(){
+    $('.select2-style').select2({
+      placeholder: "选择一个类别",
+      // allowClear: true
+    });
+  });
+  </script>
+
   {{-- StackEdit Markdown 编辑器 --}}
   <script src="/js/stackedit.min.js"></script>
   <script>
@@ -191,10 +196,10 @@ foreach ($repoTags as $repoTag){
 $tags_str = '[\''.join("','", array_values($tags)).'\']';
 ?>
 <script>
-window.repo_tag = new Taggle($('.repo_tag.textarea')[0], {
+new Taggle('repo_tag', {
   duplicateTagClass: 'bounce',
   placeholder: '为知识清单添加标签',
-  tags: <?php echo($tags_str) ?>,
+  tags: {!! $tags_str !!},
 });
 </script>
 

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
   <title>@yield('title', '知识清单管理系统') - 知所</title>
 
+  {{-- select2 插件 --}}
+  <link rel="stylesheet" href="/css/select2.min.css" />
+  <link rel="stylesheet" href="/css/select2-bootstrap.min.css" />
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   {{-- 自定义 CSS --}}
@@ -38,8 +41,10 @@ use Illuminate\Support\Facades\Auth;
   <!-- Scripts -->
   <script src="/js/app.js"></script>
   <script src="/js/fontawesome-all.min.js"></script>
+  {{-- select2 插件 --}}
+  <script src="/js/select2.min.js"></script>
+  {{-- textarea 自适应高度 --}}
   <script src="/js/autosize.min.js"></script>
-
   {{-- 取消表单项按回车触发提交表单的操作 --}}
   <script>
   $("form.noreact-enter").keydown(function(){
@@ -48,7 +53,6 @@ use Illuminate\Support\Facades\Auth;
     }
   });
   </script>
-
   {{-- 自定义脚本 --}}
   @yield('script', '')
 </body>

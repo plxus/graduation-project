@@ -1,22 +1,35 @@
 @extends('layouts.default')
 
-@section('title', $user->name.' 用户设置')
+@section('title', '设置')
 
 @section('content')
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-h">用户设置</h4>
-          </div>
-          <div class="panel-body" style="padding: 30px 20px;">
-            <div class="row">
-              <div class="col-md-offset-1 col-md-10">
+        {{-- 错误提示 --}}
+        @include('shared._errors')
+      </div>
+    </div>
 
-                {{-- 错误提示 --}}
-                @include('shared._errors')
+    <h2>设置</h2>
 
+    <div class="row">
+      {{-- 胶囊式标签页 --}}
+      <div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+          <li role="presentation" class="active"><a href="#setting_profile" aria-controls="setting_profile" role="tab" data-toggle="pill">用户设置</a></li>
+          <li role="presentation"><a href="#setting_preferred_category" aria-controls="setting_preferred_category" role="tab" data-toggle="pill">类别偏好</a></li>
+        </ul>
+      </div>
+
+      {{-- 右侧内容区 --}}
+      <div class="col-md-8 col-md-offset-1">
+        <div class="tab-content">
+
+          {{-- 用户设置 --}}
+          <div role="tabpanel" class="tab-pane fade in active" id="setting_profile">
+            <div class="panel panel-default user-setting-panel">
+              <div class="panel-body">
                 <form method="POST" action="{{ route('users.update', $user->id ) }}">
                   {{ method_field('PATCH') }}
                   {{ csrf_field() }}
@@ -93,6 +106,17 @@
                   <br />
 
                   <button type="submit" class="btn btn-primary pull-right">&emsp;保存更改&emsp;</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          {{-- 类别偏好 --}}
+          <div role="tabpanel" class="tab-pane fade" id="setting_preferred_category">
+            <div class="panel panel-default user-setting-panel">
+              <div class="panel-body">
+                <form action="#" method="post">
+                  <button type="submit" class="btn btn-primary pull-right">&emsp;保存&emsp;</button>
                 </form>
               </div>
             </div>
