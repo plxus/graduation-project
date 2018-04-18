@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
+use App\Category;
 
 class UsersController extends Controller
 {
@@ -61,7 +62,11 @@ class UsersController extends Controller
   {
     // 使用 authorize 方法验证授权策略。authorize 方法有两个参数，第一个为授权策略的名称，第二个为进行授权验证的数据。
     $this->authorize('update', $user);
-    return view('users.edit', compact('user'));
+
+    // 获取所有类别记录
+    $category_items = Category::all();
+
+    return view('users.edit', compact('user', 'category_items'));
   }
 
   // 处理用户个人信息表单提交数据

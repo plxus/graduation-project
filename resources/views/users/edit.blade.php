@@ -105,7 +105,7 @@
 
                   <br />
 
-                  <button type="submit" class="btn btn-primary pull-right">&emsp;保存更改&emsp;</button>
+                  <button type="submit" class="btn btn-primary pull-right">&emsp;保存&emsp;</button>
                 </form>
               </div>
             </div>
@@ -115,8 +115,25 @@
           <div role="tabpanel" class="tab-pane fade" id="setting_preferred_category">
             <div class="panel panel-default user-setting-panel">
               <div class="panel-body">
-                <form action="#" method="post">
+
+                <form action="{{ route('users.preferences', $user->id) }}" method="post">
+                  {{ csrf_field() }}
+                  <div class="form-group">
+                    <label for="preferred-categories">知识清单类别</label>
+                    <select class="form-control select2-style" id="preferred-categories" name="preferred_categories[]" required multiple="multiple">
+                      <option value=""></option>
+                      @foreach ($category_items as $category_item)
+                        <option value="{{ $category_item->id }}">
+                          {{ $category_item->category_level_1 }}
+                        </option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <br />
+
                   <button type="submit" class="btn btn-primary pull-right">&emsp;保存&emsp;</button>
+                  <a role="button" href="{{ route('home')}}" class="btn btn-default pull-right" style="margin-right: 20px;">&emsp;取消&emsp;</a>
                 </form>
               </div>
             </div>
@@ -125,4 +142,16 @@
       </div>
     </div>
   </div>
+@stop
+
+@section('script')
+  {{-- select2 插件 --}}
+  <script>
+  $().ready(function(){
+    $('.select2-style').select2({
+      placeholder: "搜索或选择你感兴趣的多个类别",
+      // allowClear: true
+    });
+  });
+  </script>
 @stop

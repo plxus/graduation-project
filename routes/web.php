@@ -37,6 +37,8 @@ Route::resource('/users', 'UsersController');
 // 知识清单 CRUD 路由
 Route::resource('/repositories', 'RepositoriesController');
 
+// 用户设置类别偏好操作路由
+Route::post('/users/preferences/{user}','UsersController@preferences')->name('users.preferences');
 
 // 用户收藏知识清单列表视图路由
 Route::get('/users/{user}/stars','UsersController@stars')->name('users.stars');

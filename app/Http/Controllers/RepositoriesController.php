@@ -40,7 +40,7 @@ class RepositoriesController extends Controller
   public function create()
   {
     // 获取所有类别记录
-    $category_items = DB::table('repo_categories')->get()->toArray();
+    $category_items = Category::all();
     return view('repositories.create', compact('category_items'));
   }
 
@@ -113,7 +113,10 @@ class RepositoriesController extends Controller
   public function edit(Repository $repository)
   {
     $this->authorize('update', $repository);
-    $category_items = DB::table('repo_categories')->get()->toArray();  // 获取所有类别记录
+
+    // 获取所有类别记录
+    $category_items = Category::all();
+
     $repoTags = $repository->tags;  // 该知识清单的标签实例
     $repoCategory = $repository->category;  // 该知识清单的类别实例
     return view('repositories.edit', compact('repository', 'category_items', 'repoTags', 'repoCategory'));
