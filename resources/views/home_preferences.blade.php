@@ -55,6 +55,25 @@
         </div>
 
         <div class="col-md-8">
+          {{-- 图片轮播 --}}
+          <div id="home-carousel">
+            <div class="carousel-item slick-slide">
+              <img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item slick-slide">
+              <img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item slick-slide">
+              <img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3">
+              <div class="carousel-caption">
+              </div>
+            </div>
+          </div>
+
           {{-- Tab 栏 --}}
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation"><a href="{{ route('home') }}" aria-controls="timeline" role="tab">&emsp;时间线&emsp;</a></li>
@@ -169,14 +188,30 @@
   @section('script')
     {{-- holmes 插件 --}}
     <script src="/js/holmes.js"></script>
-    <script>
-    @auth
-    holmes({
-      find: '.category-wall span'
-    });
-    @endauth
 
+    <script>
     $().ready(function(){
+      // holmes 插件
+      @auth
+      holmes({
+        find: '.category-wall span'
+      });
+      @endauth
+
+      // 图片轮播
+      $('#home-carousel').slick({
+        arrows: false,
+        // prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        // nextArrow: '<button type="button" class="slick-next">Next</button>',
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        adaptiveHeight: true,
+        easing: 'ease',
+      });
+
       // 按创建时间排序
       $('#sort_by_created_at').bind("click", function(){
         $('#form_created_at').submit();

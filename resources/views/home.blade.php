@@ -2,12 +2,6 @@
 
 @section('title', '知识清单管理系统')
 
-@section('style')
-  {{-- slick 图片轮播插件 --}}
-  <link rel="stylesheet" href="/css/slick.css">
-  <link rel="stylesheet" href="/css/slick-theme.css">
-@stop
-
 @section('content')
   <div class="container">
     <div class="row">
@@ -64,17 +58,17 @@
         <div class="col-md-8">
           {{-- 图片轮播 --}}
           <div id="home-carousel">
-            <div class="carousel-item">
+            <div class="carousel-item slick-slide">
               <img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1">
               <div class="carousel-caption">
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item slick-slide">
               <img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2">
               <div class="carousel-caption">
               </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item slick-slide">
               <img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3">
               <div class="carousel-caption">
               </div>
@@ -195,8 +189,6 @@
   @section('script')
     {{-- holmes 插件 --}}
     <script src="/js/holmes.js"></script>
-    {{-- slick 图片轮播插件 --}}
-    <script src="/js/slick.min.js"></script>
 
     <script>
     $().ready(function(){
