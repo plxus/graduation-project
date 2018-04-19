@@ -57,13 +57,15 @@
         <div class="col-md-8">
           {{-- Tab 栏 --}}
           <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#timeline" aria-controls="timeline" role="tab" data-toggle="tab">&emsp;时间线&emsp;</a></li>
-            <li role="presentation"><a href="{{ route('home.preferences') }}" aria-controls="preferred_categories" role="tab">&emsp;偏好的类别&emsp;</a></li>
+            <li role="presentation"><a href="{{ route('home') }}" aria-controls="timeline" role="tab">&emsp;时间线&emsp;</a></li>
+            <li role="presentation" class="active"><a href="#preferred_categories" aria-controls="preferred_categories" role="tab" data-toggle="tab">&emsp;偏好的类别&emsp;</a></li>
           </ul>
 
           <div class="tab-content">
             {{-- 时间线 --}}
-            <div role="tabpanel" class="tab-pane fade in active" id="timeline">
+
+            {{-- 偏好的类别 --}}
+            <div role="tabpanel" class="tab-pane fade in active" id="preferred_categories">
               {{-- 排序按钮 --}}
               <div class="row">
                 <div class="col-md-12 home-btn-row">
@@ -73,19 +75,19 @@
                     <ul class="dropdown-menu">
                       {{-- 按创建时间排序 --}}
                       <li id="li_created_at"><a id="sort_by_created_at" role="button">最近创建</a></li>
-                      <form method="get" action="{{ route('home') }}" class="hidden" id="form_created_at">
+                      <form method="get" action="{{ route('home.preferences') }}" class="hidden" id="form_created_at">
                         {{ csrf_field() }}
                         <input type="hidden" name="sort" value="created_at" />
                       </form>
                       {{-- 按更新时间排序 --}}
                       <li id="li_updated_at"><a id="sort_by_updated_at" role="button">最近更新</a></li>
-                      <form method="get" action="{{ route('home') }}" class="hidden" id="form_updated_at">
+                      <form method="get" action="{{ route('home.preferences') }}" class="hidden" id="form_updated_at">
                         {{ csrf_field() }}
                         <input type="hidden" name="sort" value="updated_at" />
                       </form>
                       {{-- 按收藏数排序 --}}
                       <li id="li_star_num"><a id="sort_by_star_num" role="button">最多收藏</a></li>
-                      <form method="get" action="{{ route('home') }}" class="hidden" id="form_star_num">
+                      <form method="get" action="{{ route('home.preferences') }}" class="hidden" id="form_star_num">
                         {{ csrf_field() }}
                         <input type="hidden" name="sort" value="star_num" />
                       </form>
@@ -94,28 +96,25 @@
                 </div>
               </div>
 
-              {{-- 时间线信息流 --}}
+              {{-- 偏好类别信息流 --}}
               <div class="row home-feed-flow">
                 <div class="col-md-12" id="feed_flow">
-                  @if (count($feed_items))
-                    @foreach ($feed_items as $feed_item)
+                  @if (count($preferred_feed_items))
+                    @foreach ($preferred_feed_items as $feed_item)
                       @include('repositories._repo_flow', ['repoAuthor' => $feed_item->user, 'repoCategory' => $feed_item->category])
                       {{-- $feed_item->user 对应了 Repository 模型类中的 user() 方法，使用 user 可以获取到 Eloquent 集合。 --}}
                     @endforeach
-                    {!! $feed_items->appends([
+                    {!! $preferred_feed_items->appends([
                       '_token' => csrf_token(),
                       'sort' => isset($sort_rule) ? $sort_rule : '',
                       ])->links() !!}
                       {{-- 渲染分页视图时添加 URI --}}
                     @else
-                      <h4 class="msg-no-item text-center">暂无知识清单<br /><a href="{{ route('repositories.create') }}">创建你的第一份知识清单</a>，或者关注其他用户</h4>
+                      <h4 class="msg-no-item text-center">暂无知识清单<br />你可以在设置中选择感兴趣的知识清单类别</h4>
                     @endif
                   </div>
                 </div>
               </div>
-
-              {{-- 偏好的类别 --}}
-
             </div>
           </div>
         </div>

@@ -86,13 +86,15 @@ class HomeController extends Controller
       }
     }
 
-    $preferred_category_ids = Auth::user()->preferred_categories->pluck('id');
-    // 获取首页偏好类别信息流中的条目
-    $preferred_feed_items = Repository::where('is_private', false)
-    ->whereIn('category_id', $preferred_category_ids)
-    ->with('user')
-    ->orderBy("$sort_rule", 'desc')
-    ->paginate(20);
+    if (Auth::check()) {
+      $preferred_category_ids = Auth::user()->preferred_categories->pluck('id');
+      // 获取首页偏好类别信息流中的条目
+      $preferred_feed_items = Repository::where('is_private', false)
+      ->whereIn('category_id', $preferred_category_ids)
+      ->with('user')
+      ->orderBy("$sort_rule", 'desc')
+      ->paginate(20);
+    }
 
     return view('home_preferences', compact('category_items', 'preferred_feed_items', 'sort_rule'));
   }

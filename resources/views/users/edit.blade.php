@@ -119,7 +119,7 @@
                 <form action="{{ route('users.preferences', $user->id) }}" method="post">
                   {{ csrf_field() }}
                   <div class="form-group">
-                    <label for="preferred_categories_select">知识清单类别</label>
+                    <label for="preferred_categories_select">偏好的知识清单类别</label>
                     <br />
                     <select class="form-control select2-style" id="preferred_categories_select" name="preferred_categories[]" required multiple style="width:100%;">
                       <option></option>
@@ -153,7 +153,7 @@
   <script>
   $().ready(function(){
     $('.select2-style').select2({
-      placeholder: "搜索或选择你感兴趣的多个类别",
+      placeholder: "搜索或选择你感兴趣的知识清单类别",
     });
 
     @if ($preferred_category_ids_now)
