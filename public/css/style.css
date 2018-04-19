@@ -428,6 +428,44 @@ h3.repo-category-head {
   margin: 20px 0;
 }
 
+/* 首页图片轮播 */
+
+#home-carousel {
+  margin: 0 0 50px 0;
+}
+
+.slick-list {
+  border-radius: 5px;
+}
+
+.carousel-item{
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+}
+
+.slick-prev, .slick-next {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+}
+
+.slick-dots li button:before {
+  opacity: 0.5;
+  color: #9E9E9E;
+}
+
+.slick-dots li button:hover:before, .slick-dots li button:focus:before {
+  opacity: 1;
+  color: #9E9E9E;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #008FF7;
+}
+
 /* Users Edit 设置页 */
 
 .user-setting-panel .panel-body {

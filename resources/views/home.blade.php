@@ -2,6 +2,12 @@
 
 @section('title', '知识清单管理系统')
 
+@section('style')
+  {{-- slick 图片轮播插件 --}}
+  <link rel="stylesheet" href="/css/slick.css">
+  <link rel="stylesheet" href="/css/slick-theme.css">
+@stop
+
 @section('content')
   <div class="container">
     <div class="row">
@@ -14,7 +20,7 @@
     {{-- 已登录用户的首页视图 --}}
     @auth
       <div class="row">
-
+        {{-- 左侧：知识清单类别 --}}
         <div class="col-md-4 home-left">
           <div class="panel panel-default home-panel">
             <!-- Default panel contents -->
@@ -54,7 +60,27 @@
           </div>
         </div>
 
+        {{-- 右侧 --}}
         <div class="col-md-8">
+          {{-- 图片轮播 --}}
+          <div id="home-carousel">
+            <div class="carousel-item">
+              <img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2">
+              <div class="carousel-caption">
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3">
+              <div class="carousel-caption">
+              </div>
+            </div>
+          </div>
+
           {{-- Tab 栏 --}}
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#timeline" aria-controls="timeline" role="tab" data-toggle="tab">&emsp;时间线&emsp;</a></li>
@@ -115,7 +141,6 @@
               </div>
 
               {{-- 偏好的类别 --}}
-
             </div>
           </div>
         </div>
@@ -170,14 +195,32 @@
   @section('script')
     {{-- holmes 插件 --}}
     <script src="/js/holmes.js"></script>
-    <script>
-    @auth
-    holmes({
-      find: '.category-wall span'
-    });
-    @endauth
+    {{-- slick 图片轮播插件 --}}
+    <script src="/js/slick.min.js"></script>
 
+    <script>
     $().ready(function(){
+      // holmes 插件
+      @auth
+      holmes({
+        find: '.category-wall span'
+      });
+      @endauth
+
+      // 图片轮播
+      $('#home-carousel').slick({
+        arrows: false,
+        // prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        // nextArrow: '<button type="button" class="slick-next">Next</button>',
+        dots: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        adaptiveHeight: true,
+        easing: 'ease',
+      });
+
       // 按创建时间排序
       $('#sort_by_created_at').bind("click", function(){
         $('#form_created_at').submit();
