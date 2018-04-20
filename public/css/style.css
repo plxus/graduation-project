@@ -428,6 +428,21 @@ h3.repo-category-head {
   margin: 20px 0;
 }
 
+.search-header {
+  margin: 20px 0;
+}
+
+.search-header .btn {
+  position: relative;
+  top: -2px;
+  left: 0;
+  margin-right: 20px;
+}
+
+.search-header h2 {
+  margin-top: 0;
+}
+
 /* 首页图片轮播 */
 
 #home-carousel {

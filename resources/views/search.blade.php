@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '搜索结果')
+@section('title', '搜索')
 
 @section('content')
   <div class="container">
@@ -13,11 +13,11 @@
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <a class="btn btn-default" href="javascript:history.go(-1);" role="button"><i class="fas fa-arrow-left"></i> 返回</a>
+
 
         <div class="row">
-          <div class="col-md-12 home-btn-row">
-            <h2>搜索结果</h2>
+          <div class="col-md-12 search-header">
+            <h2><a class="btn btn-default" href="javascript:history.go(-1);" role="button"><i class="fas fa-arrow-left"></i> 返回</a>搜索结果</h2>
             {{-- 类别 --}}
             @if (isset($search_category_id))
               @if ($search_category_id === 'all')
