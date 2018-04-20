@@ -88,13 +88,13 @@
                 <div class="radio">
                   <label>
                     <input type="radio" name="copyright" id="copyright-limit" value="limit">
-                    转载需授权
+                    转载需获得作者授权
                   </label>
                 </div>
                 <div class="radio">
                   <label>
                     <input type="radio" name="copyright" id="copyright-allow" value="allow">
-                    允许转载
+                    允许转载（非商用）
                   </label>
                 </div>
                 <div class="radio">
@@ -113,13 +113,13 @@
                 <div class="radio">
                   <label>
                     <input type="radio" name="is_private" id="repo-public" value="false">
-                    公开
+                    公开&nbsp;<i class="fas fa-users icon-gray"></i>
                   </label>
                 </div>
                 <div class="radio">
                   <label>
                     <input type="radio" name="is_private" id="repo-private" value="true">
-                    私有
+                    私有&nbsp;<i class="fas fa-lock icon-gray"></i>
                   </label>
                 </div>
               </div>
@@ -152,7 +152,7 @@
   <script>
   $().ready(function(){
     $('.select2-style').select2({
-      placeholder: "选择一个类别",
+      placeholder: "选择知识清单所属的类别",
       // allowClear: true
     });
   });
