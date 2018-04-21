@@ -189,16 +189,17 @@
   @section('script')
     {{-- holmes 插件 --}}
     <script src="/js/holmes.js"></script>
+    <script>
+    // holmes 插件
+    @auth
+    holmes({
+      find: '.category-wall span'
+    });
+    @endauth
+    </script>
 
     <script>
     $().ready(function(){
-      // holmes 插件
-      @auth
-      holmes({
-        find: '.category-wall span'
-      });
-      @endauth
-
       // 图片轮播
       $('#home-carousel').slick({
         arrows: false,
