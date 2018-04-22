@@ -5,6 +5,9 @@
 @section('style')
   {{-- 标签添加插件 --}}
   <link rel="stylesheet" href="/css/taggle.css">
+  {{-- select2 插件 --}}
+  <link rel="stylesheet" href="/css/select2.min.css" />
+  <link rel="stylesheet" href="/css/select2-bootstrap.min.css" />
 @stop
 
 @section('content')
@@ -149,6 +152,7 @@
   </script>
 
   {{-- select2 插件 --}}
+  <script src="/js/select2.min.js"></script>
   <script>
   $().ready(function(){
     $('.select2-style').select2({

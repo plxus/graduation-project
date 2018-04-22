@@ -2,6 +2,12 @@
 
 @section('title', '设置')
 
+@section('style')
+  {{-- select2 插件 --}}
+  <link rel="stylesheet" href="/css/select2.min.css" />
+  <link rel="stylesheet" href="/css/select2-bootstrap.min.css" />
+@stop
+
 @section('content')
   <div class="container">
     <div class="row">
@@ -146,6 +152,9 @@
 @stop
 
 @section('script')
+  {{-- select2 插件 --}}
+  <script src="/js/select2.min.js"></script>
+  
   <?php
   $preferred_category_ids_now_str = '[\''.join("','", array_values($preferred_category_ids_now)).'\']';
   ?>
