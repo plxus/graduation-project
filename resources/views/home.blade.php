@@ -156,7 +156,7 @@
             {{-- 系统图文展示 --}}
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-                <h2 class="light-h">分享与探索<br />各个学科领域的知识</h2>
+                <h1 class="light-h home-intro">分享与探索<br />各个学科领域的知识</h1>
               </div>
               <div class="col-md-6 text-center">
 
@@ -168,13 +168,13 @@
 
               </div>
               <div class="col-md-6 text-center">
-                <h2 class="light-h">个性化推荐<br />精准搜索</h2>
+                <h1 class="light-h home-intro">个性化推荐<br />精准搜索</h1>
               </div>
             </div>
 
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-                <h2 class="light-h">版本跟踪<br />权限控制</h2>
+                <h1 class="light-h home-intro">版本跟踪<br />权限控制</h1>
               </div>
               <div class="col-md-6 text-center">
 
