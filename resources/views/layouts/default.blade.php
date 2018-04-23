@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
   <title>@yield('title', '知识清单管理系统') - 知所</title>
 
+  {{-- Stylesheet --}}
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/bootstrap-theme-paper.css">
   {{-- slick 图片轮播插件 --}}

@@ -58,7 +58,7 @@ class RepositoriesController extends Controller
       'title' => 'required|string|max:191',
       'description' => 'nullable|string|max:191',
       'category_id' => 'required|integer',
-      'taggles' => 'nullable',
+      'taggles' => 'nullable',  // 标签
       'content' => 'required|string',
       'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。
       'is_private' => 'required',
@@ -137,7 +137,7 @@ class RepositoriesController extends Controller
       'title' => 'required|string|max:191',
       'description' => 'nullable|string|max:191',
       'category_id' => 'required|integer',
-      'taggles' => 'nullable',
+      'taggles' => 'nullable',  // 标签
       'content' => 'required|string',
       'copyright' => 'required|string',  // allow 允许转载，limit 需授权，forbid 禁止转载。
       'is_private' => 'required',

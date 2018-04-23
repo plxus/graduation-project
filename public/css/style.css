@@ -10,6 +10,10 @@ body {
   letter-spacing: .2px;
 }
 
+body.body-bg-gray {
+  background-color: #ECEFF1;
+}
+
 a {
   color: #1976D2;
 }

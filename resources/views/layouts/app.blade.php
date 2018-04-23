@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="body-bg-gray">
   <div id="app">
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -47,8 +47,8 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
             @guest
-              <li><a href="{{ route('login') }}">登录</a></li>
               <li><a href="{{ route('register') }}">注册</a></li>
+              <li><a href="{{ route('login') }}">登录</a></li>
             @else
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -75,7 +75,15 @@
     </div>
   </nav>
 
+  {{-- 消息提示框 --}}
+  <div class="container">
+    @include('shared._messages')
+  </div>
+
   @yield('content')
+
+  {{--  页脚  --}}
+  @include('layouts._footer')
 </div>
 
 <!-- Scripts -->
