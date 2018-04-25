@@ -59,19 +59,13 @@
           {{-- 图片轮播 --}}
           <div id="home-carousel">
             <div class="carousel-item slick-slide">
-              <img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1">
-              <div class="carousel-caption">
-              </div>
+              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1"></a>
             </div>
             <div class="carousel-item slick-slide">
-              <img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2">
-              <div class="carousel-caption">
-              </div>
+              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2"></a>
             </div>
             <div class="carousel-item slick-slide">
-              <img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3">
-              <div class="carousel-caption">
-              </div>
+              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3"></a>
             </div>
           </div>
 
@@ -145,9 +139,9 @@
           <div class="col-md-12">
             {{-- 巨幕 --}}
             <div class="jumbotron">
-              <h1>知所</h1>
-              <h3>面向大学生的<br />知识清单管理系统</h3>
+              <h1 class="xlight-h">知识清单管理系统</h1>
               <br />
+              <h2>一个面向大学生的<br />知识分享社区</h2>
               <p>
                 <a class="btn btn-lg btn-success" href="{{ route('register') }}" role="button">&emsp;现在注册&emsp;</a>
               </p>
@@ -156,28 +150,40 @@
             {{-- 系统图文展示 --}}
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-                <h1 class="light-h home-intro">分享与探索<br />各个学科领域的知识</h1>
+                <h1 class="light-h home-intro">自由地探索<br />各个学科领域的知识</h1>
+                <p class="pb-0">
+                  在知识的星辰大海里尽情遨游<br />
+                  或者与世界分享你的知识、经验和见地
+                </p>
               </div>
               <div class="col-md-6 text-center">
-
+                <img src="#" />
               </div>
             </div>
 
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-
+                <img src="#" />
               </div>
               <div class="col-md-6 text-center">
                 <h1 class="light-h home-intro">个性化推荐<br />精准搜索</h1>
+                <p class="pb-0">
+                  基于用户关注与类别偏好生成推荐信息流，第一时间发现感兴趣的内容<br />
+                  支持关键词搜索、类别与标签筛选、信息流与搜索结果排序，万象尽在掌控
+                </p>
               </div>
             </div>
 
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-                <h1 class="light-h home-intro">版本跟踪<br />权限控制</h1>
+                <h1 class="light-h home-intro">权限控制，著作权保护<br />修订版本跟踪</h1>
+                <p class="pb-0">
+                  为知识清单设定访问权限，还可声明著作权，你的知识清单由你定义<br />
+                  每次修订知识清单时填写记录，修订版本随时跟踪，一目了然
+                </p>
               </div>
               <div class="col-md-6 text-center">
-
+                <img src="#" />
               </div>
             </div>
           </div>
