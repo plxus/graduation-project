@@ -147,27 +147,27 @@
               </p>
             </div>
 
-            {{-- 系统图文展示 --}}
+            {{-- 产品图文展示 --}}
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
                 <h1 class="light-h home-intro">自由地探索<br />各个学科领域的知识</h1>
-                <p class="pb-0">
+                <p>
                   在知识的星辰大海里尽情遨游<br />
-                  或者与世界分享你的知识、经验和见地
+                  或者与世界分享你的知识、经验和见解
                 </p>
               </div>
               <div class="col-md-6 text-center">
-                <img src="#" />
+                <embed src="/storage/pages/home/zhisuo_home_intro_1.svg" type="image/svg+xml" />
               </div>
             </div>
 
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
-                <img src="#" />
+                <embed src="/storage/pages/home/zhisuo_home_intro_2.svg" type="image/svg+xml" />
               </div>
               <div class="col-md-6 text-center">
                 <h1 class="light-h home-intro">个性化推荐<br />精准搜索</h1>
-                <p class="pb-0">
+                <p>
                   基于用户关注与类别偏好生成推荐信息流，第一时间发现感兴趣的内容<br />
                   支持关键词搜索、类别与标签筛选、信息流与搜索结果排序，万象尽在掌控
                 </p>
@@ -177,13 +177,13 @@
             <div class="row home-intro-row">
               <div class="col-md-6 text-center">
                 <h1 class="light-h home-intro">权限控制，著作权保护<br />修订版本跟踪</h1>
-                <p class="pb-0">
+                <p>
                   为知识清单设定访问权限，还可声明著作权，你的知识清单由你定义<br />
                   每次修订知识清单时填写记录，修订版本随时跟踪，一目了然
                 </p>
               </div>
               <div class="col-md-6 text-center">
-                <img src="#" />
+                <embed src="/storage/pages/home/zhisuo_home_intro_3.svg" type="image/svg+xml" />
               </div>
             </div>
           </div>

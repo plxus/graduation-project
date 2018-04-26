@@ -139,7 +139,7 @@ article {
 }
 
 .pb-0 {
-  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .light-h {
@@ -391,12 +391,13 @@ hr {
 /* Home 首页 */
 
 .jumbotron {
-  background-image:url('/storage/pages/home/zhisuo_home_jumbotron.jpg');
+  background: url('/storage/pages/home/zhisuo_home_jumbotron.jpeg') no-repeat;
+  background-size: cover;
   background-color: #BDBDBD;
-  border-radius: 5px !important;
+  /* border-radius: 5px !important; */
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   padding: 80px 0;
 }
 
@@ -415,12 +416,19 @@ hr {
 }
 
 .home-intro-row {
-  margin: 40px 0;
+  margin: 60px 0;
 }
 
 .home-intro-row p {
   color: #616161;
   line-height: 2em;
+  margin-bottom: 30px;
+}
+
+.home-intro-row embed {
+  width: auto;
+  height: 170px;
+  margin: 35px auto;
 }
 
 .home-left {
