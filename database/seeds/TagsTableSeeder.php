@@ -13,15 +13,6 @@ class TagsTableSeeder extends Seeder
   */
   public function run()
   {
-    $tags = ['分析方法'];
-    $repository_ids = Repository::pluck('id')->toArray();
-    foreach ($repository_ids as $repository_id) {
-      foreach ($tags as $tag) {
-        Tag::create([
-          'repository_id' => $repository_id,
-          'name' => $tag,
-        ]);
-      }
-    }
+
   }
 }

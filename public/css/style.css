@@ -717,6 +717,10 @@ span.is-private {
   color: #757575 !important;
 }
 
+article#content {
+  margin-top: 20px;
+}
+
 /* Search 搜索结果页 */
 
 h3.search-result {

@@ -224,8 +224,12 @@
   <script src="/js/stackedit.min.js"></script>
   <script>
   let md_content = '{!! $repository->content !!}';
-  var reg = new RegExp("<br />", "g");
-  md_content = md_content.replace(reg, "\n");
+
+  var reg1 = new RegExp("&lt;br /&gt;", "g");
+  md_content = md_content.replace(reg1, "\n");
+  var reg2 = new RegExp("&gt;", "g");
+  md_content = md_content.replace(reg2, ">");
+
   const el = document.querySelector('#content');
   const stackedit = new Stackedit();
   stackedit.openFile({

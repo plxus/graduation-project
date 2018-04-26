@@ -74,7 +74,7 @@
               <button class="btn btn-success" type="button" id="btn_repo_edit"><i class="fas fa-edit"></i>&nbsp;打开编辑器</button>
               <span class="help-block small-p">支持 Markdown 语法。</span>
             </div>
-            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required>{!! str_replace("<br />", "\n", $repository->content) !!}</textarea>
+            <textarea class="form-control hidden" id="repo_content" name="content" rows="15" placeholder="输入知识清单的正文内容" required>{!! str_replace("<br />", "\n", htmlspecialchars_decode($repository->content, ENT_QUOTES)) !!}</textarea>
             <h4 class="border-h">
               预览
             </h4>

@@ -68,7 +68,7 @@ class RepositoriesController extends Controller
       'title' => $request->title,
       'description' => str_replace(["\r\n", "\n"], " ", $request->description),  // 将 \n、\r\n 换行符替换为空格
       'category_id' => $request->category_id,
-      'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
+      'content' => htmlspecialchars(str_replace(["\r\n", "\n"], "<br />", $request->content), ENT_QUOTES),  // 将 \n、\r\n 换行符替换为 <br />，特殊字符转换为字符实体
       'copyright' => $request->copyright,
       'is_private' => $request->is_private === 'true' ? true : false,
     ]);
@@ -150,7 +150,7 @@ class RepositoriesController extends Controller
       'title' => $request->title,
       'description' => str_replace(["\r\n", "\n"], " ", $request->description),  // 将 \n、\r\n 换行符替换为空格
       'category_id' => $request->category_id,
-      'content' => str_replace(["\r\n", "\n"], "<br />", $request->content),  // 将 \n、\r\n 换行符替换为 <br />
+      'content' => htmlspecialchars(str_replace(["\r\n", "\n"], "<br />", $request->content), ENT_QUOTES),  // 将 \n、\r\n 换行符替换为 <br />，特殊字符转换为字符实体
       'copyright' => $request->copyright,
       'is_private' => $request->is_private === 'true' ? true : false,
     ];
