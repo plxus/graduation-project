@@ -90,7 +90,7 @@
                     <div role="tabpanel" class="tab-pane fade" id="change_password">
                       <br />
                       <p>
-                        留空则继续使用现有的密码。
+                        留空将继续使用现有的密码。
                       </p>
 
                       <br />
@@ -154,7 +154,7 @@
 @section('script')
   {{-- select2 插件 --}}
   <script src="/js/select2.min.js"></script>
-  
+
   <?php
   $preferred_category_ids_now_str = '[\''.join("','", array_values($preferred_category_ids_now)).'\']';
   ?>

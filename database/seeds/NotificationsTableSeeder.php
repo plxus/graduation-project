@@ -14,7 +14,7 @@ class NotificationsTableSeeder extends Seeder
   {
     Notification::create([
       'send_id' => 1,
-      'receive_id' => 0,
+      'receive_id' => 0,  // 全部用户
       'subject' => '欢迎来到知识清单管理系统',
       'content' => '你好，欢迎来到知所，一个面向大学生的知识清单管理系统。让我们一起在这里探索与分享新知。',
     ]);

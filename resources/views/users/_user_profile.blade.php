@@ -22,7 +22,7 @@
       @else
         <form action="{{ route('follows.store', $user->id) }}" method="post">
           {{ csrf_field() }}
-          <button type="submit" class="btn btn-primary user-social-btn">&emsp;关注&emsp;</button>
+          <button type="submit" class="btn btn-primary user-social-btn">&emsp;<i class="far fa-thumbs-up"></i>&nbsp;关注&emsp;</button>
         </form>
       @endif
     </div>
@@ -32,7 +32,7 @@
     {{-- 发私信按钮 --}}
     <div class="msg-form">
       <button class="btn btn-success user-social-btn" type="button" data-toggle="collapse" data-target="#message" aria-expanded="false" aria-controls="message">
-        &emsp;发私信&emsp;
+        &emsp;<i class="far fa-comment"></i>&nbsp;发私信&emsp;
       </button>
       <div class="collapse" id="message">
         <br />
