@@ -162,15 +162,15 @@
             </div>
 
             <div class="row home-intro-row">
-              <div class="col-md-6 text-center">
-                <embed src="/storage/pages/home/zhisuo_home_intro_2.svg" type="image/svg+xml" />
-              </div>
-              <div class="col-md-6 text-center">
+              <div class="col-md-6 col-md-push-6 text-center">
                 <h1 class="light-h home-intro">个性化推荐<br />精准搜索</h1>
                 <p>
                   基于用户关注与类别偏好生成推荐信息流，第一时间发现感兴趣的内容<br />
                   支持关键词搜索、类别与标签筛选、信息流与搜索结果排序，万象尽在掌控
                 </p>
+              </div>
+              <div class="col-md-6 col-md-pull-6 text-center">
+                <embed src="/storage/pages/home/zhisuo_home_intro_2.svg" type="image/svg+xml" />
               </div>
             </div>
 

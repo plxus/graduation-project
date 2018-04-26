@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('home') }}">知识清单管理系统</a>
+      <a class="navbar-brand" href="{{ route('home') }}"><embed src="/storage/pages/home/zhisuo_logo_white.svg" type="image/svg+xml" width="37px" height="37px" />知识清单管理系统</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

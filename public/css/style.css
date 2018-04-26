@@ -195,7 +195,13 @@ label {
 }
 
 .navbar-brand {
-  font-weight: 500;
+  padding-top: 18.5px;
+  font-weight: 400;
+}
+
+.navbar-brand embed {
+  margin: -7px 15px -8px 0;
+  padding-top: 3px;
 }
 
 .navbar-nav>li>a {
@@ -246,8 +252,8 @@ input.navbar-search {
 /* Footer */
 
 footer {
-  margin-top: 40px;
-  padding-top: 40px;
+  margin-top: 55px;
+  padding-top: 55px;
   padding-bottom: 40px;
   border-top: 1px solid #EEEEEE;
   text-align: center;
@@ -393,7 +399,7 @@ hr {
 .jumbotron {
   background: url('/storage/pages/home/zhisuo_home_jumbotron.jpeg') no-repeat;
   background-size: cover;
-  background-color: #BDBDBD;
+  background-color: #9E9E9E;
   /* border-radius: 5px !important; */
   text-align: center;
   vertical-align: middle;
