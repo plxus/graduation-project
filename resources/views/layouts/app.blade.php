@@ -30,11 +30,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <!-- Branding Image -->
-          <a class="navbar-brand" href="{{ route('home') }}">
-            {{-- {{ config('app.name', 'Laravel') }} --}}
-            知识清单管理系统
-          </a>
+          <a class="navbar-brand" href="{{ route('home') }}"><embed src="/storage/pages/home/zhisuo_logo_deep_gray.svg" type="image/svg+xml" width="37px" height="37px" />知识清单管理系统</a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">

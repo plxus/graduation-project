@@ -497,7 +497,7 @@ h3.repo-category-head {
 /* 首页图片轮播 */
 
 #home-carousel {
-  margin: 0 0 50px 0;
+  margin: 0 0 60px 0;
 }
 
 .slick-list {
@@ -506,6 +506,10 @@ h3.repo-category-head {
 
 .carousel-item{
   text-align: center;
+}
+
+.carousel-item a {
+  outline: none !important;
 }
 
 .carousel-item img {
@@ -642,7 +646,7 @@ button.delete-user {
 
 .star-btn {
   position: relative;
-  margin-top: 7px;
+  margin-top: 11px;
 }
 
 a.repo-title {

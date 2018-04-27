@@ -59,13 +59,13 @@
           {{-- 图片轮播 --}}
           <div id="home-carousel">
             <div class="carousel-item slick-slide">
-              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_0.png" alt="轮播图1"></a>
+              <a href="{{ route('about') }}" target="_blank"><img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图1"></a>
             </div>
             <div class="carousel-item slick-slide">
-              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_1.png" alt="轮播图2"></a>
+              <a href="{{ route('about') }}" target="_blank"><img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图2"></a>
             </div>
             <div class="carousel-item slick-slide">
-              <a href="#"><img src="/storage/pages/home/zhisuo_home_banner_2.png" alt="轮播图3"></a>
+              <a href="{{ route('about') }}" target="_blank"><img src="/storage/pages/home/zhisuo_home_banner_3.png" alt="轮播图3"></a>
             </div>
           </div>
 

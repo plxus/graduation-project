@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', '创建知识清单')
+@section('title', '新建知识清单')
 
 @section('style')
   {{-- 标签添加插件 --}}
