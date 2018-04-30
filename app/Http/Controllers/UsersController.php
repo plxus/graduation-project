@@ -148,8 +148,7 @@ class UsersController extends Controller
   public function index(User $user)
   {
     $this->authorize('userIndex', $user);
-    $users = User::paginate(10);
-    return view('users.index', compact('users'));
+    return redirect()->route('voyager.users.index');
   }
 
   // 处理删除用户表单提交的数据
