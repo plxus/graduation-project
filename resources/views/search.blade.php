@@ -17,7 +17,7 @@
 
         <div class="row">
           <div class="col-md-12 search-header">
-            <h2><a class="btn btn-default" href="javascript:history.go(-1);" role="button"><i class="fas fa-arrow-left"></i> 返回</a>搜索结果</h2>
+            <h2><a class="btn btn-default back-btn" href="javascript:history.go(-1);" role="button"><i class="fas fa-arrow-left"></i> 返回</a>搜索结果</h2>
             {{-- 类别 --}}
             @if (isset($search_category_id))
               @if ($search_category_id === 'all')
@@ -33,7 +33,7 @@
 
             {{-- 排序按钮 --}}
             <div class="btn-group pull-right">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
+              <button type="button" class="btn btn-default dropdown-toggle sort-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">排序：<span id="sort_by"></span>&nbsp;<span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
 

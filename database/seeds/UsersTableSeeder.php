@@ -30,11 +30,11 @@ class UsersTableSeeder extends Seeder
 
     // 运营者
     $operator = User::find(2);
-    $operator->name = '内容运营者';
+    $operator->name = '运营者';
     $operator->email = 'operator@mail.com';
     $operator->avatar = 'users/gravatar.jpg';
     $operator->password = bcrypt('123456');
-    $operator->bio = '主要负责维护知识清单管理系统中的 UGC（用户生成内容）。';
+    $operator->bio = '负责维护知识清单管理系统中的 UGC（用户生成内容）。';
     $operator->is_admin = true;
     $operator->role_id = 3;  // 1：管理员，2：用户，3：运营者
     $operator->save();
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
     $user->email = 'user@mail.com';
     $user->avatar = 'users/gravatar.jpg';
     $user->password = bcrypt('123456');
-    $user->bio = '知识清单管理系统的一个用户。';
+    $user->bio = '知识清单管理系统的一个示例用户。';
     $user->is_admin = false;
     $user->role_id = 2;  // 1：管理员，2：用户，3：运营者
     $user->save();

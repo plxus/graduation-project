@@ -61,7 +61,7 @@ class NotificationsController extends Controller
 
     if ($request->receive_id !== null) {
       $this->validate($request, [
-        'receive_id' => 'integer|max:1',
+        'receive_id' => 'required',
       ]);
     }
 
@@ -77,8 +77,8 @@ class NotificationsController extends Controller
     else {
       // 私信
       Notification::create([
-        'send_id' => Auth::user()->id,
-        'receive_id' => $user->id,
+        'send_id' => $user->id,
+        'receive_id' => $request->receive_id,
         'subject' => isset($request->msg_subject) ? $request->msg_subject : '',
         'content' => str_replace(["\r\n", "\n"], "<br />", $request->msg_content),
       ]);
@@ -92,7 +92,7 @@ class NotificationsController extends Controller
     }
     else {
       // 私信
-      return redirect()->route('users.show', $user->id);
+      return redirect()->route('users.show', $request->receive_id);
     }
   }
 

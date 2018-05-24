@@ -483,11 +483,17 @@ h3.repo-category-head {
   margin: 20px 0;
 }
 
-.search-header .btn {
+.search-header .back-btn {
   position: relative;
   top: -2px;
   left: 0;
   margin-right: 20px;
+}
+
+.search-header .sort-btn {
+  position: relative;
+  top: 3px;
+  left: 0;
 }
 
 .search-header h2 {
