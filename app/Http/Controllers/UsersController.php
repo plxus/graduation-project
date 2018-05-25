@@ -45,7 +45,7 @@ class UsersController extends Controller
   // 关注的其他用户列表视图
   public function followings(User $user)
   {
-    $followings = $user->followings()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户关注的其他用户
+    $followings = $user->followings()->latest()->paginate(20);  // 目标用户关注的其他用户
 
     return view('users.followings', compact('user', 'followings'));
   }
@@ -53,7 +53,7 @@ class UsersController extends Controller
   // 关注者列表视图
   public function followers(User $user)
   {
-    $followers = $user->followers()->orderBy('created_at', 'desc')->paginate(20);  // 目标用户的关注者
+    $followers = $user->followers()->latest()->paginate(20);  // 目标用户的关注者
 
     return view('users.followers', compact('user', 'followers'));
   }

@@ -62,3 +62,9 @@ div.power {
 span.vsys {
   display: none !important;
 }
+
+.vempty {
+  font-size: 1.4em !important;
+  font-weight: 400 !important;
+  color: #BDBDBD !important;
+}

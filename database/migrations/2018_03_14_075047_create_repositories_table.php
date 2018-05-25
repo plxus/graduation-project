@@ -24,7 +24,7 @@ class CreateRepositoriesTable extends Migration
       $table->integer('user_id')->index();
       $table->integer('star_num')->default(0)->index();  // 收藏数
       $table->timestamps();
-      $table->index(['created_at']);
+      $table->index(['created_at', 'updated_at']);
     });
   }
 
